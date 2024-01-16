@@ -1,0 +1,28 @@
+
+.button-op-panel{
+    position: relative;
+    padding: 5px 10px 5px 40px;
+    height: 36px;
+    border: var(--border-2);
+    border-radius: 5px 20px 20px 5px;
+    color: var(--cl-t-3);
+    background-color: var(--cl-white);
+    
+    &:hover{
+       background-color: var(--cl-b-2);
+    }
+    
+    &::before{
+       content: '';
+       position: absolute;
+       top: 50%;
+       transform: translateY(-50%);
+       left: 9px;
+       width: 20px;
+       height: 20px;
+       background-color: aqua;
+    }
+ }
+ 
+ 
+ 

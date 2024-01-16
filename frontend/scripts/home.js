@@ -1,7 +1,6 @@
-const { MakeHTML } = require('../src/resources.js')
-import { home } from '../db/db.js'
+const structureHome = ( makeHTML, db ) => {
+    makeHTML.build(document.querySelector('.main-container'), db)
+    return
+}
 
-const makeHTML = new MakeHTML
-
-makeHTML.build(document.querySelector('.main-container'), home.main)
-
+module.exports = { structureHome }

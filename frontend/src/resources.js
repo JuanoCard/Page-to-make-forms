@@ -358,455 +358,435 @@ class DownloadSVG {
 }
 
 class CreateForms{
-
-    contDets
-    contModel
-    contList
-    formDet
-    list
-    ar
-    obj
-    words
  
     constructor(container, datahtml, resources, list, controllers){
-       this.container = container
-       this.contPanel = this.container.querySelector('.subarea-instruments-createFor')
-       this.contDets;
-       this.contModel;
-       this.contList;
-       this.formDet;
-       this.resources = resources
-       this.datahtml = datahtml
-       this.data = datahtml.dbins
-       this.makeHTML = new resources.MakeHTML()
-       this.controller = new controllers(this.container, this.datahtml, this.resources)
-       this.list = list
-       this.objForm = {name_form: undefined, structure: []}
-       this.words = []
-       this.placeholder = new resources.Placeholders()
-       this.modeform = 'create'
-       this.start()
+      this.container = container
+      this.contPanel = this.container.querySelector('.panel-body-blocks')
+      //  this.contDets;
+      //  this.contModel;
+      //  this.contList;
+      //  this.formDet;
+      //  this.resources = resources
+      this.datahtml = datahtml
+      // this.data = datahtml.panel
+      this.makeHTML = new resources.MakeHTML()
+      //  this.controller = new controllers(this.container, this.datahtml, this.resources)
+      //  this.list = list
+      this.objForm = {name_form: undefined, structure: []}
+      this.words = []
+      this.placeholder = new resources.Placeholders()
+      this.modeform = 'create'
+      this.start()
     }
  
     async start(){
-       this.buildHTML()
-       this.contList = this.container.querySelector('#inst_forms_list_body')
+       this.contList = this.container.querySelector('#ul_body_list')
+       this.contDets = this.contPanel.querySelector('#ops_dets')
+       this.contModel = this.contPanel.querySelector('#form_model')
        this.printForm()
-       this.actions()
-       this.listForms()
+      //  this.actions()
+      //  this.listForms()
     }
  
-    buildHTML(){
-       this.contPanel.innerHTML = ''
-       this.makeHTML.build(this.contPanel, this.data.structure_panel_create_form, this.data.elements)
-       this.contDets = this.contPanel.querySelector('#inst_creF_panel_det')
-       this.contModel = this.contPanel.querySelector('#inst_creF_cont_model')
-    }
- 
-    actions(){
-       const btnsOpPanel = this.contPanel.querySelectorAll('.button-op-panel-form')
-       btnsOpPanel.forEach(btn => btn.addEventListener("click", () => {
-          const key = btn.id.split('__')[1]
-          if(key !== 'select_dList'){
-             this.printDets(key)
-             this.addRemoveInputs(key)
-          } else {
-             this.printDets(key)
-          }
-          return
-       }))
-       btnsOpPanel[0].click()
+   //  actions(){
+   //     const btnsOpPanel = this.contPanel.querySelectorAll('.button-op-panel-form')
+   //     btnsOpPanel.forEach(btn => btn.addEventListener("click", () => {
+   //        const key = btn.id.split('__')[1]
+   //        if(key !== 'select_dList'){
+   //           this.printDets(key)
+   //           this.addRemoveInputs(key)
+   //        } else {
+   //           this.printDets(key)
+   //        }
+   //        return
+   //     }))
+   //     btnsOpPanel[0].click()
        
-       this.contModel.addEventListener('click', async (e) => {
-          if(e.target.classList.contains('btn-it-del')){
-             e.preventDefault()
-             const idkey = e.target.id.split('__')[1]
-             const objDel = this.objForm.structure.find(it => it.id === idkey)
-             const index = this.objForm.structure.indexOf(objDel)
-             this.objForm.structure.splice(index, 1)
-             this.printForm()
-             return
-          }
+   //     this.contModel.addEventListener('click', async (e) => {
+   //        if(e.target.classList.contains('btn-it-del')){
+   //           e.preventDefault()
+   //           const idkey = e.target.id.split('__')[1]
+   //           const objDel = this.objForm.structure.find(it => it.id === idkey)
+   //           const index = this.objForm.structure.indexOf(objDel)
+   //           this.objForm.structure.splice(index, 1)
+   //           this.printForm()
+   //           return
+   //        }
           
-          if(e.target.classList.contains('btn-it-edi')){
-             e.preventDefault()
-             const idkey = e.target.id.split('__')[1]
-             const objDel = this.objForm.structure.find(it => it.id === idkey)
-             btnsOpPanel.forEach(bt => {
-                bt.classList.remove('btn-dis')
-                bt.disabled = false
-             })
-             this.printDets(objDel.group, objDel)
-             this.placeholder.print(this.contDets, 'inp-op', 'Opción')
-             return
-          }
+   //        if(e.target.classList.contains('btn-it-edi')){
+   //           e.preventDefault()
+   //           const idkey = e.target.id.split('__')[1]
+   //           const objDel = this.objForm.structure.find(it => it.id === idkey)
+   //           btnsOpPanel.forEach(bt => {
+   //              bt.classList.remove('btn-dis')
+   //              bt.disabled = false
+   //           })
+   //           this.printDets(objDel.group, objDel)
+   //           this.placeholder.print(this.contDets, 'inp-op', 'Opción')
+   //           return
+   //        }
  
-          if(e.target.id === 'btn_cancel_edit_form'){
-             e.preventDefault()
-             btnsOpPanel.forEach(bt => {
-                bt.classList.remove('btn-dis')
-                bt.disabled = false
-             })
-             this.printDets('input_text')
-             this.objForm = {name_form: undefined, structure: []}
-             this.modeform = 'create'
-             this.printForm()
-             return
-          }
+   //        if(e.target.id === 'btn_cancel_edit_form'){
+   //           e.preventDefault()
+   //           btnsOpPanel.forEach(bt => {
+   //              bt.classList.remove('btn-dis')
+   //              bt.disabled = false
+   //           })
+   //           this.printDets('input_text')
+   //           this.objForm = {name_form: undefined, structure: []}
+   //           this.modeform = 'create'
+   //           this.printForm()
+   //           return
+   //        }
  
-          if(e.target.id === 'btn_del_form'){
-             e.preventDefault()
-             await this.controller.deleteForms(this.objForm._id)
-          }
+   //        if(e.target.id === 'btn_del_form'){
+   //           e.preventDefault()
+   //           await this.controller.deleteForms(this.objForm._id)
+   //        }
  
-          if(e.target.id === 'btn_edit_form'){
-             e.preventDefault()
-             await this.controller.editForms(this.objForm)
-             btnsOpPanel.forEach(bt => {
-                bt.classList.remove('btn-dis')
-                bt.disabled = false
-             })
-             this.printDets('input_text')
-             this.objForm = {name_form: undefined, structure: []}
-             this.modeform = 'create'
-             this.printForm()
-             this.list = await this.listForms()
-             return
-          }
+   //        if(e.target.id === 'btn_edit_form'){
+   //           e.preventDefault()
+   //           await this.controller.editForms(this.objForm)
+   //           btnsOpPanel.forEach(bt => {
+   //              bt.classList.remove('btn-dis')
+   //              bt.disabled = false
+   //           })
+   //           this.printDets('input_text')
+   //           this.objForm = {name_form: undefined, structure: []}
+   //           this.modeform = 'create'
+   //           this.printForm()
+   //           this.list = await this.listForms()
+   //           return
+   //        }
  
-          if(e.target.id === 'btn_save_create_form'){
-             e.preventDefault()
-             await this.controller.saveForms(this.objForm)
-             this.objForm = {name_form: undefined, structure: []}
-             this.printForm()
-             this.list = await this.listForms()
-             return
-          }
-       })
+   //        if(e.target.id === 'btn_save_create_form'){
+   //           e.preventDefault()
+   //           await this.controller.saveForms(this.objForm)
+   //           this.objForm = {name_form: undefined, structure: []}
+   //           this.printForm()
+   //           this.list = await this.listForms()
+   //           return
+   //        }
+   //     })
  
-       this.contList.addEventListener('click', (e) => {
-          if(e.target.classList.contains('btn-li-form')){
-             const id = e.target.id
-             const formChosen = this.list.find(fo => fo._id === id)
-             btnsOpPanel.forEach(bt => {
-                bt.classList.add('btn-dis')
-                bt.disabled = true
-             })
-             this.contDets.innerHTML = ''
-             this.objForm = formChosen
-             this.modeform = 'edit'
-             this.printForm()
-             return
-          }
-          e.preventDefault()
-       })
+   //     this.contList.addEventListener('click', (e) => {
+   //        if(e.target.classList.contains('btn-li-form')){
+   //           const id = e.target.id
+   //           const formChosen = this.list.find(fo => fo._id === id)
+   //           btnsOpPanel.forEach(bt => {
+   //              bt.classList.add('btn-dis')
+   //              bt.disabled = true
+   //           })
+   //           this.contDets.innerHTML = ''
+   //           this.objForm = formChosen
+   //           this.modeform = 'edit'
+   //           this.printForm()
+   //           return
+   //        }
+   //        e.preventDefault()
+   //     })
  
-       this.contDets.addEventListener('click', (e) => {
-          if(e.target.classList.contains('btn-add-det')){
-             e.preventDefault()
-             const targetkey = e.target.id.split('__')[1]
-             this.makeArray(targetkey)
-          }
+   //     this.contDets.addEventListener('click', (e) => {
+   //        if(e.target.classList.contains('btn-add-det')){
+   //           e.preventDefault()
+   //           const targetkey = e.target.id.split('__')[1]
+   //           this.makeArray(targetkey)
+   //        }
  
-          if(e.target.classList.contains('btn-edi-det')){
-             e.preventDefault()
-             const targetkey = e.target.id.split('__')[1]
-             const idIt = e.target.dataset.obj
-             this.makeArray(targetkey, 'edit', idIt)
-          }
-       })
+   //        if(e.target.classList.contains('btn-edi-det')){
+   //           e.preventDefault()
+   //           const targetkey = e.target.id.split('__')[1]
+   //           const idIt = e.target.dataset.obj
+   //           this.makeArray(targetkey, 'edit', idIt)
+   //        }
+   //     })
  
-       return
-    }
+   //     return
+   //  }
  
-    listForms(){
-       if(this.list){
-          this.contList.innerHTML = ''
-          this.list.forEach(lis => {
-             const btnLi = {
-                arrayData: [
-                   {elem: 'li', class: 'cont-btn-li-subtit', subs: [
-                      {elem: 'button', id: lis._id, class: 'button-li-subtit btn-li-form', subs: [
-                         {elem: 'div', class: 'btn-li-subtit-cont', subs: [
-                            {elem: 'p', text: lis.name_form},
-                            {elem: 'span', text: `Creado el: ${lis.created_at.split('T')[0]}`}
-                         ]}
-                      ]}
-                   ]}
-                ]
-             }
-             this.makeHTML.build(this.contList, btnLi)
-          })
-       }
+   //  listForms(){
+   //     if(this.list){
+   //        this.contList.innerHTML = ''
+   //        this.list.forEach(lis => {
+   //           const btnLi = {
+   //              arrayData: [
+   //                 {elem: 'li', class: 'cont-btn-li-subtit', subs: [
+   //                    {elem: 'button', id: lis._id, class: 'button-li-subtit btn-li-form', subs: [
+   //                       {elem: 'div', class: 'btn-li-subtit-cont', subs: [
+   //                          {elem: 'p', text: lis.name_form},
+   //                          {elem: 'span', text: `Creado el: ${lis.created_at.split('T')[0]}`}
+   //                       ]}
+   //                    ]}
+   //                 ]}
+   //              ]
+   //           }
+   //           this.makeHTML.build(this.contList, btnLi)
+   //        })
+   //     }
  
-       return this.llist
-    }
+   //     return this.llist
+   //  }
  
-    printDets(key = undefined, objEdit = undefined){
-       if(!key){ return }
+   //  printDets(key = undefined, objEdit = undefined){
+   //     if(!key){ return }
  
-       this.contDets.innerHTML = ''
-       const structureForm = {
-          arrayData: [
-             {predesing: `panel_form_${key}`}
-          ]
-       }
-       this.makeHTML.build(this.contDets, structureForm, this.data.elements)
-       this.formDet = this.contDets.querySelector(`#form__${key}`)
+   //     this.contDets.innerHTML = ''
+   //     const structureForm = {
+   //        arrayData: [
+   //           {predesing: `panel_form_${key}`}
+   //        ]
+   //     }
+   //     this.makeHTML.build(this.contDets, structureForm, this.data.elements)
+   //     this.formDet = this.contDets.querySelector(`#form__${key}`)
  
-       if(key === 'select_dList'){
-          const arBtnsDList = this.selectDList()
-          arBtnsDList.forEach(btn => btn.addEventListener('click', (e) => {
-             this.selectDList(true, btn.id)
-             e.preventDefault()
-          }))
+   //     if(key === 'select_dList'){
+   //        const arBtnsDList = this.selectDList()
+   //        arBtnsDList.forEach(btn => btn.addEventListener('click', (e) => {
+   //           this.selectDList(true, btn.id)
+   //           e.preventDefault()
+   //        }))
  
-          return
-       }
+   //        return
+   //     }
  
-       const contBtnDet = this.contDets.querySelector('.cont-btn-form-det')
-       let idBtn;
-       let textBtn;
-       let classBtn;
-       let dataBtn;
-       if(!objEdit){
-          idBtn = `btnadd__${key}`
-          textBtn = 'Agregar'
-          classBtn = 'button-add btn-add-det'
-          dataBtn = ''
-       } else {
-          idBtn = `btnedi__${key}`
-          textBtn = 'Editar'
-          classBtn = 'button-add btn-edi-det'
-          dataBtn = objEdit.id
-       }
-       const typeBtnAdd = {
-          arrayData: [
-             {elem: 'button', id: idBtn, class: classBtn, text: textBtn, dataset1: ['data-obj', dataBtn]}
-          ]
-       }
+   //     const contBtnDet = this.contDets.querySelector('.cont-btn-form-det')
+   //     let idBtn;
+   //     let textBtn;
+   //     let classBtn;
+   //     let dataBtn;
+   //     if(!objEdit){
+   //        idBtn = `btnadd__${key}`
+   //        textBtn = 'Agregar'
+   //        classBtn = 'button-add btn-add-det'
+   //        dataBtn = ''
+   //     } else {
+   //        idBtn = `btnedi__${key}`
+   //        textBtn = 'Editar'
+   //        classBtn = 'button-add btn-edi-det'
+   //        dataBtn = objEdit.id
+   //     }
+   //     const typeBtnAdd = {
+   //        arrayData: [
+   //           {elem: 'button', id: idBtn, class: classBtn, text: textBtn, dataset1: ['data-obj', dataBtn]}
+   //        ]
+   //     }
  
-       this.makeHTML.build(contBtnDet, typeBtnAdd)
+   //     this.makeHTML.build(contBtnDet, typeBtnAdd)
  
-       if(objEdit){
-          const inpEt = this.contDets.querySelector('.fo-inp-et')
-          inpEt.value = objEdit.et
+   //     if(objEdit){
+   //        const inpEt = this.contDets.querySelector('.fo-inp-et')
+   //        inpEt.value = objEdit.et
  
-          if(objEdit.group === 'input_text'){
-             const inpsRad = this.contDets.querySelectorAll('.fo-inp-typtex')
-             inpsRad.forEach(inp => inp.checked = false)
-             const inpcheck = this.contDets.querySelector(`#radio_${objEdit.type}_formdet`)
-             inpcheck.checked = true
-          }
+   //        if(objEdit.group === 'input_text'){
+   //           const inpsRad = this.contDets.querySelectorAll('.fo-inp-typtex')
+   //           inpsRad.forEach(inp => inp.checked = false)
+   //           const inpcheck = this.contDets.querySelector(`#radio_${objEdit.type}_formdet`)
+   //           inpcheck.checked = true
+   //        }
  
-          if(objEdit.group !== 'input_text'){
-             const opts = objEdit.options
-             this.addRemoveInputs(objEdit.group)
+   //        if(objEdit.group !== 'input_text'){
+   //           const opts = objEdit.options
+   //           this.addRemoveInputs(objEdit.group)
  
-             let n = 1
-             opts.forEach(op => {
-                const contDets = this.formDet.querySelector(`#cont_opts__${objEdit.group}`)
-                const inpDet = this.formDet.querySelector(`#inp_detOp${n}`)
-                inpDet.value = op.et
-                if(n === opts.length){ return }
-                const btnadd = contDets.querySelector('.btn-add')
-                btnadd.click()
-                n++
-             })
-          }
+   //           let n = 1
+   //           opts.forEach(op => {
+   //              const contDets = this.formDet.querySelector(`#cont_opts__${objEdit.group}`)
+   //              const inpDet = this.formDet.querySelector(`#inp_detOp${n}`)
+   //              inpDet.value = op.et
+   //              if(n === opts.length){ return }
+   //              const btnadd = contDets.querySelector('.btn-add')
+   //              btnadd.click()
+   //              n++
+   //           })
+   //        }
           
-          const inpReq = this.contDets.querySelector('.fo-inp-req')
-          objEdit.required ? inpReq.checked = true : inpReq.checked = false
-       }
+   //        const inpReq = this.contDets.querySelector('.fo-inp-req')
+   //        objEdit.required ? inpReq.checked = true : inpReq.checked = false
+   //     }
  
-       return
-    }
+   //     return
+   //  }
  
-    addRemoveInputs(key = undefined, contInputsOp = undefined, g = ''){
-       if(!this.formDet){return}
+   //  addRemoveInputs(key = undefined, contInputsOp = undefined, g = ''){
+   //     if(!this.formDet){return}
  
-       let contDetOpts;
-       !contInputsOp ? contDetOpts = this.formDet.querySelector(`#cont_opts__${key}`) : contDetOpts = contInputsOp
+   //     let contDetOpts;
+   //     !contInputsOp ? contDetOpts = this.formDet.querySelector(`#cont_opts__${key}`) : contDetOpts = contInputsOp
  
-       if(contDetOpts){
-          this.placeholder.print(contDetOpts, 'inp-op', 'Opción')
-          let n = 2
-          let b;
-          let idText;
-          contDetOpts.addEventListener('click', (e) => {
-             if(e.target.classList.contains('btn-add')){
-                if(key === 'select_dList'){
-                   b = `-${g}`
-                   idText = `${contDetOpts.dataset.block}__`
-                } else {
-                   b = ''
-                   idText = 'inp_detOp'
-                }
-                const el = e.target
-                const newInput = {
-                   arrayData: [
-                      {predesing: 'cont_inp_det_op_add', id: `cont_detOp${n}${b}`}
-                   ],
-                   merge: {
-                      [`cont_detOp${n}${b}`]: [
-                         {
-                            target: ['class', 'input-form-det-op'],
-                            attr: {
-                               id: `${idText}${n}${b}`, 
-                               dataset1: ['data-key', 'opt']
-                            }
-                         },
-                         {
-                            target: ['class', 'btn-add'],
-                            attr: {
-                               id: `btn_detOp${n}${b}`
-                            }
-                         }
-                      ]
-                   }
-                }
+   //     if(contDetOpts){
+   //        this.placeholder.print(contDetOpts, 'inp-op', 'Opción')
+   //        let n = 2
+   //        let b;
+   //        let idText;
+   //        contDetOpts.addEventListener('click', (e) => {
+   //           if(e.target.classList.contains('btn-add')){
+   //              if(key === 'select_dList'){
+   //                 b = `-${g}`
+   //                 idText = `${contDetOpts.dataset.block}__`
+   //              } else {
+   //                 b = ''
+   //                 idText = 'inp_detOp'
+   //              }
+   //              const el = e.target
+   //              const newInput = {
+   //                 arrayData: [
+   //                    {predesing: 'cont_inp_det_op_add', id: `cont_detOp${n}${b}`}
+   //                 ],
+   //                 merge: {
+   //                    [`cont_detOp${n}${b}`]: [
+   //                       {
+   //                          target: ['class', 'input-form-det-op'],
+   //                          attr: {
+   //                             id: `${idText}${n}${b}`, 
+   //                             dataset1: ['data-key', 'opt']
+   //                          }
+   //                       },
+   //                       {
+   //                          target: ['class', 'btn-add'],
+   //                          attr: {
+   //                             id: `btn_detOp${n}${b}`
+   //                          }
+   //                       }
+   //                    ]
+   //                 }
+   //              }
  
-                this.makeHTML.build(contDetOpts, newInput, this.data.elements)
-                el.setAttribute('class', 'button-ic-remove btn-remove')
-                n++
-                this.placeholder.print(contDetOpts, 'inp-op', 'Opción')
-                e.preventDefault()
-                return
-             }
+   //              this.makeHTML.build(contDetOpts, newInput, this.data.elements)
+   //              el.setAttribute('class', 'button-ic-remove btn-remove')
+   //              n++
+   //              this.placeholder.print(contDetOpts, 'inp-op', 'Opción')
+   //              e.preventDefault()
+   //              return
+   //           }
  
-             if(e.target.classList.contains('btn-remove')){
-                const elCont = contDetOpts.querySelector(`#cont_${e.target.id.split('_')[1]}`)
-                contDetOpts.removeChild(elCont)
-                this.placeholder.print(contDetOpts, 'inp-op', 'Opción')
-                e.preventDefault()
-                return
-             }
+   //           if(e.target.classList.contains('btn-remove')){
+   //              const elCont = contDetOpts.querySelector(`#cont_${e.target.id.split('_')[1]}`)
+   //              contDetOpts.removeChild(elCont)
+   //              this.placeholder.print(contDetOpts, 'inp-op', 'Opción')
+   //              e.preventDefault()
+   //              return
+   //           }
              
-          })
-       }
-    }
+   //        })
+   //     }
+   //  }
  
-    makeArray(targetkey, mode = 'create', idElem = undefined){
-       let obj = {options: []}
-       obj['group'] = targetkey
-       obj['input'] = targetkey.split('_')[0]
-       obj['type'] = targetkey.split('_')[1]
+   //  makeArray(targetkey, mode = 'create', idElem = undefined){
+   //     let obj = {options: []}
+   //     obj['group'] = targetkey
+   //     obj['input'] = targetkey.split('_')[0]
+   //     obj['type'] = targetkey.split('_')[1]
  
-       const inputs = this.formDet.querySelectorAll('.input-det')
-       inputs.forEach(inp => {
-          const datakey = inp.dataset.key
-          if(datakey === 'typ'){
-             if(inp.checked){ obj['type'] = inp.id.split('_')[1] }
-             return
-          }
-          if(datakey === 'et'){
-             const concat = inp.value.replace(/\s+/g, '_').toLowerCase()
-             const cod = Math.trunc(Math.random() * Math.pow(15, 15)).toString(16)
-             obj['id'] = `${cod}`
-             obj['concat'] = concat
-             obj['et'] = inp.value
-             this.words.push(concat)
-             return
-          }
-          if(datakey === 'opt'){
-             const concatb = inp.value.replace(/\s+/g, '_')
-             let objOpt
-             if(targetkey === 'select_dList'){
-                objOpt = {et: inp.value, concat: `${inp.id.split('__')[0]}___${concatb.toLowerCase()}`}
-                obj['root'] = this.contDets.dataset.root
-             } else {
-                objOpt = {et: inp.value, concat: concatb.toLowerCase()}
-             }
-             obj.options.push(objOpt)
-             this.words.push(concatb)
-             return
-          }
-          if(datakey === 'req'){
-             obj['required'] = inp.checked
-             return
-          }
-          return
-       })
+   //     const inputs = this.formDet.querySelectorAll('.input-det')
+   //     inputs.forEach(inp => {
+   //        const datakey = inp.dataset.key
+   //        if(datakey === 'typ'){
+   //           if(inp.checked){ obj['type'] = inp.id.split('_')[1] }
+   //           return
+   //        }
+   //        if(datakey === 'et'){
+   //           const concat = inp.value.replace(/\s+/g, '_').toLowerCase()
+   //           const cod = Math.trunc(Math.random() * Math.pow(15, 15)).toString(16)
+   //           obj['id'] = `${cod}`
+   //           obj['concat'] = concat
+   //           obj['et'] = inp.value
+   //           this.words.push(concat)
+   //           return
+   //        }
+   //        if(datakey === 'opt'){
+   //           const concatb = inp.value.replace(/\s+/g, '_')
+   //           let objOpt
+   //           if(targetkey === 'select_dList'){
+   //              objOpt = {et: inp.value, concat: `${inp.id.split('__')[0]}___${concatb.toLowerCase()}`}
+   //              obj['root'] = this.contDets.dataset.root
+   //           } else {
+   //              objOpt = {et: inp.value, concat: concatb.toLowerCase()}
+   //           }
+   //           obj.options.push(objOpt)
+   //           this.words.push(concatb)
+   //           return
+   //        }
+   //        if(datakey === 'req'){
+   //           obj['required'] = inp.checked
+   //           return
+   //        }
+   //        return
+   //     })
  
-       if(mode === 'create'){ this.objForm.structure.push(obj) }
-       if(mode === 'edit'){
-          const indexEl = this.objForm.structure.findIndex(it => it.id === idElem)
-          this.objForm.structure.splice(indexEl, 1, obj)
-       }
+   //     if(mode === 'create'){ this.objForm.structure.push(obj) }
+   //     if(mode === 'edit'){
+   //        const indexEl = this.objForm.structure.findIndex(it => it.id === idElem)
+   //        this.objForm.structure.splice(indexEl, 1, obj)
+   //     }
        
-       obj = {}
+   //     obj = {}
        
-       this.formDet.reset()
-       this.printForm()
+   //     this.formDet.reset()
+   //     this.printForm()
  
-       if(targetkey !== 'select_dList'){
-          this.printDets(targetkey)
-          this.addRemoveInputs(targetkey)
-       } else {
-          this.printDets(targetkey)
-       }
+   //     if(targetkey !== 'select_dList'){
+   //        this.printDets(targetkey)
+   //        this.addRemoveInputs(targetkey)
+   //     } else {
+   //        this.printDets(targetkey)
+   //     }
  
-       this.placeholder.print(this.contDets, 'inp-op', 'Opción')
-       return
-    }
+   //     this.placeholder.print(this.contDets, 'inp-op', 'Opción')
+   //     return
+   //  }
  
-    selectDList(options = false, id = undefined){
-       const ulDList = this.contDets.querySelector('#cont_opts__select_dList')
-       const lists = this.objForm.structure.filter(it => it.group === 'select_list')
-       if(!options){
-          ulDList.innerHTML = ''
-          lists.forEach(lis => {
-             const btnList = document.createElement('button')
-             btnList.setAttribute('id', `btnlist_${lis.id}`)
-             btnList.setAttribute('class', 'button-dlist btn-dlist')
-             btnList.append(lis.et)
-             ulDList.appendChild(btnList)
-          })
-          return this.contDets.querySelectorAll('.btn-dlist')
-       }
+   //  selectDList(options = false, id = undefined){
+   //     const ulDList = this.contDets.querySelector('#cont_opts__select_dList')
+   //     const lists = this.objForm.structure.filter(it => it.group === 'select_list')
+   //     if(!options){
+   //        ulDList.innerHTML = ''
+   //        lists.forEach(lis => {
+   //           const btnList = document.createElement('button')
+   //           btnList.setAttribute('id', `btnlist_${lis.id}`)
+   //           btnList.setAttribute('class', 'button-dlist btn-dlist')
+   //           btnList.append(lis.et)
+   //           ulDList.appendChild(btnList)
+   //        })
+   //        return this.contDets.querySelectorAll('.btn-dlist')
+   //     }
  
-       if(options){
-          ulDList.innerHTML = ''
-          const itChosen = lists.find(it => it.id === id.split('_')[1])
-          let nn = 0
-          itChosen.options.forEach(op => {
-             const blockList = {
-                arrayData: [
-                   {elem: 'div', class: 'dlist-cont-opts', subs: [
-                      {elem: 'p', class: 'btn-p-dlist', text: op.et},
-                      {elem: 'ul', class: 'cont-opts-dlist', dataset1: ['data-block', op.concat], subs: [
-                         {elem: 'li', id: `cont_detOp1-${nn}`, class: 'li-input-det-op', subs: [
-                            {elem: 'div', class: 'cont-input-det-op', subs: [
-                               {elem: 'input', type: 'text', id: `${op.concat}__1-${nn}`, class: 'input-form-det-op input-det inp-op', dataset1: ['data-key', 'opt']},
-                               {elem: 'button', id: `btn_detOp1-${nn}`, class: 'button-ic-add btn-add'}
-                            ]}
-                         ]}
-                      ]}
-                   ]}
-                ]
-             }
-             this.makeHTML.build(ulDList, blockList, this.data.elements)
-             nn++
-          })
-          this.contDets.setAttribute('data-root', itChosen.id)
+   //     if(options){
+   //        ulDList.innerHTML = ''
+   //        const itChosen = lists.find(it => it.id === id.split('_')[1])
+   //        let nn = 0
+   //        itChosen.options.forEach(op => {
+   //           const blockList = {
+   //              arrayData: [
+   //                 {elem: 'div', class: 'dlist-cont-opts', subs: [
+   //                    {elem: 'p', class: 'btn-p-dlist', text: op.et},
+   //                    {elem: 'ul', class: 'cont-opts-dlist', dataset1: ['data-block', op.concat], subs: [
+   //                       {elem: 'li', id: `cont_detOp1-${nn}`, class: 'li-input-det-op', subs: [
+   //                          {elem: 'div', class: 'cont-input-det-op', subs: [
+   //                             {elem: 'input', type: 'text', id: `${op.concat}__1-${nn}`, class: 'input-form-det-op input-det inp-op', dataset1: ['data-key', 'opt']},
+   //                             {elem: 'button', id: `btn_detOp1-${nn}`, class: 'button-ic-add btn-add'}
+   //                          ]}
+   //                       ]}
+   //                    ]}
+   //                 ]}
+   //              ]
+   //           }
+   //           this.makeHTML.build(ulDList, blockList, this.data.elements)
+   //           nn++
+   //        })
+   //        this.contDets.setAttribute('data-root', itChosen.id)
  
-          let nnn = 0
-          const blockListOpts = this.contDets.querySelectorAll('.cont-opts-dlist')
-          blockListOpts.forEach(blck => {
-             this.addRemoveInputs('select_dList', blck, nnn)
-             nnn++
-          })
-       }
-    }
+   //        let nnn = 0
+   //        const blockListOpts = this.contDets.querySelectorAll('.cont-opts-dlist')
+   //        blockListOpts.forEach(blck => {
+   //           this.addRemoveInputs('select_dList', blck, nnn)
+   //           nnn++
+   //        })
+   //     }
+   //  }
  
     printForm(){
        this.contModel.innerHTML = ''
-       const modelForm = {
-          arrayData: [
-             {predesing: 'model_form'}
-          ]
-       }
-       this.makeHTML.build(this.contModel, modelForm, this.data.elements)
+       this.makeHTML.build(this.contModel, this.datahtml.model_form)
        const formItems = this.contModel.querySelector('.form-d-body')
        this.objForm.structure.length === 0 ? formItems : formItems.innerHTML = ''
        this.objForm.structure.forEach(it => {
@@ -971,6 +951,7 @@ class CreateForms{
              }
              break
        }
+       console.log(btnsForms)
        this.makeHTML.build(this.contModel.querySelector('#form_d_btns'), btnsForms)
  
        this.connectSelects()
@@ -991,26 +972,26 @@ class CreateForms{
        return
     }
  
-    connectSelects(){
-       const itSelectRoots = this.objForm.structure.filter(it => it.group === 'select_list')
-       itSelectRoots.forEach(sel => {
-          const selectRoot = this.contModel.querySelector(`#inps__${sel.id} select`)
-          selectRoot.addEventListener('change', (e) => {
-             const valueEt = sel.options.find(se => se.et === e.target.value)
-             const itSelectTarget = this.objForm.structure.find(it => it.root === sel.id)
-             if(itSelectTarget){
-                const selectTarget = this.contModel.querySelector(`#inps__${itSelectTarget.id} select`)
-                const listOptionsTarget = itSelectTarget.options.filter(it => {return it.concat.includes(valueEt.concat)})
-                selectTarget.innerHTML = ''
-                listOptionsTarget.forEach(op => {
-                   const option = document.createElement('option')
-                   option.append(op.et)
-                   selectTarget.appendChild(option)
-                })
-             }
-          })
-       })
-    }
+   //  connectSelects(){
+   //     const itSelectRoots = this.objForm.structure.filter(it => it.group === 'select_list')
+   //     itSelectRoots.forEach(sel => {
+   //        const selectRoot = this.contModel.querySelector(`#inps__${sel.id} select`)
+   //        selectRoot.addEventListener('change', (e) => {
+   //           const valueEt = sel.options.find(se => se.et === e.target.value)
+   //           const itSelectTarget = this.objForm.structure.find(it => it.root === sel.id)
+   //           if(itSelectTarget){
+   //              const selectTarget = this.contModel.querySelector(`#inps__${itSelectTarget.id} select`)
+   //              const listOptionsTarget = itSelectTarget.options.filter(it => {return it.concat.includes(valueEt.concat)})
+   //              selectTarget.innerHTML = ''
+   //              listOptionsTarget.forEach(op => {
+   //                 const option = document.createElement('option')
+   //                 option.append(op.et)
+   //                 selectTarget.appendChild(option)
+   //              })
+   //           }
+   //        })
+   //     })
+   //  }
 }
 
 class PrintForm{
