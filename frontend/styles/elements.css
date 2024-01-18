@@ -1,3 +1,162 @@
+/* BUTTONS -------------------------------------------------------------------------------- */
+
+.button-red, .button-red-w, .button-yel, .button-yel-w, .button-blu, .button-blu-w{
+   padding: 0px 30px;
+   height: 46px;
+   font-size: 19px;
+   border-radius: 7px;
+   border: 1px solid var(--cl-gray-6);
+   color: white;
+}
+
+.button-red-w, .button-yel-w, .button-blu-w{
+   width: 100%;
+}
+
+.button-red, .button-red-w{
+   box-shadow: -1px 1px 8px var(--cl-red-2t);
+   background-color: var(--cl-red-2);
+   &:hover{
+      border: 1px solid var(--cl-gray-5);
+      box-shadow: -1px 2px 14px var(--cl-red-2t);
+      background-color: var(--cl-red-1);
+   }
+   &:focus{
+      outline: 3px solid var(--cl-blue-2);
+      background-color: var(--cl-red-1);
+   }
+}
+
+.button-yel, .button-yel-w{
+   box-shadow: -1px 1px 8px var(--cl-yellow-2t);
+   background-color: var(--cl-yellow-2);
+   &:hover{
+      border: 1px solid var(--cl-gray-5);
+      box-shadow: -1px 2px 14px var(--cl-yellow-2t);
+      background-color: var(--cl-yellow-1);
+   }
+   &:focus{
+      outline: 3px solid var(--cl-blue-2);
+      background-color: var(--cl-yellow-1);
+   }   
+}
+
+.button-blu, .button-blu-w{
+   box-shadow: -1px 1px 8px var(--cl-blue-3t);
+   background-color: var(--cl-blue-4);
+   &:hover{
+      border: 1px solid var(--cl-gray-5);
+      box-shadow: -1px 2px 14px var(--cl-blue-3t);
+      background-color: var(--cl-blue-3);
+   }
+   &:focus{
+      outline: 3px solid var(--cl-blue-2);
+      background-color: var(--cl-blue-3);
+   }      
+}
+
+.button-det-gre{
+   padding: 0px 15px;
+   height: 30px;
+   font-size: 14px;
+   border-radius: 5px;
+   border: 1px solid var(--cl-gray-4);
+   box-shadow: -1px 1px 6px var(--cl-green-2t);
+   color: white;  
+   background-color: var(--cl-green-2); 
+   &:hover{
+      background-color: var(--cl-green-1);
+      box-shadow: -1px 1px 12px var(--cl-green-2t);
+   }
+   &:focus{
+      outline: 3px solid var(--cl-blue-2);
+      background-color: var(--cl-green-1);
+   }      
+}
+
+.button-op-inp{
+   position: relative;
+   padding: 0px 15px 0px 60px;
+   width: 200px;
+   height: 60px;
+   font-size: 18px;
+   text-align: left;
+   border-radius: 7px;
+   border: 1px solid var(--cl-gray-6);
+   color: var(--cl-gray-7);
+   background-color: white;
+   &:hover{
+      color: white;
+      background-color: var(--cl-blue-2);
+      box-shadow: 0px 0px 5px var(--cl-blue-3t);
+   }
+   &:focus{
+      outline: 3px solid var(--cl-blue-1);
+   }      
+}
+
+.button-list{
+   padding: 0px 15px;
+   width: 410px;
+   height: 40px;
+   font-size: 18px;
+   text-align: left;
+   border-radius: 7px;
+   border: 1px solid var(--cl-gray-6);
+   color: var(--cl-gray-7);
+   background-color: white;
+   &:hover{
+      border: 1px solid var(--cl-blue-4);
+      color: var(--cl-blue-5);
+      box-shadow: -1px 1px 10px var(--cl-blue-1t);
+   }
+   &:focus{
+      border: 1px solid var(--cl-blue-4);
+      outline: 3px solid var(--cl-blue-1);
+   }
+}
+
+
+/* BOXES ------------------------------------------------------------------------*/
+
+.box-warning{
+   padding: 25px 35px;
+   width: 600px;
+   outline: 10px solid white;
+   border-radius: 10px;
+   box-shadow: -5px 5px 25px var(--cl-blue-3t);
+   background-color: var(--cl-gray-2);
+
+   > .warn-title{
+      margin-bottom: 25px;
+      > h2{
+         font-size: 28px;
+         font-family: 'roboto-light';
+         color: var(--cl-red-3);
+      }
+   }
+
+   > .warn-description{
+      margin-bottom: 45px;
+      > p{
+         font-size: 17px;
+      }
+   }
+
+   > .warn-btns{
+      text-align: right;
+      > button{
+         margin-right: 15px;
+         box-shadow: none;
+         &:last-child{
+            margin-right: 0px;
+         }
+      }
+   }
+}
+
+
+/* REVISAR */
 
 .button-op-panel{
     position: relative;
@@ -23,6 +182,7 @@
        background-color: aqua;
     }
  }
+
  
  
  

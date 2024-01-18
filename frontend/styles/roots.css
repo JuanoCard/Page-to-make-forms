@@ -1,4 +1,76 @@
+@font-face {
+    font-family: roboto-regular;
+    src: url('../fonts/roboto/Roboto-Regular.ttf');
+ }
+ 
+ @font-face {
+    font-family: roboto-italic;
+    src: url('../fonts/roboto/Roboto-Italic.ttf');
+ }
+ 
+ @font-face {
+    font-family: roboto-bold;
+    src: url('../fonts/roboto/Roboto-Bold.ttf');
+ }
+ 
+ @font-face {
+    font-family: roboto-bold-italic;
+    src: url('../fonts/roboto/Roboto-BoldItalic.ttf');
+ }
+ 
+ @font-face {
+    font-family: roboto-light;
+    src: url('../fonts/roboto/Roboto-Light.ttf');
+ }
+ 
+ @font-face {
+    font-family: roboto-light-italic;
+    src: url('../fonts/roboto/Roboto-LightItalic.ttf');
+ }
+ 
+ 
+ @font-face {
+    font-family: roboto-medium;
+    src: url('../fonts/roboto/Roboto-Medium.ttf');
+ }
+ 
+ @font-face {
+    font-family: roboto-medium-italic;
+    src: url('../fonts/roboto/Roboto-MediumItalic.ttf');
+ }
+
 :root{
+    /* colors */
+    --cl-gray-back-t: #4c4c4c66;
+    --cl-gray-1: #f0f0f0;
+    --cl-gray-2: #f1f1f1;
+    --cl-gray-3: #f5f5f5;
+    --cl-gray-4: #f6f6f6;
+    --cl-gray-5: #eaeaea;
+    --cl-gray-6: #a7a7a7;
+    --cl-gray-7: #6d7070;
+    --cl-red-2t: #d8196166;
+    --cl-red-1: #f51269;
+    --cl-red-2: #d81961;
+    --cl-red-3: #9d0e47;
+    --cl-orange-1: #cd8735;
+    --cl-yellow-2t: #d8b219;
+    --cl-yellow-1: #f7c80d;
+    --cl-yellow-2: #d8b219;
+    --cl-yellow-3: #ab8d16;
+    --cl-green-2t: #4ee54766;
+    --cl-green-1: #2ef024;
+    --cl-green-2: #4ee547;
+    --cl-blue-1t: #b6f1f233;
+    --cl-blue-3t: #27d4d699;
+    --cl-blue-1: #b6f1f2;
+    --cl-blue-2: #59d3de;
+    --cl-blue-3: #1ce9ec;
+    --cl-blue-4: #27d4d6;
+    --cl-blue-5: #0e5a68;
+
+
+    /* mesurements */
     --h-home-header: 100px;
     --h-panel-header: 70px;
     --h-panel-body-description: 100px;

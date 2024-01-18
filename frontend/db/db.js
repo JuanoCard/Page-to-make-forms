@@ -385,3 +385,28 @@ export const makeForm = {
        
     }
 }
+
+export const elementsList = {
+   back: {
+      arrayData: [
+         {elem: 'div'}
+      ]
+   },
+
+   elements: {
+      el: {elem: 'button', class: 'button-list', text: 'Añadir'},
+      box_warning: {elem: 'div', class: 'box-warning', subs: [
+         {elem: 'div', class: 'warn-title', subs: [
+            {elem: 'h2', text: 'Borrar formulario'}
+         ]},
+         {elem: 'div', class: 'warn-description', subs: [
+            {elem: 'p', text: 'Esta a punto de borrar el formulario: Formulario Uno. Este paso es irreversible. Si desea continuar con esta acción haga click en Eliminar, de lo contrario haga click en Cancelar.'}
+         ]},
+         {elem: 'div', class: 'warn-btns', subs: [
+            {elem: 'button', class: 'button-yel', text: 'Cancelar'},
+            {elem: 'button', class: 'button-red', text: 'Eliminar'}
+         ]},
+      ]}
+
+   }
+}
