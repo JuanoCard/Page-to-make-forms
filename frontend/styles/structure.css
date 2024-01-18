@@ -1,5 +1,4 @@
 .main-container{
-    padding: 100px;
     height: 100%;
 }
 
@@ -52,8 +51,10 @@
 
 .container-panel{
     height: 100%;
+    background-color: var(--cl-gray-5);
     
     > .panel-header{
+        padding: 0px 100px;
         height: var(--h-panel-header);
         > .cont-logo{
             height: 100%;
@@ -63,54 +64,109 @@
     }
 
     > .panel-body{
+        padding: 0px 100px;
         height: calc(100% - var(--h-panel-header));
-        
         > .panel-body-description{
+            display: flex;
+            padding: 25px 0px;
             height: var(--h-panel-body-description);
+            > .desc-tit{
+                margin-right: 20px;
+                > h3{
+                    white-space: nowrap;
+                }
+            }
+            > .desc-ins{
+                margin-right: 150px;
+                > p{
+                    padding-top: 5px;
+                    font-size: 15px;
+                }
+            }
         }
         
         > .panel-body-blocks{
             display: flex;
-            padding: 0px 100px;
             height: calc(100% - var(--h-panel-body-description));
-            > .panel-block{
-                padding: 20px;
-                height: 100%;
-                width: 100%;
-            }
-
             > .panel-block-options{
                 display: flex;
                 flex-direction: column;
-                background-color: aquamarine;
-                
-                > .header-options{
-                    > h4{
-                        margin-bottom: 10px;
-                    }
-                }
-
-                > .body-options{
+                padding: 50px 20px 50px 0px;
+                min-width: 540px;
+                max-width: 540px;
+                > .block-options{
+                    padding: 30px;
                     height: 100%;
-                    display: flex;
-                    > .ops-list{
-                        display: flex;
-                        flex-direction: column;
-                        padding-top: 20px;
-     
-                        > .li-op{
-                           margin-bottom: 7px;
+                    border-radius: 15px;
+                    background-color: var(--cl-gray-1);
+                    border: 1px solid var(--cl-gray-6);
+                    > .header-options{
+                        > h4{
+                            margin-bottom: 10px;
+                            font-size: 25px;
+                            color: var(--cl-blue-5);
                         }
+                    }
+                    > .body-options{
+                        height: 100%;
+                        display: flex;
+                        > .ops-list{
+                            display: flex;
+                            flex-direction: column;
+                            padding-top: 20px;
+                            > .li-op{
+                               margin-bottom: 7px;
+                            }
+                        }
+                    }
+                    &:hover{
+                        box-shadow: 0px 0px 10px var(--cl-blue-1);
                     }
                 }
             } 
-
+            > .panel-block-model{
+                padding: 10px 20px;
+                > .block-model{
+                    padding: 40px 60px;
+                    height: 100%;
+                    min-width: 600px;
+                    max-width: 600px;
+                    border-radius: 20px;
+                    box-shadow: 0px 0px 15px var(--cl-blue-1);
+                    background-color: white;
+                    > .form-model{
+                        padding: 40px;
+                        height: 100%;
+                        border-radius: 10px;
+                        border: 2px solid var(--cl-blue-4);
+                        background-color: var(--cl-gray-3);
+                    }
+                }
+            }
             > .panel-block-list{
                 display: flex;
                 flex-direction: column;
-                background-color: aquamarine;
+                padding: 50px 0px 50px 20px;
+                min-width: 540px;
+                max-width: 540px;
+                > .block-list{
+                    padding: 30px;
+                    height: 100%;
+                    border-radius: 15px;
+                    background-color: var(--cl-gray-1);
+                    border: 1px solid var(--cl-gray-6);
+                    > .header-options{
+                        > h4{
+                            margin-bottom: 20px;
+                            font-size: 25px;
+                            color: var(--cl-blue-5);
+                        }                        
+                    }                
+                    &:hover{
+                        box-shadow: 0px 0px 10px var(--cl-blue-1);
+                    }
+                }
             }
-
             > .header-list{
                 > h4{
                     margin-bottom: 10px;

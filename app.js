@@ -9,8 +9,8 @@ import { home, makeForm, elementsList } from './frontend/db/db.js'
 const structures = () => {
     const makeHTML = new src.MakeHTML()
     // hom.structureHome(makeHTML, home)
-    // pan.structurePanel(src, makeForm)
-    bui.build(src, elementsList)
+    pan.structurePanel(src, makeForm)
+    // bui.build(src, elementsList)
 }
 
 structures()

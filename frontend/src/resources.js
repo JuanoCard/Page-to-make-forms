@@ -15,6 +15,7 @@ class MakeHTML {
           name: obj.name,
           dataset1: obj.dataset1,
           href: obj.href,
+          src: obj.src,
           min: obj.min,
           max: obj.max,
           step: obj.step,
@@ -48,6 +49,7 @@ class MakeHTML {
        if (obj.name){elem.setAttribute("name", obj.name)}
        if (obj.dataset1){elem.setAttribute(obj.dataset1[0], obj.dataset1[1])}
        if (obj.href){elem.setAttribute("href", obj.href)}
+       if (obj.src){elem.setAttribute("src", obj.src)}
        if (obj.min){elem.setAttribute("min", obj.min)}
        if (obj.max){elem.setAttribute("max", obj.max)}
        if (obj.step){elem.setAttribute("step", obj.step)}
@@ -951,7 +953,6 @@ class CreateForms{
              }
              break
        }
-       console.log(btnsForms)
        this.makeHTML.build(this.contModel.querySelector('#form_d_btns'), btnsForms)
  
        this.connectSelects()

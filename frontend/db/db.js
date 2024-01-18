@@ -36,44 +36,107 @@ export const makeForm = {
                 ]},
                 {elem: 'main', class: 'panel-body', subs: [
                     {elem: 'div', class: 'panel-body-description', subs: [
-                        {elem: 'h3', text: 'Instrucciones:'},
-                        {elem: 'p', text: 'Estas son las instruciones para crear un nuevo formulario'}
+                        {elem: 'div', class: 'desc-tit', subs: [
+                           {elem: 'h3', text: 'Agrega nuevos inputs:'},
+                        ]},
+                        {elem: 'div', class: 'desc-ins', subs: [
+                           {elem: 'p', text: 'En este campo puedes agregar nuevos inputs al modelo del formulario que se encuentra en la parte central del panel de abajo. Tienes opciones para agregar inputs para textos, de opción múltiple, de opción única, listas independientes y listas dependientes. Cada vez que uno de los tipos de inputs del lado izquierdo del bloque de inputs aparecerá un cuadro que te permitirá configurar los detalles del input que deseas agregar. Una vez que lo hiciste dale en el boton “añadir” '}
+                        ]},
+                        {elem: 'div', class: 'cont-btn-test', subs: [
+                           {elem: 'button', class: 'button-red', text: 'Probar formulario'}
+                        ]}
                     ]},
                     {elem: 'div', class: 'panel-body-blocks', subs: [
-                        {elem: 'div', class: 'panel-block-options panel-block', subs: [
-                            {elem: 'header', class: 'header-options', subs: [
-                                {elem: 'h4', text: 'Opciones de inputs'},
-                                {elem: 'p', text: 'Elije la opción que consideres necesaria para la creación de tu formulario'}
-                            ]},
-                            {elem: 'div', class: 'body-options', subs: [
-                                {elem: 'ul', id: 'ul_inst_creF_panel_opt', class: 'ops-list', subs: [
-                                   {elem: 'li', class: 'li-op', subs: [
-                                      {elem: 'button', id: 'btnPanel__input_text', class: 'button-op-panel', text: 'Texto'}
-                                   ]},
-                                   {elem: 'li', class: 'li-op', subs: [
-                                      {elem: 'button', id: 'btnPanel__input_radio', class: 'button-op-panel', text: 'Opción Única'}
-                                   ]},
-                                   {elem: 'li', class: 'li-op', subs: [
-                                      {elem: 'button', id: 'btnPanel__input_checkbox', class: 'button-op-panel', text: 'Opción Múltiple'}
-                                   ]},
-                                   {elem: 'li', class: 'li-op', subs: [
-                                      {elem: 'button', id: 'btnPanel__select_list', class: 'button-op-panel', text: 'Lista'}
-                                   ]},
-                                   {elem: 'li', class: 'li-op', subs: [
-                                      {elem: 'button', id: 'btnPanel__select_dList', class: 'button-op-panel', text: 'Lista Dependiente'}
-                                   ]},
-                                ]},
-                                {elem: 'div', id: 'ops_dets', class: 'ops-dets'}
-                            ]},
+                        {elem: 'div', class: 'panel-block-options', subs: [
+                           {elem: 'div', class: 'block-options', subs: [
+                              {elem: 'header', class: 'header-options', subs: [
+                                  {elem: 'h4', text: 'Opciones de inputs'},
+                                  {elem: 'p', text: 'Elije la opción que consideres necesaria para la creación de tu formulario'}
+                              ]},
+                              {elem: 'div', class: 'body-options', subs: [
+                                  {elem: 'ul', id: 'ul_inst_creF_panel_opt', class: 'ops-list', subs: [
+                                     {elem: 'li', class: 'li-op', subs: [
+                                        {elem: 'button', id: 'btnPanel__input_text', class: 'button-op-inp', subs: [
+                                           {elem: 'div', class: 'ic-op ic-28 ic-tex'},
+                                           {elem: 'p', text: 'Texto'}
+                                       ]}
+                                     ]},
+                                     {elem: 'li', class: 'li-op', subs: [
+                                       {elem: 'button', id: 'btnPanel__input_radio', class: 'button-op-inp', subs: [
+                                          {elem: 'div', class: 'ic-op ic-28 ic-rad'},
+                                          {elem: 'p', text: 'Opción única'}
+                                      ]}
+                                     ]},
+                                     {elem: 'li', class: 'li-op', subs: [
+                                       {elem: 'button', id: 'btnPanel__input_checkbox', class: 'button-op-inp', subs: [
+                                          {elem: 'div', class: 'ic-op ic-28 ic-che'},
+                                          {elem: 'p', text: 'Op. múltiples'}
+                                      ]}
+                                     ]},
+                                     {elem: 'li', class: 'li-op', subs: [
+                                       {elem: 'button', id: 'btnPanel__select_list', class: 'button-op-inp', subs: [
+                                          {elem: 'div', class: 'ic-op ic-28 ic-lis'},
+                                          {elem: 'p', text: 'Lista'}
+                                      ]}
+                                     ]},
+                                     {elem: 'li', class: 'li-op', subs: [
+                                       {elem: 'button', id: 'btnPanel__select_dList', class: 'button-op-inp', subs: [
+                                          {elem: 'div', class: 'ic-op ic-28 ic-lde'},
+                                          {elem: 'p', text: 'Dependientes'}
+                                      ]}
+                                     ]},
+                                  ]},
+                                  {elem: 'div', id: 'ops_dets', class: 'ops-dets'}
+                              ]},
+                           ]}
                         ]},
-                        {elem: 'div', class: 'panel-block-model panel-block', subs: [
-                           {elem: 'div', id: 'form_model', class: 'form-model'}
+                        {elem: 'div', class: 'panel-block-model', subs: [
+                           {elem: 'div', class: 'block-model', subs: [
+                              {elem: 'div', id: 'form_model', class: 'form-model'}
+                           ]}
                         ]},
-                        {elem: 'div', class: 'panel-block-list panel-block', subs: [
-                           {elem: 'header', class: 'header-options', subs: [
-                               {elem: 'h4', text: 'Lista de formularios'}
-                           ]},
-                           {elem: 'ul', id: 'ul_body_list', class: 'body-list'}
+                        {elem: 'div', class: 'panel-block-list', subs: [
+                           {elem: 'div', class: 'block-list', subs: [
+                              {elem: 'header', class: 'header-options', subs: [
+                                  {elem: 'h4', text: 'Lista de formularios'}
+                              ]},
+                              {elem: 'ul', id: 'ul_body_list', class: 'body-list', subs: [
+                                 {elem: 'li', class: 'li-list', subs: [
+                                    {elem: 'div', class: 'cont-btn-list', subs: [
+                                       {elem: 'button', class: 'button-list', text: 'Formulario de datos uno'},
+                                       {elem: 'div', class: 'cont-ops-btns', subs: [
+                                          {elem: 'div', class: 'cont-ed-del', subs: [
+                                             {elem: 'button', class: 'button-ic-ed'},
+                                             {elem: 'button', class: 'button-ic-del'}
+                                          ]},
+                                          {elem: 'div', class: 'img-config-list'}
+                                       ]}
+                                    ]}
+                                 ]},{elem: 'li', class: 'li-list', subs: [
+                                    {elem: 'div', class: 'cont-btn-list', subs: [
+                                       {elem: 'button', class: 'button-list', text: 'Formulario de datos uno'},
+                                       {elem: 'div', class: 'cont-ops-btns', subs: [
+                                          {elem: 'div', class: 'cont-ed-del', subs: [
+                                             {elem: 'button', class: 'button-ic-ed'},
+                                             {elem: 'button', class: 'button-ic-del'}
+                                          ]},
+                                          {elem: 'div', class: 'img-config-list'}
+                                       ]}
+                                    ]}
+                                 ]},{elem: 'li', class: 'li-list', subs: [
+                                    {elem: 'div', class: 'cont-btn-list', subs: [
+                                       {elem: 'button', class: 'button-list', text: 'Formulario de datos uno'},
+                                       {elem: 'div', class: 'cont-ops-btns', subs: [
+                                          {elem: 'div', class: 'cont-ed-del', subs: [
+                                             {elem: 'button', class: 'button-ic-ed'},
+                                             {elem: 'button', class: 'button-ic-del'}
+                                          ]},
+                                          {elem: 'div', class: 'img-config-list'}
+                                       ]}
+                                    ]}
+                                 ]},
+                              ]}
+                           ]}
                         ]}
                     ]}
                 ]}
@@ -406,7 +469,22 @@ export const elementsList = {
             {elem: 'button', class: 'button-yel', text: 'Cancelar'},
             {elem: 'button', class: 'button-red', text: 'Eliminar'}
          ]},
+      ]},
+      btn_list: {elem: 'li', class: 'li-list', subs: [
+         {elem: 'div', class: 'cont-btn-list', subs: [
+            {elem: 'button', class: 'button-list', text: 'Formulario de datos uno'},
+            {elem: 'div', class: 'cont-ops-btns', subs: [
+               {elem: 'div', class: 'cont-ed-del', subs: [
+                  {elem: 'button', class: 'button-ic-ed'},
+                  {elem: 'button', class: 'button-ic-del'}
+               ]},
+               {elem: 'div', class: 'img-config-list'}
+            ]}
+         ]}
+      ]},
+      inp_det_text: {elem: 'input', class: 'inp-det-text', placeholder: 'Etiqueta Ej: Nombres'},
+      inp_det_select: {elem: 'select', class: 'select-det', subs: [
+         {elem: 'option', text: 'first'}
       ]}
-
    }
 }

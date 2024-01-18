@@ -10,12 +10,14 @@ body{
 p{
     margin: 0px;
     font-family: 'roboto-regular';
-}
+    color: var(--cl-gray-8);
+   }
 
 h2, h3, h4{
     margin: 0px;
     font-family: 'roboto-regular';
-}
+    color: var(--cl-gray-8);
+   }
 
 ul{
    position: relative;
@@ -51,14 +53,32 @@ button{
  }
  
  select{
-    cursor: pointer;
+   font-size: 16px;
+   color: var(--cl-gray-8);
+   cursor: pointer;
+    &:focus-visible{
+       outline: none;
+    }
  }
 
- input[type = 'checkbox']{
+ input{
+   font-size: 16px;
+   color: var(--cl-gray-8);
+   &:focus-visible{
+      outline: none;
+   }
+ }
+
+ input[type='text']{
+   background-color: aqua;
+   border: 1px solid var(--cl-gray-7);
+ }
+
+ input[type='checkbox']{
     cursor: pointer;
  }
  
- input[type = 'radio']{
+ input[type='radio']{
     margin: 0px;
     cursor: pointer;
  }

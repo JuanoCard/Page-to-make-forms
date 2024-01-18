@@ -1,5 +1,8 @@
 /* BUTTONS -------------------------------------------------------------------------------- */
 
+
+/* operations */
+
 .button-red, .button-red-w, .button-yel, .button-yel-w, .button-blu, .button-blu-w{
    padding: 0px 30px;
    height: 46px;
@@ -74,6 +77,27 @@
    }      
 }
 
+
+/* buttons icons */
+
+.button-ic-ed, .button-ic-del{
+   min-width: 26px;
+   max-width: 26px;
+   height: 26px;
+   border: none;
+   border-radius: 4px;
+}
+
+.button-ic-ed{
+   background: center / 80% url('../src/images/svg/ic-edit.svg') no-repeat;
+}
+
+.button-ic-del{
+   background: center / 80% url('../src/images/svg/ic-delete.svg') no-repeat;
+}
+
+/* panel inputs */
+
 .button-op-inp{
    position: relative;
    padding: 0px 15px 0px 60px;
@@ -85,6 +109,14 @@
    border: 1px solid var(--cl-gray-6);
    color: var(--cl-gray-7);
    background-color: white;
+
+   > .ic-op{
+      position: absolute;
+      top: 50%;
+      left: 30px;
+      transform: translateY(-50%) translateX(-50%);
+   }
+
    &:hover{
       color: white;
       background-color: var(--cl-blue-2);
@@ -95,25 +127,111 @@
    }      
 }
 
-.button-list{
-   padding: 0px 15px;
-   width: 410px;
+
+/* panel list */
+
+.li-list{
+   margin-bottom: 10px;
    height: 40px;
-   font-size: 18px;
-   text-align: left;
-   border-radius: 7px;
-   border: 1px solid var(--cl-gray-6);
-   color: var(--cl-gray-7);
-   background-color: white;
-   &:hover{
-      border: 1px solid var(--cl-blue-4);
-      color: var(--cl-blue-5);
-      box-shadow: -1px 1px 10px var(--cl-blue-1t);
+   > .cont-btn-list{
+      display: flex;
+      height: 100%;
+      > .button-list{
+         padding: 0px 15px;
+         width: 100%;
+         height: 40px;
+         font-size: 18px;
+         text-align: left;
+         border-radius: 7px;
+         border: 1px solid var(--cl-gray-6);
+         color: var(--cl-gray-7);
+         background-color: white;
+         &:focus{
+            border: 1px solid var(--cl-blue-4);
+            outline: 3px solid var(--cl-blue-1);
+         }
+      }
+      > .cont-ops-btns{
+         display: flex;
+         position: relative;
+         margin-left: 10px;
+         min-width: 40px;
+         max-width: 40px;
+         height: 40px;
+         border-radius: 7px;
+         border: 1px solid var(--cl-gray-6);
+         outline: 3px solid transparent;
+         transition: all .4s ease;
+         background-color: white;
+         overflow: hidden;
+
+         > .cont-ed-del{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            min-width: 78px;
+            max-width: 78px;
+            height: 100%;
+            opacity: 0;
+            transition: all .4s ease;
+         }
+
+         .img-config-list{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            min-width: 38px;
+            max-width: 38px;
+            height: 100%;
+            transition: all .4s ease;
+            background: center / 60% url('../src/images/svg/ic-settings.svg') no-repeat;
+         }
+      }
+      &:hover .cont-ops-btns{
+         min-width: 80px;
+         max-width: 80px;         
+         border: 1px solid var(--cl-blue-4);
+         > .cont-ed-del{
+            opacity: 1;
+         }
+         > .img-config-list{
+            right: -40px;
+         }
+      }
+      &:hover .button-list{
+         border: 1px solid var(--cl-blue-4);
+         color: var(--cl-blue-5);
+         box-shadow: -1px 1px 10px var(--cl-blue-1t);
+      }
    }
-   &:focus{
-      border: 1px solid var(--cl-blue-4);
-      outline: 3px solid var(--cl-blue-1);
-   }
+}
+
+
+/* ICONS ---------------------------------------------------------------------- */
+
+.ic-28{
+   width: 28px;
+   height: 28px;
+}
+
+.ic-tex{
+   background: center / 100% url('../src/images/svg/ic-text.svg') no-repeat;
+}
+
+.ic-rad{
+   background: center / 100% url('../src/images/svg/ic-radio.svg') no-repeat;
+}
+
+.ic-che{
+   background: center / 100% url('../src/images/svg/ic-checkbox.svg') no-repeat;
+}
+
+.ic-lis{
+   background: center / 100% url('../src/images/svg/ic-list.svg') no-repeat;
+}
+
+.ic-lde{
+   background: center / 100% url('../src/images/svg/ic-listd.svg') no-repeat;
 }
 
 
@@ -156,33 +274,25 @@
 }
 
 
-/* REVISAR */
+/* INPUTS */
 
-.button-op-panel{
-    position: relative;
-    padding: 5px 10px 5px 40px;
-    height: 36px;
-    border: var(--border-2);
-    border-radius: 5px 20px 20px 5px;
-    color: var(--cl-t-3);
-    background-color: var(--cl-white);
-    
-    &:hover{
-       background-color: var(--cl-b-2);
-    }
-    
-    &::before{
-       content: '';
-       position: absolute;
-       top: 50%;
-       transform: translateY(-50%);
-       left: 9px;
-       width: 20px;
-       height: 20px;
-       background-color: aqua;
-    }
- }
+.inp-det-text{
+   padding: 0px 15px;
+   width: 200px;
+   height: 36px;
+   border-radius: 5px;
+   border: 1px solid var(--cl-gray-7);
+   &::placeholder{
+      color: var(--cl-gray-6);
+   }
+   &:focus{
+      border: 1px solid var(--cl-blue-4);
+   }
+}
 
- 
- 
- 
+.select-det{
+   padding: 0px 15px;
+   width: 200px;
+   height: 36px;   
+   border-radius: 5px;
+}
