@@ -1,3 +1,21 @@
 .oc{
     display: none;
 }
+
+
+.btn-dis{
+    border: 1px solid var(--cl-gray-6) !important;
+    color: var(--cl-gray-6) !important;
+    background-color: var(--cl-gray-4) !important;
+    cursor: auto !important;
+    box-shadow: none !important;
+    > div{
+        opacity: 0;
+        transition: all .3s ease;
+    }
+    > p{
+        transition: all .5s ease;
+        transform: translateX(-40px);
+        color: var(--cl-gray-6);
+    }
+}

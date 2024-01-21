@@ -123,52 +123,50 @@ class MakeHTML {
 }
 
 class BackgroundBlur {
-    blockCB;
+   constructor(container, cb, objOptions) {
+      this.container = container;
+      this.cb = cb;
+      this.objOptions = objOptions;
+      this.background = this.createBackground();
+      this.blockCB;
+      this.btnOut;
+
+      cb ? this.executeCB() : undefined
+      return {block: this.blockCB, out: this.btnOut}
+   }
+
+   createBackground() {
+      const back = document.createElement("div");
+      back.setAttribute("class", "block-background");
+      const contCB = document.createElement("div");
+      contCB.setAttribute("class", "cont-cb");
+      const btn = document.createElement("button");
+      btn.setAttribute("class", "button-out-backdrop");
+      back.appendChild(contCB);
+      back.appendChild(btn);
+
+      this.btnOut = btn;
+      this.blockCB = contCB;
+      this.container.appendChild(back);
+
+      this.btnOut.addEventListener("click", () => {
+         this.goOut();
+      });
+
+      return back;
+   }
  
-    constructor(container, cb, objOptions) {
-       this.container = container;
-       this.cb = cb;
-       this.objOptions = objOptions;
-       this.background = this.createBackground();
-       this.blockCB;
-       this.btnOut;
- 
-       cb ? this.executeCB() : undefined
-       return {block: this.blockCB, out: this.btnOut}
-    }
- 
-    createBackground() {
-       const back = document.createElement("div");
-       back.setAttribute("class", "block-background");
-       const contCB = document.createElement("div");
-       contCB.setAttribute("class", "cont-cb");
-       const btn = document.createElement("button");
-       btn.setAttribute("class", "button-out-backdrop");
-       back.appendChild(contCB);
-       back.appendChild(btn);
- 
-       this.btnOut = btn;
-       this.blockCB = contCB;
-       this.container.appendChild(back);
- 
-       this.btnOut.addEventListener("click", () => {
-          this.goOut();
-       });
- 
-       return back;
-    }
- 
-    executeCB() {
-       if(this.objOptions){
-          this.cb(this.blockCB, this.objOptions)
-       } else {
-          this.cb(this.blockCB)
-       }
-    }
- 
-    goOut() {
-       this.container.removeChild(this.background);
-    }
+   executeCB() {
+      if(this.objOptions){
+         this.cb(this.blockCB, this.objOptions)
+      } else {
+         this.cb(this.blockCB)
+      }
+   }
+
+   goOut() {
+      this.container.removeChild(this.background);
+   }
 }
 
 class Pops {
@@ -364,265 +362,299 @@ class CreateForms{
     constructor(container, datahtml, resources, list, controllers){
       this.container = container
       this.contPanel = this.container.querySelector('.panel-body-blocks')
-      //  this.contDets;
-      //  this.contModel;
-      //  this.contList;
-       this.formDet;
-      //  this.resources = resources
+      this.contDets;
+      this.contModel;
+      this.contList;
+      this.formDet;
+      this.resources = resources
       this.datahtml = datahtml
-      // this.data = datahtml.panel
       this.makeHTML = new resources.MakeHTML()
+      this.placeholder = new resources.Placeholders()
+
       //  this.controller = new controllers(this.container, this.datahtml, this.resources)
       //  this.list = list
       this.objForm = {name_form: undefined, structure: []}
       this.words = []
-      this.placeholder = new resources.Placeholders()
+      this.formsSaved = []
       this.modeform = 'create'
       this.start()
     }
  
-    async start(){
+    start(){ // READY
        this.contDets = this.contPanel.querySelector('#ops_dets')
        this.contModel = this.contPanel.querySelector('#form_model')
        this.contList = this.container.querySelector('#ul_body_list')
-      //  this.printForm()
+       this.printForm()
        this.actions()
-      //  this.listForms()
+       this.listForms()
     }
  
-    actions(){
-       const btnsOpPanel = this.contPanel.querySelectorAll('.btn-op-panel')
-       btnsOpPanel.forEach(btn => btn.addEventListener("click", () => {
-          const key = btn.id.split('__')[1]
-          if(key !== 'select_dList'){
-             this.printDets(key)
-             this.addRemoveInputs(key)
-          } else {
-             this.printDets(key)
-          }
-          return
-       }))
+   actions(){
+      const btnsOpPanel = this.contPanel.querySelectorAll('.btn-op-panel')
+      btnsOpPanel.forEach(btn => btn.addEventListener("click", () => {
+         const key = btn.id.split('__')[1]
+         if(key !== 'select_dList'){
+            this.printDets(key)
+            this.addRemoveInputs(key)
+         } else {
+            this.printDets(key)
+         }
+         return
+      }))
 
-       btnsOpPanel[0].click()
-       
-      //  this.contModel.addEventListener('click', async (e) => {
-      //     if(e.target.classList.contains('btn-it-del')){
-      //        e.preventDefault()
-      //        const idkey = e.target.id.split('__')[1]
-      //        const objDel = this.objForm.structure.find(it => it.id === idkey)
-      //        const index = this.objForm.structure.indexOf(objDel)
-      //        this.objForm.structure.splice(index, 1)
-      //        this.printForm()
-      //        return
-      //     }
-          
-      //     if(e.target.classList.contains('btn-it-edi')){
-      //        e.preventDefault()
-      //        const idkey = e.target.id.split('__')[1]
-      //        const objDel = this.objForm.structure.find(it => it.id === idkey)
-      //        btnsOpPanel.forEach(bt => {
-      //           bt.classList.remove('btn-dis')
-      //           bt.disabled = false
-      //        })
-      //        this.printDets(objDel.group, objDel)
-      //        this.placeholder.print(this.contDets, 'inp-op', 'Opción')
-      //        return
-      //     }
+      btnsOpPanel[0].click()
+      
+      this.contModel.addEventListener('click', async (e) => {
+         if(e.target.classList.contains('btn-it-del')){
+            e.preventDefault()
+            const idkey = e.target.id.split('__')[1]
+            const objDel = this.objForm.structure.find(it => it.id === idkey)
+            const index = this.objForm.structure.indexOf(objDel)
+            this.objForm.structure.splice(index, 1)
+            this.printForm()
+            return
+         }
+            
+         if(e.target.classList.contains('btn-it-edi')){
+            e.preventDefault()
+            const idkey = e.target.id.split('__')[1]
+            const objDel = this.objForm.structure.find(it => it.id === idkey)
+            btnsOpPanel.forEach(bt => {
+               bt.classList.remove('btn-dis')
+               bt.disabled = false
+            })
+            this.printDets(objDel.group, objDel)
+            this.placeholder.print(this.contDets, 'inp-op', 'Opción')
+            return
+         }
+
+         if(e.target.id === 'btn_cancel_edit_form'){
+            e.preventDefault()
+            btnsOpPanel.forEach(bt => {
+               bt.classList.remove('btn-dis')
+               bt.disabled = false
+            })
+            this.printDets('input_text')
+            this.objForm = {name_form: undefined, structure: []}
+            this.modeform = 'create'
+            this.printForm()
+            return
+         }
+
+         if(e.target.id === 'btn_edit_form'){
+            e.preventDefault()
+            btnsOpPanel.forEach(bt => {
+               bt.classList.remove('btn-dis')
+               bt.disabled = false
+            })
+            this.printDets('input_text')
+            this.objForm = {name_form: undefined, structure: []}
+            this.modeform = 'create'
+            this.printForm()
+            this.listForms()
+            return
+         }
+
+         if(e.target.id === 'btn_save_create_form'){
+            e.preventDefault()
+            if(this.objForm.structure.length === 0){ return }
+            this.objForm.name_form = 'Formulario uno'
+            this.objForm['id'] = Math.trunc(Math.random() * Math.pow(15, 10)).toString(16)
+            this.formsSaved.push(this.objForm)
+            console.log(this.formsSaved)
+            this.objForm = {name_form: undefined, structure: []}
+            this.printForm()
+            this.list = this.listForms()
+            return
+         }
+      })
+
+   this.contList.addEventListener('click', async (e) => {
+      if(e.target.classList.contains('btn-del-form')){
+         console.log(this.objForm)
+         e.preventDefault()
+         const blockWarn = new this.resources.BackgroundBlur(document.querySelector('body'))
+         console.log(blockWarn)
+         const str = {
+            arrayData: [{elem: 'div', class: 'box-warning', subs: [
+               {elem: 'div', class: 'warn-title', subs: [
+                  {elem: 'h2', text: 'Borrar formulario'}
+               ]},
+               {elem: 'div', class: 'warn-description', subs: [
+                  {elem: 'p', text: 'Esta a punto de borrar el formulario: Formulario Uno. Este paso es irreversible. Si desea continuar con esta acción haga click en Eliminar, de lo contrario haga click en Cancelar.'}
+               ]},
+               {elem: 'div', class: 'warn-btns', subs: [
+                  {elem: 'button', id: 'btn_w_cancel', class: 'button-yel', text: 'Cancelar'},
+                  {elem: 'button', id: 'btn_w_continue', class: 'button-red', text: 'Eliminar'}
+               ]},
+            ]}
+         ]}
+         const warn = await new this.resources.Warnings(blockWarn.block, this.makeHTML, str)
+         if(warn){
+            if(warn.status){
+               this.formsSaved = this.formsSaved.filter(fo => fo.id !== e.target.id.split('__')[1])
+               this.listForms()
+               blockWarn.out.click()
+            } else {
+               blockWarn.out.click()
+            }
+         }
+         return
+      }
+
+      if(e.target.classList.contains('btn-ed-form')){
+         console.log(e.target.id)
+         const id = e.target.id.split('__')[1]
+         const formChosen = this.formsSaved.find(fo => fo.id === id)
+         btnsOpPanel.forEach(bt => {
+            bt.classList.add('btn-dis')
+            bt.disabled = true
+         })
+         this.contDets.innerHTML = ''
+         this.objForm = formChosen
+         this.modeform = 'edit'
+         this.printForm()
+         return
+      }
+   })
+
+      this.contDets.addEventListener('click', (e) => {
+         if(e.target.classList.contains('btn-add-det')){
+            e.preventDefault()
+            const targetkey = e.target.id.split('__')[1]
+            this.makeArray(targetkey)
+         }
+
+         if(e.target.classList.contains('btn-edi-det')){
+            e.preventDefault()
+            const targetkey = e.target.id.split('__')[1]
+            const idIt = e.target.dataset.obj
+            this.makeArray(targetkey, 'edit', idIt)
+         }
+      })
+
+      return
+   }
  
-      //     if(e.target.id === 'btn_cancel_edit_form'){
-      //        e.preventDefault()
-      //        btnsOpPanel.forEach(bt => {
-      //           bt.classList.remove('btn-dis')
-      //           bt.disabled = false
-      //        })
-      //        this.printDets('input_text')
-      //        this.objForm = {name_form: undefined, structure: []}
-      //        this.modeform = 'create'
-      //        this.printForm()
-      //        return
-      //     }
+   listForms(){ //READY
+      if(this.formsSaved){
+         this.contList.innerHTML = ''
+         this.formsSaved.forEach(lis => {
+            const btnLi = {
+               arrayData: [
+               {elem: 'li', class: 'li-list', subs: [
+                  {elem: 'div', class: 'cont-btn-list', subs: [
+                     {elem: 'button', id: lis.id, class: 'button-list', text: lis.name_form},
+                     {elem: 'div', class: 'cont-ops-btns', subs: [
+                        {elem: 'div', class: 'cont-ed-del', subs: [
+                           {elem: 'button', id: `f_ed__${lis.id}`, class: 'button-ic-ed ic-30 btn-ed-form'},
+                           {elem: 'button', id: `f_del__${lis.id}`, class: 'button-ic-del ic-30 btn-del-form'}
+                        ]},
+                        {elem: 'div', class: 'img-config-list'}
+                     ]}
+                  ]}
+               ]}
+               ]
+            }
+            this.makeHTML.build(this.contList, btnLi)
+         })
+      }
+
+      return this.formsSaved
+   }
  
-      //     if(e.target.id === 'btn_del_form'){
-      //        e.preventDefault()
-      //        await this.controller.deleteForms(this.objForm._id)
-      //     }
+   printDets(key = undefined, objEdit = undefined){
+      if(!key){ return }
+
+      this.contDets.innerHTML = ''
+      const structureForm = {
+         arrayData: [
+            {predesing: `panel_form_${key}`}
+         ]
+      }
+      this.makeHTML.build(this.contDets, structureForm, this.datahtml.elements)
+      this.formDet = this.contDets.querySelector(`#form__${key}`)
+
+      if(key === 'select_dList'){
+         const arBtnsDList = this.selectDList()
+         arBtnsDList.forEach(btn => btn.addEventListener('click', (e) => {
+            this.selectDList(true, btn.id)
+            e.preventDefault()
+         }))
+
+         return
+      }
+
+      const contBtnDet = this.contDets.querySelector('.cont-btn-form-det')
+      let idBtn;
+      let textBtn;
+      let classBtn;
+      let dataBtn;
+      if(!objEdit){
+         idBtn = `btnadd__${key}`
+         textBtn = 'Agregar'
+         classBtn = 'button-det-gre btn-add-det'
+         dataBtn = ''
+      } else {
+         idBtn = `btnedi__${key}`
+         textBtn = 'Editar'
+         classBtn = 'button-det-gre btn-edi-det'
+         dataBtn = objEdit.id
+      }
+      const typeBtnAdd = {
+         arrayData: [
+            {elem: 'button', id: idBtn, class: classBtn, text: textBtn, dataset1: ['data-obj', dataBtn]}
+         ]
+      }
+
+      this.makeHTML.build(contBtnDet, typeBtnAdd)
+
+      if(objEdit){
+         const inpEt = this.contDets.querySelector('.fo-inp-et')
+         inpEt.value = objEdit.et
+
+         if(objEdit.group === 'input_text'){
+            const inpsRad = this.contDets.querySelectorAll('.fo-inp-typtex')
+            inpsRad.forEach(inp => inp.checked = false)
+            const inpcheck = this.contDets.querySelector(`#radio_${objEdit.type}_formdet`)
+            inpcheck.checked = true
+         }
+
+         if(objEdit.group !== 'input_text'){
+            const opts = objEdit.options
+            this.addRemoveInputs(objEdit.group)
+
+            let n = 1
+            opts.forEach(op => {
+               const contDets = this.formDet.querySelector(`#cont_opts__${objEdit.group}`)
+               const inpDet = this.formDet.querySelector(`#inp_detOp${n}`)
+               inpDet.value = op.et
+               if(n === opts.length){ return }
+               const btnadd = contDets.querySelector('.btn-add')
+               btnadd.click()
+               n++
+            })
+         }
+         
+         const inpReq = this.contDets.querySelector('.fo-inp-req')
+         objEdit.required ? inpReq.checked = true : inpReq.checked = false
+      }
+
+      return
+   }
  
-      //     if(e.target.id === 'btn_edit_form'){
-      //        e.preventDefault()
-      //        await this.controller.editForms(this.objForm)
-      //        btnsOpPanel.forEach(bt => {
-      //           bt.classList.remove('btn-dis')
-      //           bt.disabled = false
-      //        })
-      //        this.printDets('input_text')
-      //        this.objForm = {name_form: undefined, structure: []}
-      //        this.modeform = 'create'
-      //        this.printForm()
-      //        this.list = await this.listForms()
-      //        return
-      //     }
+   addRemoveInputs(key = undefined, contInputsOp = undefined, g = ''){
+      if(!this.formDet){return}
  
-      //     if(e.target.id === 'btn_save_create_form'){
-      //        e.preventDefault()
-      //        await this.controller.saveForms(this.objForm)
-      //        this.objForm = {name_form: undefined, structure: []}
-      //        this.printForm()
-      //        this.list = await this.listForms()
-      //        return
-      //     }
-      //  })
+      let contDetOpts;
+      !contInputsOp ? contDetOpts = this.formDet.querySelector(`#cont_opts__${key}`) : contDetOpts = contInputsOp
  
-      //  this.contList.addEventListener('click', (e) => {
-      //     if(e.target.classList.contains('btn-li-form')){
-      //        const id = e.target.id
-      //        const formChosen = this.list.find(fo => fo._id === id)
-      //        btnsOpPanel.forEach(bt => {
-      //           bt.classList.add('btn-dis')
-      //           bt.disabled = true
-      //        })
-      //        this.contDets.innerHTML = ''
-      //        this.objForm = formChosen
-      //        this.modeform = 'edit'
-      //        this.printForm()
-      //        return
-      //     }
-      //     e.preventDefault()
-      //  })
- 
-      //  this.contDets.addEventListener('click', (e) => {
-      //     if(e.target.classList.contains('btn-add-det')){
-      //        e.preventDefault()
-      //        const targetkey = e.target.id.split('__')[1]
-      //        this.makeArray(targetkey)
-      //     }
- 
-      //     if(e.target.classList.contains('btn-edi-det')){
-      //        e.preventDefault()
-      //        const targetkey = e.target.id.split('__')[1]
-      //        const idIt = e.target.dataset.obj
-      //        this.makeArray(targetkey, 'edit', idIt)
-      //     }
-      //  })
- 
-       return
-    }
- 
-    listForms(){
-       if(this.list){
-          this.contList.innerHTML = ''
-          this.list.forEach(lis => {
-             const btnLi = {
-                arrayData: [
-                   {elem: 'li', class: 'cont-btn-li-subtit', subs: [
-                      {elem: 'button', id: lis._id, class: 'button-li-subtit btn-li-form', subs: [
-                         {elem: 'div', class: 'btn-li-subtit-cont', subs: [
-                            {elem: 'p', text: lis.name_form},
-                            {elem: 'span', text: `Creado el: ${lis.created_at.split('T')[0]}`}
-                         ]}
-                      ]}
-                   ]}
-                ]
-             }
-             this.makeHTML.build(this.contList, btnLi)
-          })
-       }
- 
-       return this.llist
-    }
- 
-    printDets(key = undefined, objEdit = undefined){
-       if(!key){ return }
- 
-       this.contDets.innerHTML = ''
-       const structureForm = {
-          arrayData: [
-             {predesing: `panel_form_${key}`}
-          ]
-       }
-       this.makeHTML.build(this.contDets, structureForm, this.datahtml.elements)
-       this.formDet = this.contDets.querySelector(`#form__${key}`)
- 
-       if(key === 'select_dList'){
-          const arBtnsDList = this.selectDList()
-          arBtnsDList.forEach(btn => btn.addEventListener('click', (e) => {
-             this.selectDList(true, btn.id)
-             e.preventDefault()
-          }))
- 
-          return
-       }
- 
-       const contBtnDet = this.contDets.querySelector('.cont-btn-form-det')
-       let idBtn;
-       let textBtn;
-       let classBtn;
-       let dataBtn;
-       if(!objEdit){
-          idBtn = `btnadd__${key}`
-          textBtn = 'Agregar'
-          classBtn = 'button-det-gre btn-add-det'
-          dataBtn = ''
-       } else {
-          idBtn = `btnedi__${key}`
-          textBtn = 'Editar'
-          classBtn = 'button-det-gre btn-edi-det'
-          dataBtn = objEdit.id
-       }
-       const typeBtnAdd = {
-          arrayData: [
-             {elem: 'button', id: idBtn, class: classBtn, text: textBtn, dataset1: ['data-obj', dataBtn]}
-          ]
-       }
- 
-       this.makeHTML.build(contBtnDet, typeBtnAdd)
- 
-       if(objEdit){
-          const inpEt = this.contDets.querySelector('.fo-inp-et')
-          inpEt.value = objEdit.et
- 
-          if(objEdit.group === 'input_text'){
-             const inpsRad = this.contDets.querySelectorAll('.fo-inp-typtex')
-             inpsRad.forEach(inp => inp.checked = false)
-             const inpcheck = this.contDets.querySelector(`#radio_${objEdit.type}_formdet`)
-             inpcheck.checked = true
-          }
- 
-          if(objEdit.group !== 'input_text'){
-             const opts = objEdit.options
-             this.addRemoveInputs(objEdit.group)
- 
-             let n = 1
-             opts.forEach(op => {
-                const contDets = this.formDet.querySelector(`#cont_opts__${objEdit.group}`)
-                const inpDet = this.formDet.querySelector(`#inp_detOp${n}`)
-                inpDet.value = op.et
-                if(n === opts.length){ return }
-                const btnadd = contDets.querySelector('.btn-add')
-                btnadd.click()
-                n++
-             })
-          }
-          
-          const inpReq = this.contDets.querySelector('.fo-inp-req')
-          objEdit.required ? inpReq.checked = true : inpReq.checked = false
-       }
- 
-       return
-    }
- 
-    addRemoveInputs(key = undefined, contInputsOp = undefined, g = ''){
-       if(!this.formDet){return}
- 
-       let contDetOpts;
-       !contInputsOp ? contDetOpts = this.formDet.querySelector(`#cont_opts__${key}`) : contDetOpts = contInputsOp
-       console.log(key)
- 
-       if(contDetOpts){
-          this.placeholder.print(contDetOpts, 'inp-op', 'Opción')
-          let n = 2
-          let b;
-          let idText;
-          contDetOpts.addEventListener('click', (e) => {
+      if(contDetOpts){
+         this.placeholder.print(contDetOpts, 'inp-op', 'Opción')
+         let n = 2
+         let b;
+         let idText;
+         contDetOpts.addEventListener('click', (e) => {
              if(e.target.classList.contains('btn-add')){
                 if(key === 'select_dList'){
                    b = `-${g}`
@@ -639,7 +671,7 @@ class CreateForms{
                    merge: {
                       [`cont_detOp${n}${b}`]: [
                          {
-                            target: ['class', 'input-form-det-op'],
+                            target: ['class', 'inp-det-text-bt'],
                             attr: {
                                id: `${idText}${n}${b}`, 
                                dataset1: ['data-key', 'opt']
@@ -659,6 +691,7 @@ class CreateForms{
                 el.setAttribute('class', 'button-ic-remove ic-30 btn-remove')
                 n++
                 this.placeholder.print(contDetOpts, 'inp-op', 'Opción')
+
                 e.preventDefault()
                 return
              }
@@ -673,307 +706,306 @@ class CreateForms{
              
           })
        }
-    }
+   }
  
-    makeArray(targetkey, mode = 'create', idElem = undefined){
-       let obj = {options: []}
-       obj['group'] = targetkey
-       obj['input'] = targetkey.split('_')[0]
-       obj['type'] = targetkey.split('_')[1]
+   makeArray(targetkey, mode = 'create', idElem = undefined){
+      let obj = {options: []}
+      obj['group'] = targetkey
+      obj['input'] = targetkey.split('_')[0]
+      obj['type'] = targetkey.split('_')[1]
  
-       const inputs = this.formDet.querySelectorAll('.input-det')
-       inputs.forEach(inp => {
-          const datakey = inp.dataset.key
-          if(datakey === 'typ'){
-             if(inp.checked){ obj['type'] = inp.id.split('_')[1] }
-             return
-          }
-          if(datakey === 'et'){
-             const concat = inp.value.replace(/\s+/g, '_').toLowerCase()
-             const cod = Math.trunc(Math.random() * Math.pow(15, 15)).toString(16)
-             obj['id'] = `${cod}`
-             obj['concat'] = concat
-             obj['et'] = inp.value
-             this.words.push(concat)
-             return
-          }
-          if(datakey === 'opt'){
-             const concatb = inp.value.replace(/\s+/g, '_')
-             let objOpt
-             if(targetkey === 'select_dList'){
-                objOpt = {et: inp.value, concat: `${inp.id.split('__')[0]}___${concatb.toLowerCase()}`}
-                obj['root'] = this.contDets.dataset.root
-             } else {
-                objOpt = {et: inp.value, concat: concatb.toLowerCase()}
-             }
-             obj.options.push(objOpt)
-             this.words.push(concatb)
-             return
-          }
-          if(datakey === 'req'){
-             obj['required'] = inp.checked
-             return
-          }
-          return
-       })
+      const inputs = this.formDet.querySelectorAll('.input-det')
+      inputs.forEach(inp => {
+         const datakey = inp.dataset.key
+         if(datakey === 'typ'){
+               if(inp.checked){ obj['type'] = inp.id.split('_')[1] }
+               return
+            }
+            if(datakey === 'et'){
+               const concat = inp.value.replace(/\s+/g, '_').toLowerCase()
+               const cod = Math.trunc(Math.random() * Math.pow(10, 10)).toString(16)
+               obj['id'] = `${cod}`
+               obj['concat'] = concat
+               obj['et'] = inp.value
+               this.words.push(concat)
+               return
+            }
+         if(datakey === 'opt'){
+            const concatb = inp.value.replace(/\s+/g, '_')
+            let objOpt
+            if(targetkey === 'select_dList'){
+               objOpt = {et: inp.value, concat: `${inp.id.split('__')[0]}___${concatb.toLowerCase()}`}
+               obj['root'] = this.contDets.dataset.root
+            } else {
+               objOpt = {et: inp.value, concat: concatb.toLowerCase()}
+            }
+            obj.options.push(objOpt)
+            this.words.push(concatb)
+            return
+         }
+         if(datakey === 'req'){
+            obj['required'] = inp.checked
+            return
+         }
+         return
+      })
  
-       if(mode === 'create'){ this.objForm.structure.push(obj) }
-       if(mode === 'edit'){
-          const indexEl = this.objForm.structure.findIndex(it => it.id === idElem)
-          this.objForm.structure.splice(indexEl, 1, obj)
-       }
-       
-       obj = {}
-       
-       this.formDet.reset()
-       this.printForm()
+      if(mode === 'create'){ this.objForm.structure.push(obj) }
+      if(mode === 'edit'){
+         const indexEl = this.objForm.structure.findIndex(it => it.id === idElem)
+         this.objForm.structure.splice(indexEl, 1, obj)
+      }
+      
+      obj = {}
+      
+      this.formDet.reset()
+      this.printForm()
+
+      if(targetkey !== 'select_dList'){
+         this.printDets(targetkey)
+         this.addRemoveInputs(targetkey)
+      } else {
+         this.printDets(targetkey)
+      }
+
+      this.placeholder.print(this.contDets, 'inp-op', 'Opción')
+      return
+   }
  
-       if(targetkey !== 'select_dList'){
-          this.printDets(targetkey)
-          this.addRemoveInputs(targetkey)
-       } else {
-          this.printDets(targetkey)
-       }
+   selectDList(options = false, id = undefined){
+      const ulDList = this.contDets.querySelector('#cont_opts__select_dList')
+      const lists = this.objForm.structure.filter(it => it.group === 'select_list')
+      if(!options){
+         ulDList.innerHTML = ''
+         lists.forEach(lis => {
+            const btnList = document.createElement('button')
+            btnList.setAttribute('id', `btnlist_${lis.id}`)
+            btnList.setAttribute('class', 'button-dlist btn-dlist')
+            btnList.append(lis.et)
+            ulDList.appendChild(btnList)
+         })
+         return this.contDets.querySelectorAll('.btn-dlist')
+      }
+
+      if(options){
+         ulDList.innerHTML = ''
+         const itChosen = lists.find(it => it.id === id.split('_')[1])
+         let nn = 0
+         itChosen.options.forEach(op => {
+            const blockList = {
+               arrayData: [
+                  {elem: 'div', class: 'dlist-cont-opts', subs: [
+                     {elem: 'p', class: 'btn-p-dlist', text: op.et},
+                     {elem: 'ul', class: 'cont-opts-dlist', dataset1: ['data-block', op.concat], subs: [
+                        {elem: 'li', id: `cont_detOp1-${nn}`, class: 'li-input-det-op', subs: [
+                           {elem: 'div', class: 'cont-input-det-op', subs: [
+                              {elem: 'input', type: 'text', id: `${op.concat}__1-${nn}`, class: 'input-form-det-op input-det inp-op', dataset1: ['data-key', 'opt']},
+                              {elem: 'button', id: `btn_detOp1-${nn}`, class: 'button-ic-add btn-add'}
+                           ]}
+                        ]}
+                     ]}
+                  ]}
+               ]
+            }
+            this.makeHTML.build(ulDList, blockList, this.datahtml.elements)
+            nn++
+         })
+         this.contDets.setAttribute('data-root', itChosen.id)
+
+         let nnn = 0
+         const blockListOpts = this.contDets.querySelectorAll('.cont-opts-dlist')
+         blockListOpts.forEach(blck => {
+            this.addRemoveInputs('select_dList', blck, nnn)
+            nnn++
+         })
+      }
+   }
  
-       this.placeholder.print(this.contDets, 'inp-op', 'Opción')
-       return
-    }
- 
-    selectDList(options = false, id = undefined){
-       const ulDList = this.contDets.querySelector('#cont_opts__select_dList')
-       const lists = this.objForm.structure.filter(it => it.group === 'select_list')
-       if(!options){
-          ulDList.innerHTML = ''
-          lists.forEach(lis => {
-             const btnList = document.createElement('button')
-             btnList.setAttribute('id', `btnlist_${lis.id}`)
-             btnList.setAttribute('class', 'button-dlist btn-dlist')
-             btnList.append(lis.et)
-             ulDList.appendChild(btnList)
-          })
-          return this.contDets.querySelectorAll('.btn-dlist')
-       }
- 
-       if(options){
-          ulDList.innerHTML = ''
-          const itChosen = lists.find(it => it.id === id.split('_')[1])
-          let nn = 0
-          itChosen.options.forEach(op => {
-             const blockList = {
-                arrayData: [
-                   {elem: 'div', class: 'dlist-cont-opts', subs: [
-                      {elem: 'p', class: 'btn-p-dlist', text: op.et},
-                      {elem: 'ul', class: 'cont-opts-dlist', dataset1: ['data-block', op.concat], subs: [
-                         {elem: 'li', id: `cont_detOp1-${nn}`, class: 'li-input-det-op', subs: [
-                            {elem: 'div', class: 'cont-input-det-op', subs: [
-                               {elem: 'input', type: 'text', id: `${op.concat}__1-${nn}`, class: 'input-form-det-op input-det inp-op', dataset1: ['data-key', 'opt']},
-                               {elem: 'button', id: `btn_detOp1-${nn}`, class: 'button-ic-add btn-add'}
-                            ]}
-                         ]}
-                      ]}
-                   ]}
-                ]
-             }
-             this.makeHTML.build(ulDList, blockList, this.data.elements)
-             nn++
-          })
-          this.contDets.setAttribute('data-root', itChosen.id)
- 
-          let nnn = 0
-          const blockListOpts = this.contDets.querySelectorAll('.cont-opts-dlist')
-          blockListOpts.forEach(blck => {
-             this.addRemoveInputs('select_dList', blck, nnn)
-             nnn++
-          })
-       }
-    }
- 
-    printForm(){
-       this.contModel.innerHTML = ''
-       this.makeHTML.build(this.contModel, this.datahtml.model_form)
-       const formItems = this.contModel.querySelector('.form-d-body')
-       this.objForm.structure.length === 0 ? formItems : formItems.innerHTML = ''
-       this.objForm.structure.forEach(it => {
-          let req;
-          it.required ? req = 'it-req' : req = ''
-          let oc;
-          it.group === 'input_text' ? oc = 'oc' : oc = ''
-          const modelIt = {
-             arrayData: [
-                {predesing: 'model_li_inputs', id: `li__${it.id}`}
-             ],
-             merge: {
-                [`li__${it.id}`]: [
-                   {
-                      target: ['class', 'form-d-item-tit'],
-                      attr: {
-                         class: oc
-                      }
-                   },
-                   {
-                      target: ['class', 'p-item-tit'],
-                      attr: {
-                         text: it.et
-                      }
-                   },
-                   {
-                      target: ['class', 'form-d-cont-input'],
-                      attr: {
-                         id: `inps__${it.id}`,
-                         dataset1: ['data-group', it.group]
-                      }
-                   },
-                   {
-                      target: ['class', 'form-d-item-back'],
-                      attr: {
-                         class: req
-                      }
-                   },
-                   {
-                      target: ['class', 'form-d-cont-del-edi'],
-                      attr: {
-                         id: `btns__${it.id}`
-                      }
-                   }
-                ]
-             }
-          }
-          this.makeHTML.build(formItems, modelIt, this.data.elements)
- 
-          let btnsEdDe = undefined
-          if(it.group !== 'select_dList'){
-             btnsEdDe = {
-                arrayData: [
-                   {elem: 'button', id: `del__${it.id}`, class: 'button-ic-delete btn-it-del'},
-                   {elem: 'button', id: `edi__${it.id}`, class: 'button-ic-edit btn-it-edi'}
-                ]
-             }
-          } else {
-             btnsEdDe = {
-                arrayData: [
-                   {elem: 'button', id: `del__${it.id}`, class: 'button-ic-delete btn-it-del'},
-                ]
-             }
- 
-          }
- 
-          if(btnsEdDe){
-             const contBtnsEdDe = formItems.querySelector(`#btns__${it.id}`)
-             this.makeHTML.build(contBtnsEdDe, btnsEdDe)
-          }
-          
-          const formContInputs = this.contModel.querySelector(`#inps__${it.id}`)
-          if(it.group === 'input_text'){
-             const group_input_text = {
-                arrayData: [
-                   {elem: 'input', class: 'd-input', type: it.type, placeholder: it.et}
-                ]
-             }
- 
-             this.makeHTML.build(formContInputs, group_input_text, this.data.elements)
-             return
-          }
- 
-          if(it.group === 'input_radio'){
-             it.options.forEach(op => {
-                const codOp = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
-                const group_input_radio = {
-                   arrayData: [
-                      {elem: 'input', id: `ra_${codOp}`, class: 'd-input', type: it.type, placeholder: it.et, name: `nam${it.concat}`},
-                      {elem: 'label', for: `ra_${codOp}`, text: op.et}
-                   ]
-                }
- 
-                this.makeHTML.build(formContInputs, group_input_radio, this.data.elements)
-             })
-             return
-          }
- 
-          if(it.group === 'input_checkbox'){
-             it.options.forEach(op => {
-                const codOp = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
-                const group_input_check = {
-                   arrayData: [
-                      {elem: 'input', id: `ch_${codOp}`, class: 'd-input', type: it.type, placeholder: it.et},
-                      {elem: 'label', for: `ch_${codOp}`, text: op.et}
-                   ]
-                }
- 
-                this.makeHTML.build(formContInputs, group_input_check, this.data.elements)
-             })
-             return
-          }
- 
-          if(it.group === 'select_list'){
-             const codSel = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
-             const group_select_list = {
-                arrayData: [
-                   {elem: 'select', id: `sel_${codSel}`, class: 'd-input'},
-                ]
-             }
-             this.makeHTML.build(formContInputs, group_select_list, this.data.elements)
- 
-             const contSelectL = this.contModel.querySelector(`#sel_${codSel}`)
-             it.options.forEach(op => {
-                const option = document.createElement('option')
-                option.append(op.et)
-                contSelectL.appendChild(option)
-             })
-             return
-          }
- 
-          if(it.group === 'select_dList'){
-             const codSel = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
-             const group_select_dList = {
-                arrayData: [
-                   {elem: 'select', id: `sel_${codSel}`, class: 'd-input'},
-                ]
-             }
- 
-             this.makeHTML.build(formContInputs, group_select_dList, this.data.elements)
-             return
-          }
-       })
- 
-       let btnsForms;
-       switch (this.modeform){
-          case 'create':
-             btnsForms = {
-                arrayData: [
-                   {elem: 'button', id: 'btn_save_create_form', class: 'button-save',text: 'Finalizar creación de formulario'}
-                ]
-             }
-             break
-          
-          case 'edit':
-             btnsForms = {
-                arrayData: [
-                   {elem: 'button', class: 'button-cancel', id: 'btn_cancel_edit_form', text: 'Cancelar'},
-                   {elem: 'button', class: 'button-delete', id: 'btn_del_form', text: 'Eliminar', dataset1: ['data-key', this.objForm._id]},
-                   {elem: 'button', class: 'button-edit', id: 'btn_edit_form', text: 'Editar'}
-                ]
-             }
-             break
-       }
-       this.makeHTML.build(this.contModel.querySelector('#form_d_btns'), btnsForms)
- 
-       this.connectSelects()
- 
-       const contLi = this.contModel.querySelectorAll('.form-d-li')
-       const contBtnsDelEdi = this.contModel.querySelectorAll('.form-d-cont-del-edi')
-       contLi.forEach(cont => cont.addEventListener('mouseover', () => {
-          contBtnsDelEdi.forEach(btns => btns.classList.add('oc'))
-          const elBtns = this.contModel.querySelector(`#btns__${cont.id.split('__')[1]}`)
-          elBtns.classList.remove('oc')
-       }))
- 
-       const instContModel = this.contPanel.querySelector('#inst_creF_cont_model')
-       instContModel.addEventListener('mouseout', () => {
-          contBtnsDelEdi.forEach(btns => btns.classList.add('oc'))
-       })
- 
-       return
-    }
+   printForm(){
+      this.contModel.innerHTML = ''
+      this.makeHTML.build(this.contModel, this.datahtml.model_form)
+      const formItems = this.contModel.querySelector('.form-d-body')
+      this.objForm.structure.length === 0 ? formItems : formItems.innerHTML = ''
+      this.objForm.structure.forEach(it => {
+         let req;
+         it.required ? req = '' : req = 'oc'
+         let oc;
+         it.group === 'input_text' ? oc = 'oc' : oc = ''
+         const modelIt = {
+            arrayData: [
+               {predesing: 'model_li_inputs', id: `li__${it.id}`}
+            ],
+            merge: {
+               [`li__${it.id}`]: [
+                  {
+                     target: ['class', 'form-d-item-tit'],
+                     attr: {
+                        class: oc
+                     }
+                  },
+                  {
+                     target: ['class', 'p-item-tit'],
+                     attr: {
+                        text: it.et
+                     }
+                  },
+                  {
+                     target: ['class', 'cont-inp-elem'],
+                     attr: {
+                        id: `inps__${it.id}`,
+                        dataset1: ['data-group', it.group]
+                     }
+                  },
+                  {
+                     target: ['class', 'cont-inp-req'],
+                     attr: {
+                        class: req
+                     }
+                  },
+                  {
+                     target: ['class', 'cont-btns-op'],
+                     attr: {
+                        id: `btns__${it.id}`
+                     }
+                  }
+               ]
+            }
+         }
+         this.makeHTML.build(formItems, modelIt, this.datahtml.elements)
+
+         let btnsEdDe = undefined
+         if(it.group !== 'select_dList'){
+            btnsEdDe = {
+               arrayData: [
+                  {elem: 'button', id: `del__${it.id}`, class: 'button-ic-del ic-30 btn-it-del'},
+                  {elem: 'button', id: `edi__${it.id}`, class: 'button-ic-ed ic-30 btn-it-edi'}
+               ]
+            }
+         } else {
+            btnsEdDe = {
+               arrayData: [
+                  {elem: 'button', id: `del__${it.id}`, class: 'button-ic-del ic-30 btn-it-del'},
+               ]
+            }
+
+         }
+
+         if(btnsEdDe){
+            const contBtnsEdDe = formItems.querySelector(`#btns__${it.id}`)
+            this.makeHTML.build(contBtnsEdDe, btnsEdDe)
+         }
+         
+         const formContInputs = this.contModel.querySelector(`#inps__${it.id}`)
+         if(it.group === 'input_text'){
+            const group_input_text = {
+               arrayData: [
+                  {elem: 'input', class: 'inp-f-text', type: it.type, placeholder: it.et}
+               ]
+            }
+
+            this.makeHTML.build(formContInputs, group_input_text, this.datahtml.elements)
+            return
+         }
+
+         if(it.group === 'input_radio'){
+            it.options.forEach(op => {
+               const codOp = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
+               const group_input_radio = {
+                  arrayData: [
+                     {elem: 'input', id: `ra_${codOp}`, class: 'inp-f-rad', type: it.type, placeholder: it.et, name: `nam${it.concat}`},
+                     {elem: 'label', class: 'label-f-rad', for: `ra_${codOp}`, text: op.et}
+                  ]
+               }
+
+               this.makeHTML.build(formContInputs, group_input_radio, this.datahtml.elements)
+            })
+            return
+         }
+
+         if(it.group === 'input_checkbox'){
+            it.options.forEach(op => {
+               const codOp = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
+               const group_input_check = {
+                  arrayData: [
+                     {elem: 'input', id: `ch_${codOp}`, class: 'inp-f-che', type: it.type, placeholder: it.et},
+                     {elem: 'label', class: 'label-f-che', for: `ch_${codOp}`, text: op.et}
+                  ]
+               }
+
+               this.makeHTML.build(formContInputs, group_input_check, this.datahtml.elements)
+            })
+            return
+         }
+
+         if(it.group === 'select_list'){
+            const codSel = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
+            const group_select_list = {
+               arrayData: [
+                  {elem: 'select', id: `sel_${codSel}`, class: 'sel-f'},
+               ]
+            }
+            this.makeHTML.build(formContInputs, group_select_list, this.datahtml.elements)
+
+            const contSelectL = this.contModel.querySelector(`#sel_${codSel}`)
+            it.options.forEach(op => {
+               const option = document.createElement('option')
+               option.append(op.et)
+               contSelectL.appendChild(option)
+            })
+            return
+         }
+
+         if(it.group === 'select_dList'){
+            const codSel = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
+            const group_select_dList = {
+               arrayData: [
+                  {elem: 'select', id: `sel_${codSel}`, class: 'sel-f'},
+               ]
+            }
+
+            this.makeHTML.build(formContInputs, group_select_dList, this.datahtml.elements)
+            return
+         }
+      })
+
+      let btnsForms;
+      switch (this.modeform){
+         case 'create':
+            btnsForms = {
+               arrayData: [
+                  {elem: 'button', id: 'btn_save_create_form', class: 'button-red-w',text: 'Finalizar creación de formulario'}
+               ]
+            }
+            break
+         
+         case 'edit':
+            btnsForms = {
+               arrayData: [
+                  {elem: 'button', class: 'button-yel-w', id: 'btn_cancel_edit_form', text: 'Cancelar'},
+                  {elem: 'button', class: 'button-blu-w', id: 'btn_edit_form', text: 'Editar'}
+               ]
+            }
+            break
+      }
+      this.makeHTML.build(this.contModel.querySelector('#form_d_btns'), btnsForms)
+
+   //  this.connectSelects()
+
+      const contLi = this.contModel.querySelectorAll('.form-d-li')
+      const contBtnsDelEdi = this.contModel.querySelectorAll('.cont-btns-op')
+      contLi.forEach(cont => cont.addEventListener('mouseover', () => {
+         contBtnsDelEdi.forEach(btns => btns.classList.add('oc'))
+         const elBtns = this.contModel.querySelector(`#btns__${cont.id.split('__')[1]}`)
+         elBtns.classList.remove('oc')
+      }))
+
+      const instContModel = this.contPanel.querySelector('#inst_creF_cont_model')
+   //  instContModel.addEventListener('mouseout', () => {
+   //     contBtnsDelEdi.forEach(btns => btns.classList.add('oc'))
+   //  })
+
+      return
+   }
  
    //  connectSelects(){
    //     const itSelectRoots = this.objForm.structure.filter(it => it.group === 'select_list')
@@ -1559,5 +1591,58 @@ class PrintTable {
       })
    }
 }
+class Warnings {
+   constructor(container = undefined, makeHTML, structure = undefined, content = undefined){
+      this.container = container
+      this.makeHTML = makeHTML
+      this.structure = structure
+      this.content = content
 
-module.exports = { MakeHTML, BackgroundBlur, Pops, Placeholders, DownloadSVG, CreateForms, PrintForm, PrintTable }
+      return this.run()
+   }
+
+   run(){
+      const empty = this.container.querySelector('.cont-warning')
+      if(empty){return}
+      let cont;
+      this.container ? cont = this.container : cont = document.querySelector('body')
+      let text;
+      this.content ? text = this.content : text = '¿Está seguro de querer realizar esta acción?. Este paso es irreversible'
+      let strc;
+      const baseStructure = {
+         arrayData: [
+            {elem: 'div', class: 'cont-warning', subs: [
+               {elem: 'div', class: 'wa-base', subs: [
+                  {elem: 'div', class: 'warn-cont-head', subs: [
+                     {elem: 'h3', text: 'Advertencia'}
+                  ]},
+                  {elem: 'div', class: 'warn-cont-text', subs: [
+                     {elem: 'p', text: text}
+                  ]},
+                  {elem: 'div', class: 'warn-cont-btns', subs: [
+                     {elem: 'button', id: 'btn_w_cancel', class: 'button-warn-cancel', text: 'Cancelar acción'},
+                     {elem: 'button', id: 'btn_w_continue', class: 'button-warn-continue', text: 'Continuar'}
+                  ]}
+               ]}
+            ]}
+         ]
+      }
+      this.structure ? strc = this.structure : strc = baseStructure
+      this.makeHTML.build(cont, strc)
+      
+      return new Promise((resolve, reject) => {
+         const btnCancel = cont.querySelector('#btn_w_cancel')
+         if(btnCancel){
+            btnCancel.addEventListener('click', () => {
+               resolve({status: false})
+            })
+         }
+         const btnContinue = cont.querySelector('#btn_w_continue')
+         btnContinue.addEventListener('click', () => {
+            resolve({status: true})
+         })
+      })
+   }
+}
+
+module.exports = { MakeHTML, BackgroundBlur, Pops, Placeholders, DownloadSVG, CreateForms, PrintForm, PrintTable, Warnings }

@@ -1,23 +1,24 @@
 *{
-    box-sizing: border-box;
+   box-sizing: border-box;
 }
 
 body{
-    margin: 0px;
-    height: 100vh;
+   position: relative;
+   margin: 0px;
+   height: 100vh;
 }
 
 p{
-    margin: 0px;
-    font-family: 'roboto-regular';
-    color: var(--cl-gray-8);
-   }
+   margin: 0px;
+   font-family: 'roboto-regular';
+   color: var(--cl-gray-8);
+}
 
 h2, h3, h4, h5{
-    margin: 0px;
-    font-family: 'roboto-regular';
-    color: var(--cl-gray-8);
-   }
+   margin: 0px;
+   font-family: 'roboto-regular';
+   color: var(--cl-gray-8);
+}
 
 ul{
    position: relative;
@@ -43,44 +44,45 @@ li{
 }
 
 button{
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    cursor: pointer;
-    font-family: roboto-regular;
- }
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
+   cursor: pointer;
+   font-family: roboto-regular;
+}
+
  
- select{
+select{
    font-size: 16px;
    color: var(--cl-gray-8);
    cursor: pointer;
-    &:focus-visible{
-       outline: none;
-    }
- }
+   &:focus-visible{
+      outline: none;
+   }
+}
 
- input{
+input{
    font-size: 16px;
    color: var(--cl-gray-8);
    &:focus-visible{
       outline: none;
    }
- }
+}
 
- input[type='text']{
+input[type='text']{
    border: 1px solid var(--cl-gray-7);
- }
+}
 
- input[type='checkbox']{
+input[type='checkbox']{
    margin: 0px;
-    cursor: pointer;
- }
+   cursor: pointer;
+}
  
- input[type='radio']{
-    margin: 0px;
-    cursor: pointer;
- }
+input[type='radio']{
+   margin: 0px;
+   cursor: pointer;
+}
 
- label{
+label{
    font-family: 'roboto-regular';
- }
+}

@@ -2,9 +2,7 @@ export const home = {
     arrayData: [
         {elem: 'div', class: 'home-container', subs: [
             {elem: 'header', class: 'home-header', subs: [
-                {elem: 'div', class: 'cont-logo', subs: [
-                    {elem: 'img'}
-                ]}
+                {elem: 'div', class: 'cont-logo'}
             ]},
             {elem: 'main', class: 'home-body', subs: [
                 {elem: 'div', class: 'cont-body-image', subs: [
@@ -12,17 +10,16 @@ export const home = {
                 ]},
                 {elem: 'div', class: 'cont-body-text-btn', subs: [
                     {elem: 'div', class: 'cont-body-text', subs: [
-                        {elem: 'p', text: 'Crea tus fomularios de una forma sencilla y rápida'},
-                        {elem: 'p', text: 'Pruébalos online'}
+                        {elem: 'p', text: 'Crea tus formulario de manera  rápida y sencilla'},
+                        {elem: 'p', text: 'Aplica tus formularios y analiza los datos obtenidos'}
                     ]},
                     {elem: 'div', class: 'cont-body-btn', subs: [
-                        {elem: 'button', text: 'Empezar a crear'}
+                        {elem: 'button', id: 'start_create',  class: 'button-red', text: 'Empezar a crear'}
                     ]}
                 ]}
             ]}
         ]}
     ]
-
 }
 
 export const makeForm = {
@@ -31,7 +28,7 @@ export const makeForm = {
             {elem: 'div', class: 'container-panel', subs: [
                 {elem: 'div', class: 'panel-header', subs: [
                     {elem: 'div', class: 'cont-logo', subs: [
-                        {elem: 'button', class: 'logo head-logo'}
+                        {elem: 'button', id: 'create_back_home', class: 'logo head-logo'}
                     ]}
                 ]},
                 {elem: 'main', class: 'panel-body', subs: [
@@ -86,7 +83,7 @@ export const makeForm = {
                                       ]}
                                      ]},
                                   ]},
-                                  {elem: 'div', id: 'ops_dets', class: 'ops-dets div-scr'}
+                                  {elem: 'div', id: 'ops_dets', class: 'ops-dets'}
                               ]},
                            ]}
                         ]},
@@ -100,42 +97,7 @@ export const makeForm = {
                               {elem: 'header', class: 'header-options', subs: [
                                   {elem: 'h4', text: 'Lista de formularios'}
                               ]},
-                              {elem: 'ul', id: 'ul_body_list', class: 'body-list', subs: [
-                                 {elem: 'li', class: 'li-list', subs: [
-                                    {elem: 'div', class: 'cont-btn-list', subs: [
-                                       {elem: 'button', class: 'button-list', text: 'Formulario de datos uno'},
-                                       {elem: 'div', class: 'cont-ops-btns', subs: [
-                                          {elem: 'div', class: 'cont-ed-del', subs: [
-                                             {elem: 'button', class: 'button-ic-ed ic-26'},
-                                             {elem: 'button', class: 'button-ic-del ic-26'}
-                                          ]},
-                                          {elem: 'div', class: 'img-config-list'}
-                                       ]}
-                                    ]}
-                                 ]},{elem: 'li', class: 'li-list', subs: [
-                                    {elem: 'div', class: 'cont-btn-list', subs: [
-                                       {elem: 'button', class: 'button-list', text: 'Formulario de datos uno'},
-                                       {elem: 'div', class: 'cont-ops-btns', subs: [
-                                          {elem: 'div', class: 'cont-ed-del', subs: [
-                                             {elem: 'button', class: 'button-ic-ed ic-26'},
-                                             {elem: 'button', class: 'button-ic-del ic-26'}
-                                          ]},
-                                          {elem: 'div', class: 'img-config-list'}
-                                       ]}
-                                    ]}
-                                 ]},{elem: 'li', class: 'li-list', subs: [
-                                    {elem: 'div', class: 'cont-btn-list', subs: [
-                                       {elem: 'button', class: 'button-list', text: 'Formulario de datos uno'},
-                                       {elem: 'div', class: 'cont-ops-btns', subs: [
-                                          {elem: 'div', class: 'cont-ed-del', subs: [
-                                             {elem: 'button', class: 'button-ic-ed ic-26'},
-                                             {elem: 'button', class: 'button-ic-del ic-26'}
-                                          ]},
-                                          {elem: 'div', class: 'img-config-list'}
-                                       ]}
-                                    ]}
-                                 ]},
-                              ]}
+                              {elem: 'ul', id: 'ul_body_list', class: 'body-list'}
                            ]}
                         ]}
                     ]}
@@ -146,22 +108,16 @@ export const makeForm = {
 
    model_form: {
       arrayData: [
-         {elem: 'div', class: 'cont-form-d', subs: [
-            {elem: 'div', class: 'form-d-background', subs: [
-               {elem: 'form', class: 'form-d', subs: [
-                  {elem: 'header', class: 'form-d-header', subs: [
-                     {elem: 'h4', text: 'Formulario de Datos'}
-                  ]},
-                  {elem: 'ul', class: 'form-d-body', subs: [
-                     {elem: 'div', class: 'form-d-cont-inputs-empty', subs: [
-                        {elem: 'div', class: 'form-d-inputs-empty-text', subs: [
-                           {elem: 'p', text: 'Los inputs que vayas a crear aparecerán en este lugar'}
-                        ]}
-                     ]}
-                  ]},
-                  {elem: 'div', id: 'form_d_btns', class: 'form-d-btns'}
+         {elem: 'form', class: 'form-d', subs: [
+            {elem: 'header', class: 'form-d-header', subs: [
+               {elem: 'h4', text: 'Formulario de Datos'}
+            ]},
+            {elem: 'ul', class: 'form-d-body', subs: [
+               {elem: 'div', class: 'form-d-empty', subs: [
+                  {elem: 'p', text: 'Los inputs que vayas a crear aparecerán en este lugar'}
                ]}
-            ]}
+            ]},
+            {elem: 'div', id: 'form_d_btns', class: 'form-d-btns'}
          ]}
    ]},
 
@@ -180,9 +136,6 @@ export const makeForm = {
        item_formData_emptylist: {elem: 'li', class: 'cont-btn-li-easy-empty', subs: [
           {elem: 'p', class: 'p-li-list', text: 'No ha sido creado ningún Formulario de Datos aún'},
        ]}, 
-       btn_expand_down: {elem: 'div', class: 'cont-expand-down', subs: [
-          {elem:'button', class: 'button-expand-down'}
-       ]},
        input_text_formpanel: {elem: 'div', class: 'form-block', subs: [
           {elem: 'p', class: 'formpanel-input-tit'},
           {elem: 'div', class: 'formpanel-cont-input', subs: [
@@ -192,25 +145,6 @@ export const makeForm = {
        btn_go_out: {elem: 'div', class: 'cont-btn-exit', subs: [
           {elem: 'button', class: 'button-exit'}
        ]},
-       li_card_m1:{elem: 'li', class: 'li-card-m1', subs: [
-          {elem: 'div', class: 'cm1-cont', subs: [
-             {elem: 'div', class: 'cm1-cont-btn', subs: [
-                {elem: 'button', class: 'button-cm1 btn-cm1', subs: [
-                   {elem: 'div', class: 'btcm1-cont-h4', subs: [
-                      {elem: 'h4', class: 'btn-cm1-h4'},
-                   ]},
-                   {elem: 'div', class: 'btcm1-cont-p', subs: [
-                      {elem: 'p', class: 'btn-cm1-p'}
-                   ]}
-                ]}
-             ]},
-             {elem: 'div', class: 'cm1-cont-opts', subs: [
-                {elem: 'button', class: 'button-ic22 ic-proc btn-cm1-addproc'}
-             ]}
-          ]},
-       ]},
-
-       // just one
        panel_form_input_text: {elem: 'div', class: 'cont-form-det', subs: [
           {elem: 'form', id: 'form__input_text', class: 'form-det', subs: [
              {elem: 'div', class: 'block-form-det', subs: [
@@ -397,14 +331,30 @@ export const makeForm = {
              {elem: 'button', class: 'button-ic-add ic-30 btn-add'}
           ]}
        ]},
+      //  model_li_inputs: {elem: 'li', class: 'form-d-li', subs: [
+      //     {elem: 'div', class: 'form-d-item-back', subs: [
+      //        {elem: 'div', class: 'form-d-item-tit', subs: [
+      //           {elem: 'p', class: 'p-item-tit'}
+      //        ]},
+      //        {elem: 'div', class: 'form-d-cont-input-btns', subs: [
+      //           {elem: 'div', class: 'form-d-cont-input'},
+      //           {elem: 'div', class: 'form-d-cont-del-edi oc'}
+      //        ]}
+      //     ]}
+      //  ]},
        model_li_inputs: {elem: 'li', class: 'form-d-li', subs: [
           {elem: 'div', class: 'form-d-item-back', subs: [
              {elem: 'div', class: 'form-d-item-tit', subs: [
                 {elem: 'p', class: 'p-item-tit'}
              ]},
-             {elem: 'div', class: 'form-d-cont-input-btns', subs: [
-                {elem: 'div', class: 'form-d-cont-input'},
-                {elem: 'div', class: 'form-d-cont-del-edi oc'}
+             {elem: 'div', class: 'cont-inp-f cont-inp-form', subs: [
+               {elem: 'div', class: 'cont-inp-req', subs: [
+                  {elem: 'span', class: 'el-req'}
+               ]},
+               {elem: 'div', class: 'cont-inp-elem'},
+               {elem: 'div', class: 'cont-inp-opts', subs: [
+                  {elem: 'div', class: 'cont-btns-op'}
+               ]}
              ]}
           ]}
        ]},
@@ -418,7 +368,6 @@ export const makeForm = {
              ]}
           ]}
        ]},
-
        panel_input_level: {elem: 'form', class: 'inputdata-form-input-description', subs: [
           {elem: 'div', class: 'inputdata-cont-btns-level'},
           {elem: 'div', class: 'inputdata-cont-input-level', subs: [
@@ -445,17 +394,10 @@ export const makeForm = {
              {elem: 'button', id: 'edit_schema', class: 'button-edit btn-edit-schema', text: 'Editar'}
           ]}
        ]},
-       
    }
 }
 
 export const elementsList = {
-   back: {
-      arrayData: [
-         {elem: 'div'}
-      ]
-   },
-
    elements: {
       el: {elem: 'button', class: 'button-list', text: 'Añadir'},
       box_warning: {elem: 'div', class: 'box-warning', subs: [
@@ -475,8 +417,8 @@ export const elementsList = {
             {elem: 'button', class: 'button-list', text: 'Formulario de datos uno'},
             {elem: 'div', class: 'cont-ops-btns', subs: [
                {elem: 'div', class: 'cont-ed-del', subs: [
-                  {elem: 'button', class: 'button-ic-ed'},
-                  {elem: 'button', class: 'button-ic-del'}
+                  {elem: 'button', class: 'button-ic-ed ic-30'},
+                  {elem: 'button', class: 'button-ic-del ic-30'}
                ]},
                {elem: 'div', class: 'img-config-list'}
             ]}

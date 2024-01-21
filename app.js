@@ -7,9 +7,18 @@ const src = require('./frontend/src/resources.js')
 import { home, makeForm, elementsList } from './frontend/db/db.js'
 
 const structures = () => {
-    const makeHTML = new src.MakeHTML()
-    // hom.structureHome(makeHTML, home)
-    pan.structurePanel(src, makeForm)
+    hom.structureHome(src, home)
+    const main = document.querySelector('.main-container')
+    main.addEventListener('click', (e) => {
+        if(e.target.id === 'start_create'){
+            main.innerHTML = ''
+            pan.structurePanel(src, makeForm)
+        }
+        if(e.target.id === 'create_back_home'){
+            main.innerHTML = ''
+            hom.structureHome(src, home)
+        }
+    })
     // bui.build(src, elementsList)
 }
 

@@ -41,7 +41,9 @@
 
 :root{
     /* colors */
-    --cl-gray-back-t: #4c4c4c66;
+    --cl-gray-back-t: #4c4c4caa;
+    --cl-gray-6t: #a7a7a722;
+    --cl-gray-7t: #6d707055;
     --cl-gray-1: #f0f0f0;
     --cl-gray-2: #f1f1f1;
     --cl-gray-3: #f5f5f5;
@@ -69,10 +71,11 @@
     --cl-blue-3: #1ce9ec;
     --cl-blue-4: #27d4d6;
     --cl-blue-5: #0e5a68;
+    --cl-blue-6: #bccacf; 
 
 
     /* mesurements */
-    --h-home-header: 100px;
+    --h-home-header: 150px;
     --h-panel-header: 70px;
     --h-panel-body-description: 100px;
 }
