@@ -1,5 +1,7 @@
 .main-container{
     height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* HOME ---------------------------------------------------------------*/
@@ -56,10 +58,19 @@
     > .panel-header{
         padding: 0px 100px;
         height: var(--h-panel-header);
+        transition: all .3s ease;
+        background-color: var(--cl-gray-1);
         > .cont-logo{
             height: 100%;
-            width: 250px;
-            background-color: #c9c9c9;            
+            width: 200px;
+        }
+        &:hover{
+            background-color: var(--cl-blue-2);
+            > .cont-logo{
+                > .head-logo{
+                    background: center / 100% url('../src/images/svg/FormMaker-b.svg') no-repeat;
+                }
+            }
         }
     }
 
@@ -68,7 +79,7 @@
         height: calc(100% - var(--h-panel-header));
         > .panel-body-description{
             display: flex;
-            padding: 25px 0px;
+            padding: 25px 0px 15px 0px;
             height: var(--h-panel-body-description);
             > .desc-tit{
                 margin-right: 20px;
@@ -78,9 +89,12 @@
             }
             > .desc-ins{
                 margin-right: 150px;
+                overflow: hidden;
                 > p{
                     padding-top: 5px;
                     font-size: 15px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
         }
@@ -95,12 +109,18 @@
                 min-width: 540px;
                 max-width: 540px;
                 > .block-options{
+                    display: flex;
+                    flex-direction: column;
                     padding: 30px;
                     height: 100%;
                     border-radius: 15px;
                     background-color: var(--cl-gray-1);
                     border: 1px solid var(--cl-gray-6);
+                    overflow: hidden;
                     > .header-options{
+                        margin-bottom: 20px;
+                        min-height: 80px;
+                        max-height: 80px;
                         > h4{
                             margin-bottom: 10px;
                             font-size: 25px;
@@ -108,14 +128,69 @@
                         }
                     }
                     > .body-options{
-                        height: 100%;
                         display: flex;
+                        align-items: flex-start;
+                        height: calc(100% - 100px);
                         > .ops-list{
                             display: flex;
                             flex-direction: column;
-                            padding-top: 20px;
                             > .li-op{
                                margin-bottom: 7px;
+                            }
+                        }
+                        >.ops-dets{
+                            padding: 10px;
+                            min-width: 240px;
+                            max-width: 240px;
+                            max-height: 100%;
+                            border-radius: 10px;
+                            background-color: var(--cl-gray-4);
+                            overflow-y: auto;
+                            overflow-x: hidden;
+                            > .cont-form-det{
+                                padding: 10px;
+                                height: 100%;
+                                > .form-det{
+                                    height: 100%;
+                                    > .block-form-det{
+                                        margin-bottom: 20px;
+                                        &:last-child{
+                                            margin-bottom: 0px;
+                                        }
+                                        > .cont-tit-form-det{
+                                            > h5{
+                                                margin-bottom: 5px;
+                                                color: var(--cl-blue-5);
+                                            }
+                                        }
+                                        > .cont-input-form-det{
+                                            > .cont-input-radio-det{
+                                                > .input-radio-form-det{
+                                                    margin-right: 10px;
+                                                }
+                                                > label{
+                                                    font-size: 14px;
+                                                    cursor: pointer;
+                                                }
+                                            }
+                                            > .cont-input-check-det{
+                                                display: flex;
+                                                align-items: center;
+                                                > .input-check-form-det{
+                                                    margin-right: 10px;
+                                                    & + label{
+                                                        padding-top: 1px;
+                                                        font-size: 12px;
+                                                        cursor: pointer;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        > .cont-btn-form-det{
+                                            text-align: right;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -131,7 +206,7 @@
                     height: 100%;
                     min-width: 600px;
                     max-width: 600px;
-                    border-radius: 20px;
+                    border-radius: 30px;
                     box-shadow: 0px 0px 15px var(--cl-blue-1);
                     background-color: white;
                     > .form-model{
@@ -150,18 +225,26 @@
                 min-width: 540px;
                 max-width: 540px;
                 > .block-list{
+                    display: flex;
+                    flex-direction: column;
                     padding: 30px;
                     height: 100%;
                     border-radius: 15px;
                     background-color: var(--cl-gray-1);
                     border: 1px solid var(--cl-gray-6);
                     > .header-options{
+                        min-height: 30px;
+                        max-height: 30px;
+                        margin-bottom: 10px;
                         > h4{
                             margin-bottom: 20px;
                             font-size: 25px;
                             color: var(--cl-blue-5);
                         }                        
-                    }                
+                    }   
+                    > .body-list{
+                        height: calc(100% - 30px);
+                    }             
                     &:hover{
                         box-shadow: 0px 0px 10px var(--cl-blue-1);
                     }

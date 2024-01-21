@@ -3,8 +3,7 @@ const build = (src, db) => {
 
     const elem = {
         arrayData: [
-            {predesing: 'inp_det_text'},
-            {predesing: 'inp_det_select'},
+            {predesing: 'inp_form_radio'}
         ]
     }
 

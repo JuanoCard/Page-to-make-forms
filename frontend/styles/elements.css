@@ -1,3 +1,20 @@
+
+/* LOGO ----------------------------------------------------------------------------------- */
+
+.logo{
+   background: center / 100% url('../src/images/svg/FormMaker.svg') no-repeat;
+}
+
+.head-logo{
+   display: block;
+   border: none;
+   outline: none;
+   width: 100%;
+   height: 100%;
+}
+
+
+
 /* BUTTONS -------------------------------------------------------------------------------- */
 
 
@@ -55,7 +72,7 @@
    &:focus{
       outline: 3px solid var(--cl-blue-2);
       background-color: var(--cl-blue-3);
-   }      
+   }
 }
 
 .button-det-gre{
@@ -77,13 +94,25 @@
    }      
 }
 
+.button-ic-add, .button-ic-remove{
+   border-radius: 5px;
+   border: 1px solid var(--cl-gray-7);
+   &:focus{
+      outline: 3px solid var(--cl-blue-1);
+   }
+}
+
+.button-ic-add{
+   background: var(--cl-green-2) center / 92% url('../src/images/svg/ic-mas.svg') no-repeat;
+}
+
+.button-ic-remove{
+   background: var(--cl-red-2) center / 92% url('../src/images/svg/ic-menos.svg') no-repeat;
+}
 
 /* buttons icons */
 
 .button-ic-ed, .button-ic-del{
-   min-width: 26px;
-   max-width: 26px;
-   height: 26px;
    border: none;
    border-radius: 4px;
 }
@@ -209,9 +238,22 @@
 
 /* ICONS ---------------------------------------------------------------------- */
 
+.ic-26{
+   min-width: 26px;
+   max-width: 26px;
+   height: 26px;
+}
+
 .ic-28{
-   width: 28px;
+   min-width: 28px;
+   max-width: 28px;
    height: 28px;
+}
+
+.ic-30{
+   min-width: 30px;
+   max-width: 30px;
+   height: 30px;
 }
 
 .ic-tex{
@@ -276,10 +318,9 @@
 
 /* INPUTS */
 
-.inp-det-text{
+.inp-det-text, .inp-det-text-bt{
    padding: 0px 15px;
-   width: 200px;
-   height: 36px;
+   font-size: 14px;
    border-radius: 5px;
    border: 1px solid var(--cl-gray-7);
    &::placeholder{
@@ -287,12 +328,151 @@
    }
    &:focus{
       border: 1px solid var(--cl-blue-4);
+      outline: 3px solid var(--cl-blue-1);
    }
 }
+
+.inp-det-text{
+   width: 200px;
+   height: 36px;
+}
+
+.cont-input-det-op{
+   display: flex;
+   margin-bottom: 5px;
+   > .inp-det-text-bt{
+      width: 100%;
+      height: 30px;
+   }
+   > button{
+      margin-left: 5px;
+   }
+}
+
 
 .select-det{
    padding: 0px 15px;
    width: 200px;
-   height: 36px;   
+   height: 36px;
    border-radius: 5px;
 }
+
+.cont-inp-f{
+   width: 380px;
+}
+
+.cont-inp-form-text{
+   display: flex;
+   position: relative;
+   height: 45px;
+   > .cont-inp-req{
+      position: absolute;
+      top: 0px;
+      left: -12px;
+      width: 12px;
+      height: 100%;
+      > .el-req{
+         display: block;
+         width: 6px;
+         height: 6px;
+         border-radius: 50%;
+         background-color: var(--cl-red-2);
+      }
+   }
+   > .cont-inp-elem{
+      width: 100%;
+      height: 100%;
+      > .inp-f-text{
+         padding: 0px 18px;
+         width: 100%;
+         height: 45px;
+         border-radius: 7px;
+         font-size: 18px;
+         font-family: 'roboto-regular';
+         &::placeholder{
+            color: var(--cl-gray-6);
+            font-family: 'roboto-light';
+         }
+      }
+      > .inp-f-rad{
+         display: none;
+         & + .label-f-rad{
+            display: inline-block;
+            padding: 0px 15px;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            line-height: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--cl-gray-5);
+            white-space: nowrap;
+            color: var(--cl-gray-8);
+            background-color: var(--cl-gray-3);
+            cursor: pointer;
+            &:last-child{
+               margin-right: 0px;
+            }
+         }
+         &:checked + .label-f-rad{
+            color: white;
+            background-color: var(--cl-yellow-3);
+         }
+      }
+      > .inp-f-che{
+         display: none;
+         & + .label-f-che{
+            display: inline-block;
+            padding: 0px 15px;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            line-height: 30px;
+            border-radius: 5px;
+            border: 1px solid var(--cl-gray-5);
+            white-space: nowrap;
+            color: var(--cl-gray-8);
+            background-color: var(--cl-gray-3);
+            cursor: pointer;
+            &:last-child{
+               margin-right: 0px;
+            }
+         }
+         &:checked + .label-f-che{
+            color: white;
+            background-color: var(--cl-blue-4);
+         }
+      }
+   }
+   > .cont-inp-opts{
+      min-width: 0px;
+      width: 0px;
+      transition: all .5s ease;
+      overflow: hidden;
+      > .cont-btns-op{
+         display: flex;
+         align-items: center;
+         padding-left: 10px;
+         height: 100%;
+         > button{
+            margin-right: 10px;
+            border: 1px solid var(--cl-gray-6);
+            border-radius: 7px;
+            background-color: white;
+            &:last-child{
+               margin-right: 0px;
+            }
+         }
+         & .button-ic-ed:hover{
+            background: var(--cl-blue-4) center / 80% url('../src/images/svg/ic-edit-b.svg') no-repeat;
+         }
+         & .button-ic-del:hover{
+            background: var(--cl-red-2) center / 80% url('../src/images/svg/ic-delete-b.svg') no-repeat;
+         }
+      }
+   }
+   &:hover{
+      > .cont-inp-opts{
+         min-width: 80px;
+      }
+   }
+}
+
+
