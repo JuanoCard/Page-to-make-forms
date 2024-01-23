@@ -130,7 +130,7 @@
    background: var(--cl-red-2) center / 92% url('../src/images/svg/ic-menos.svg') no-repeat;
 }
 
-.button-ic-ed, .button-ic-del{
+.button-ic-ed, .button-ic-del, .button-ic-stats, .button-ic-form{
    border: none;
    border-radius: 4px;
 }
@@ -141,6 +141,22 @@
 
 .button-ic-del{
    background: center / 82% url('../src/images/svg/ic-delete.svg') no-repeat;
+}
+
+.button-ic-stats{
+   background: var(--cl-gray-5) center / 82% url('../src/images/svg/ic-stats.svg') no-repeat;
+}
+
+.btn-st-ac{
+   background: var(--cl-blue-4) center / 82% url('../src/images/svg/ic-stats-b.svg') no-repeat !important;
+}
+
+.button-ic-form{
+   background: var(--cl-gray-5) center / 82% url('../src/images/svg/ic-paper.svg') no-repeat;
+}
+
+.btn-fo-ac{
+   background: var(--cl-yellow-2) center / 82% url('../src/images/svg/ic-paper-b.svg') no-repeat !important;
 }
 
 /* panel inputs */

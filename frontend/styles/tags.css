@@ -86,3 +86,15 @@ input[type='radio']{
 label{
    font-family: 'roboto-regular';
 }
+
+table{
+   border-collapse: collapse;
+}
+
+th{
+   font-family: roboto-regular;
+}
+
+td{
+   font-family: roboto-regular;
+}

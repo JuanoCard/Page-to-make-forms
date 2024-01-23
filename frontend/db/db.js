@@ -427,81 +427,42 @@ export const table = {
                   {elem: 'div', id: 'back_form', class: 'back-form'}
                ]},
                {elem: 'div', class: 'test-body-table', subs: [
-                  {elem: 'div', class: 'part-table-block-footer', subs: [
-                     {elem: 'div', class: 'part-block-table', subs: [
-                        {elem: 'div', id: 'part_header_tools', class: 'part-header-tools', subs: [
-                           {elem: 'div', class: 'part-header-tools-btns', subs: [
-                              {elem: 'div', class: 'part-header-tools-show', subs: [
-                                 {elem: 'button', id: 'btn_part_header_tool_form', class: 'button-ic-form ic-26 ic-form'},
-                                 {elem: 'button', id: 'btn_part_header_tool_stats', class: 'button-ic-stats ic-26 ic-stats'}
-                              ]},
-                              {elem: 'div', class: 'part-header-tools-opts oc', subs: [
-                                 {elem: 'button', id: 'btn_part_header_del_gr', class: 'button-ic-del ic-26'}
-                              ]}
-                           ]},
-                           {elem: 'div', class: 'part-header-tools-search', subs: [
-                              {elem: 'input', type: 'text', id: 'input_search_table', class: 'input-search-table', placeholder: 'Buscar'}
-                           ]}
-                        ]},
-                        {elem: 'div', id: 'part_table_cont', class: 'part-table-cont'}
-                     ]},
-                     {elem: 'div', id: 'part_table_footer', class: 'part-table-footer'}
-                  ]},
+                  {elem: 'h4', text: 'La tabla de datos se visualizará aqui al guardar la información del formulario'}
                ]},
                {elem: 'div', class: 'test-body-stats', subs: [
-                  {elem: 'div', class: 'part-add-stats-box', subs: [
-                     {elem: 'div', class: 'add-stat-box-frec'}
-                  ]}
+                  {elem: 'div', class: 'stat-box-frec'}
                ]}
             ]}
          ]}
       ]
    },
-   participants_group: {
+   tableBox: {
       arrayData: [
-         {elem: 'div', class: 'part-tabl-cont-form min-w', subs: [
-            {elem: 'div', id: 'part_add_form_chosen', class: 'part-add-form-chosen'}
-         ]},
-         {elem: 'div', id: 'part_tabl_cont_table', class: 'part-tabl-cont-table', subs: [
-            {elem: 'div', class: 'part-table-block-footer', subs: [
-               {elem: 'div', class: 'part-block-table', subs: [
-                  {elem: 'div', id: 'part_header_tools', class: 'part-header-tools', subs: [
-                     {elem: 'div', class: 'part-header-tools-btns', subs: [
-                        {elem: 'div', class: 'part-header-tools-show', subs: [
-                           {elem: 'button', id: 'btn_part_header_tool_form', class: 'button-table-ic ic-form'},
-                           {elem: 'button', id: 'btn_part_header_tool_stats', class: 'button-table-ic ic-stats'}
-                        ]},
-                        {elem: 'div', class: 'part-header-tools-opts oc', subs: [
-                           {elem: 'button', id: 'btn_part_header_del_gr', class: 'button-table-ic'}
-                        ]}
+         {elem: 'div', class: 'part-table-block-footer', subs: [
+            {elem: 'div', class: 'part-block-table', subs: [
+               {elem: 'div', id: 'part_header_tools', class: 'part-header-tools', subs: [
+                  {elem: 'div', class: 'part-header-tools-btns', subs: [
+                     {elem: 'div', class: 'part-header-tools-show', subs: [
+                        {elem: 'button', id: 'btn_part_header_tool_form', class: 'button-ic-form ic-26 ic-form btn-fo-ac'},
+                        {elem: 'button', id: 'btn_part_header_tool_stats', class: 'button-ic-stats ic-26 ic-stats btn-st-ac'}
                      ]},
-                     {elem: 'div', class: 'part-header-tools-search', subs: [
-                        {elem: 'input', type: 'text', id: 'input_search_table', class: 'input-search-table', placeholder: 'Buscar'}
+                     {elem: 'div', class: 'part-header-tools-opts oc', subs: [
+                        {elem: 'button', id: 'btn_part_header_del_gr', class: 'button-ic-del ic-26'}
                      ]}
                   ]},
-                  {elem: 'div', id: 'part_table_cont', class: 'part-table-cont'}
+                  {elem: 'div', class: 'part-header-tools-search', subs: [
+                     {elem: 'input', type: 'text', id: 'input_search_table', class: 'input-search-table', placeholder: 'Buscar'}
+                  ]}
                ]},
-               {elem: 'div', id: 'part_table_footer', class: 'part-table-footer'}
+               {elem: 'div', id: 'part_table_cont', class: 'part-table-cont'}
             ]},
+            {elem: 'div', id: 'part_table_footer', class: 'part-table-footer'}
          ]},
-         {elem: 'div', id: 'part_tabl_cont_stats', class: 'part-tabl-cont-stats', subs: [
-            {elem: 'div', class: 'part-add-stats-box', subs: [
-               {elem: 'div', class: 'add-stat-box-eval', subs: [
-                  {elem: 'div', class: 'add-stat-eval-det', subs: [
-                     {elem: 'h2', text: 'Participantes evaluados'},
-                     {elem: 'div', class: 'add-stat-det-nums'},
-                     {elem: 'p', class: 'p-foot-page', text: '* Los participantes evaluados son aquellos que han completado todas las evaluaciones programadas'}
-                  ]},
-                  {elem: 'div', class: 'add-stat-eval-graf'}
-               ]},
-               {elem: 'div', class: 'add-stat-box-frec'}
-            ]}
-         ]}
       ]
    }
 }
 
-export const listForms = [{"name_form":"Formulario uno","structure":[{"options":[],"group":"input_text","input":"input","type":"text","id":"2518eca2","concat":"codigo","et":"codigo","required":false},{"options":[],"group":"input_text","input":"input","type":"text","id":"1b46c13be","concat":"nombres","et":"nombres","required":false}],"id":"4b324a3813"}]
+export const listForms = [{"name_form":"Formulario uno","structure":[{"options":[],"group":"input_text","input":"input","type":"text","id":"2c5b933e","concat":"codigo","et":"codigo","required":false},{"options":[{"et":"peru","concat":"peru"},{"et":"brasil","concat":"brasil"},{"et":"colombia","concat":"colombia"}],"group":"input_radio","input":"input","type":"radio","id":"9626b335","concat":"paises","et":"paises","required":false},{"options":[{"et":"rojo","concat":"rojo"},{"et":"amarillo","concat":"amarillo"},{"et":"verde","concat":"verde"}],"group":"input_checkbox","input":"input","type":"checkbox","id":"18618543c","concat":"colores","et":"colores","required":false}],"id":"5319bff587"}]
 
 export const elementsList = {
    elements: {

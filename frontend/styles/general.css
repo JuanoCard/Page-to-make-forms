@@ -36,6 +36,7 @@
 }
 
 .min-w{
+    padding: 0px !important;
     margin: 0px !important;
     min-width: 0px !important;
     max-width: 0px !important;
