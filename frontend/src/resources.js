@@ -303,7 +303,6 @@ class Placeholders {
 
 class DownloadSVG {
     constructor(svgElem){
-       console.log(svgElem)
        this.svgElem = svgElem
        this.svg;
  
@@ -359,7 +358,7 @@ class DownloadSVG {
 
 class CreateForms{
  
-    constructor(container, datahtml, resources, list, controllers){
+    constructor(container, datahtml, resources, listForms, controllers){
       this.container = container
       this.contPanel = this.container.querySelector('.panel-body-blocks')
       this.contDets;
@@ -371,11 +370,10 @@ class CreateForms{
       this.makeHTML = new resources.MakeHTML()
       this.placeholder = new resources.Placeholders()
 
-      //  this.controller = new controllers(this.container, this.datahtml, this.resources)
       //  this.list = list
       this.objForm = {name_form: undefined, structure: []}
       this.words = []
-      this.formsSaved = []
+      this.formsSaved = listForms
       this.modeform = 'create'
       this.start()
     }
@@ -403,7 +401,18 @@ class CreateForms{
       }))
 
       btnsOpPanel[0].click()
-      
+
+      this.container.addEventListener('click', (e) => {
+         if(e.target.id === 'choose_form'){
+            const blockTarget = this.container.querySelector('.block-list')
+            blockTarget.classList.add('emphasis-block')
+            
+            setTimeout(() => {
+               blockTarget.classList.remove('emphasis-block')
+            }, 4000)
+         }
+      })
+
       this.contModel.addEventListener('click', async (e) => {
          if(e.target.classList.contains('btn-it-del')){
             e.preventDefault()
@@ -461,7 +470,6 @@ class CreateForms{
             this.objForm.name_form = 'Formulario uno'
             this.objForm['id'] = Math.trunc(Math.random() * Math.pow(15, 10)).toString(16)
             this.formsSaved.push(this.objForm)
-            console.log(this.formsSaved)
             this.objForm = {name_form: undefined, structure: []}
             this.printForm()
             this.list = this.listForms()
@@ -469,54 +477,62 @@ class CreateForms{
          }
       })
 
-   this.contList.addEventListener('click', async (e) => {
-      if(e.target.classList.contains('btn-del-form')){
-         console.log(this.objForm)
-         e.preventDefault()
-         const blockWarn = new this.resources.BackgroundBlur(document.querySelector('body'))
-         console.log(blockWarn)
-         const str = {
-            arrayData: [{elem: 'div', class: 'box-warning', subs: [
-               {elem: 'div', class: 'warn-title', subs: [
-                  {elem: 'h2', text: 'Borrar formulario'}
-               ]},
-               {elem: 'div', class: 'warn-description', subs: [
-                  {elem: 'p', text: 'Esta a punto de borrar el formulario: Formulario Uno. Este paso es irreversible. Si desea continuar con esta acción haga click en Eliminar, de lo contrario haga click en Cancelar.'}
-               ]},
-               {elem: 'div', class: 'warn-btns', subs: [
-                  {elem: 'button', id: 'btn_w_cancel', class: 'button-yel', text: 'Cancelar'},
-                  {elem: 'button', id: 'btn_w_continue', class: 'button-red', text: 'Eliminar'}
-               ]},
-            ]}
-         ]}
-         const warn = await new this.resources.Warnings(blockWarn.block, this.makeHTML, str)
-         if(warn){
-            if(warn.status){
-               this.formsSaved = this.formsSaved.filter(fo => fo.id !== e.target.id.split('__')[1])
-               this.listForms()
-               blockWarn.out.click()
-            } else {
-               blockWarn.out.click()
-            }
+      this.contList.addEventListener('click', async (e) => {
+         if(e.target.classList.contains('btn-list')){
+            const contBtnTest = document.querySelector('.cont-btn-test')
+            contBtnTest.innerHTML = ''
+            const newBtn = document.createElement('button')
+            newBtn.setAttribute('id', 'table_panel')
+            newBtn.setAttribute('class', 'button-red btn-test-form')
+            newBtn.setAttribute('data-f', e.target.id)
+            newBtn.append(`Probar: ${e.target.textContent}`)
+            contBtnTest.appendChild(newBtn)
          }
-         return
-      }
 
-      if(e.target.classList.contains('btn-ed-form')){
-         console.log(e.target.id)
-         const id = e.target.id.split('__')[1]
-         const formChosen = this.formsSaved.find(fo => fo.id === id)
-         btnsOpPanel.forEach(bt => {
-            bt.classList.add('btn-dis')
-            bt.disabled = true
-         })
-         this.contDets.innerHTML = ''
-         this.objForm = formChosen
-         this.modeform = 'edit'
-         this.printForm()
-         return
-      }
-   })
+         if(e.target.classList.contains('btn-del-form')){
+            e.preventDefault()
+            const blockWarn = new this.resources.BackgroundBlur(document.querySelector('body'))
+            const str = {
+               arrayData: [{elem: 'div', class: 'box-warning', subs: [
+                  {elem: 'div', class: 'warn-title', subs: [
+                     {elem: 'h2', text: 'Borrar formulario'}
+                  ]},
+                  {elem: 'div', class: 'warn-description', subs: [
+                     {elem: 'p', text: 'Esta a punto de borrar el formulario: Formulario Uno. Este paso es irreversible. Si desea continuar con esta acción haga click en Eliminar, de lo contrario haga click en Cancelar.'}
+                  ]},
+                  {elem: 'div', class: 'warn-btns', subs: [
+                     {elem: 'button', id: 'btn_w_cancel', class: 'button-yel', text: 'Cancelar'},
+                     {elem: 'button', id: 'btn_w_continue', class: 'button-red', text: 'Eliminar'}
+                  ]},
+               ]}
+            ]}
+            const warn = await new this.resources.Warnings(blockWarn.block, this.makeHTML, str)
+            if(warn){
+               if(warn.status){
+                  this.formsSaved = this.formsSaved.filter(fo => fo.id !== e.target.id.split('__')[1])
+                  this.listForms()
+                  blockWarn.out.click()
+               } else {
+                  blockWarn.out.click()
+               }
+            }
+            return
+         }
+
+         if(e.target.classList.contains('btn-ed-form')){
+            const id = e.target.id.split('__')[1]
+            const formChosen = this.formsSaved.find(fo => fo.id === id)
+            btnsOpPanel.forEach(bt => {
+               bt.classList.add('btn-dis')
+               bt.disabled = true
+            })
+            this.contDets.innerHTML = ''
+            this.objForm = formChosen
+            this.modeform = 'edit'
+            this.printForm()
+            return
+         }
+      })
 
       this.contDets.addEventListener('click', (e) => {
          if(e.target.classList.contains('btn-add-det')){
@@ -544,7 +560,7 @@ class CreateForms{
                arrayData: [
                {elem: 'li', class: 'li-list', subs: [
                   {elem: 'div', class: 'cont-btn-list', subs: [
-                     {elem: 'button', id: lis.id, class: 'button-list', text: lis.name_form},
+                     {elem: 'button', id: lis.id, class: 'button-list btn-list', text: lis.name_form},
                      {elem: 'div', class: 'cont-ops-btns', subs: [
                         {elem: 'div', class: 'cont-ed-del', subs: [
                            {elem: 'button', id: `f_ed__${lis.id}`, class: 'button-ic-ed ic-30 btn-ed-form'},
@@ -887,7 +903,6 @@ class CreateForms{
                   {elem: 'button', id: `del__${it.id}`, class: 'button-ic-del ic-30 btn-it-del'},
                ]
             }
-
          }
 
          if(btnsEdDe){
@@ -1030,228 +1045,222 @@ class CreateForms{
 }
 
 class PrintForm{
-    constructor(container = undefined, dataForm = undefined, makeHTML, datahtml){
-       this.container = container
-       this.formblock;
-       this.dataForm = dataForm
-       this.makeHTML = makeHTML
-       this.data = datahtml
-    }
+   constructor(container = undefined, dataForm = undefined, makeHTML, datahtml){
+      this.container = container
+      this.formblock;
+      this.dataForm = dataForm
+      this.makeHTML = makeHTML
+      this.data = datahtml
+   }
     
-    buildForm(){
-       this.container.innerHTML = ''
-       const modelForm = {
-          arrayData: [
-             {predesing: 'model_form'}
-          ]
-       }
-       this.makeHTML.build(this.container, modelForm, this.data.elements)
-       this.dataForm ? this.formm() : this.empty()
-       return
-    }
+   buildForm(){
+      this.container.innerHTML = ''
+      const modelForm = {
+         arrayData: [
+            {predesing: 'model_form'}
+         ]
+      }
+      this.makeHTML.build(this.container, modelForm, this.data.elements)
+      this.dataForm ? this.formm() : this.empty()
+      return
+   }
+
+   formm(){
+      const formItems = this.container.querySelector('.form-d-body')
+      this.dataForm.structure.length === 0 ? formItems : formItems.innerHTML = ''
+      this.dataForm.structure.forEach(it => {
+         let req;
+         it.required ? req = 'it-req' : req = ''
+         let oc;
+         it.group === 'input_text' ? oc = 'oc' : oc = ''
+         const modelIt = {
+            arrayData: [
+               {predesing: 'form_li_inputs', id: `li__${it.id}`, dataset1: ['data-gr', it.group]}
+            ],
+            merge: {
+               [`li__${it.id}`]: [
+                  {
+                     target: ['class', 'form-d-item-tit'],
+                     attr: {
+                        class: oc
+                     }
+                  },
+                  {
+                     target: ['class', 'p-item-tit'],
+                     attr: {
+                        text: it.et
+                     }
+                  },
+                  {
+                     target: ['class', 'form-d-cont-input'],
+                     attr: {
+                        id: `inps__${it.id}`,
+                        dataset1: ['data-group', it.group]
+                     }
+                  },
+                  {
+                     target: ['class', 'form-d-item-back'],
+                     attr: {
+                        class: req
+                     }
+                  }
+               ]
+            }
+         }
+         this.makeHTML.build(formItems, modelIt, this.data.elements)
+         
+         const formContInputs = this.container.querySelector(`#inps__${it.id}`)
+         if(it.group === 'input_text'){
+            const group_input_text = {
+               arrayData: [
+                  {elem: 'input', class: 'd-input', type: it.type, placeholder: it.et}
+               ]
+            }
+
+            this.makeHTML.build(formContInputs, group_input_text, this.data.elements)
+            return
+         }
+
+         if(it.group === 'input_radio'){
+            it.options.forEach(op => {
+               const codOp = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
+               const group_input_radio = {
+                  arrayData: [
+                     {elem: 'input', id: `ra_${codOp}`, class: 'd-input', type: it.type, placeholder: it.et, name: `nam${it.concat}`, dataset1: ['data-key', op.et]},
+                     {elem: 'label', for: `ra_${codOp}`, text: op.et}
+                  ]
+               }
+
+               this.makeHTML.build(formContInputs, group_input_radio, this.data.elements)
+            })
+            return
+         }
+
+         if(it.group === 'input_checkbox'){
+            it.options.forEach(op => {
+               const codOp = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
+               const group_input_check = {
+                  arrayData: [
+                     {elem: 'input', id: `ch_${codOp}`, class: 'd-input', type: it.type, placeholder: it.et, dataset1: ['data-key', op.et]},
+                     {elem: 'label', for: `ch_${codOp}`, text: op.et}
+                  ]
+               }
+
+               this.makeHTML.build(formContInputs, group_input_check, this.data.elements)
+            })
+            return
+         }
+
+         if(it.group === 'select_list'){
+            const codSel = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
+            const group_select_list = {
+               arrayData: [
+                  {elem: 'select', id: `sel_${codSel}`, class: 'd-input'},
+               ]
+            }
+            this.makeHTML.build(formContInputs, group_select_list, this.data.elements)
+
+            const contSelectL = this.container.querySelector(`#sel_${codSel}`)
+            it.options.forEach(op => {
+               const option = document.createElement('option')
+               option.append(op.et)
+               contSelectL.appendChild(option)
+            })
+            return
+         }
+
+         if(it.group === 'select_dList'){
+            const codSel = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
+            const group_select_dList = {
+               arrayData: [
+                  {elem: 'select', id: `sel_${codSel}`, class: 'd-input'},
+               ]
+            }
+
+            this.makeHTML.build(formContInputs, group_select_dList, this.data.elements)
+            return
+         }
+      })
+
+      this.connectSelects()
+      this.formblock = this.container.querySelector('form')
+      return
+   }
  
-    formm(){
-       const formItems = this.container.querySelector('.form-d-body')
-       this.dataForm.structure.length === 0 ? formItems : formItems.innerHTML = ''
-       this.dataForm.structure.forEach(it => {
-          let req;
-          it.required ? req = 'it-req' : req = ''
-          let oc;
-          it.group === 'input_text' ? oc = 'oc' : oc = ''
-          const modelIt = {
-             arrayData: [
-                {predesing: 'form_li_inputs', id: `li__${it.id}`, dataset1: ['data-gr', it.group]}
-             ],
-             merge: {
-                [`li__${it.id}`]: [
-                   {
-                      target: ['class', 'form-d-item-tit'],
-                      attr: {
-                         class: oc
-                      }
-                   },
-                   {
-                      target: ['class', 'p-item-tit'],
-                      attr: {
-                         text: it.et
-                      }
-                   },
-                   {
-                      target: ['class', 'form-d-cont-input'],
-                      attr: {
-                         id: `inps__${it.id}`,
-                         dataset1: ['data-group', it.group]
-                      }
-                   },
-                   {
-                      target: ['class', 'form-d-item-back'],
-                      attr: {
-                         class: req
-                      }
-                   }
-                ]
-             }
-          }
-          this.makeHTML.build(formItems, modelIt, this.data.elements)
-          
-          const formContInputs = this.container.querySelector(`#inps__${it.id}`)
-          if(it.group === 'input_text'){
-             const group_input_text = {
-                arrayData: [
-                   {elem: 'input', class: 'd-input', type: it.type, placeholder: it.et}
-                ]
-             }
+   empty(){
+   }
+
+   addbtns(typeform = undefined){
+      if(!typeform){ return }
+
+      let btnsForms;
+      if(typeform === 'save'){
+         btnsForms = {
+            arrayData: [
+               {elem: 'button', id: 'btn_save', class: 'button-save',text: 'Guardar datos'}
+            ]
+         }
+      }
+      if(typeform === 'edit'){
+         btnsForms = {
+            arrayData: [
+               {elem: 'button', id: 'btn_cancel_form', class: 'button-cancel',text: 'Cancelar'},
+               {elem: 'button', id: 'btn_edit_form', class: 'button-edit',text: 'Editar'}
+            ]
+         }
+      }
+
+      this.makeHTML.build(this.container.querySelector('#form_d_btns'), btnsForms)
+   }
  
-             this.makeHTML.build(formContInputs, group_input_text, this.data.elements)
-             return
-          }
+   model(){
+      this.buildForm()
+   }
+
+   save(){
+      this.buildForm()
+      this.addbtns('save')
+      return this.formblock
+   }
+
+   edit(){
+      this.buildForm()
+      this.addbtns('edit')
+   }
  
-          if(it.group === 'input_radio'){
-             it.options.forEach(op => {
-                const codOp = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
-                const group_input_radio = {
-                   arrayData: [
-                      {elem: 'input', id: `ra_${codOp}`, class: 'd-input', type: it.type, placeholder: it.et, name: `nam${it.concat}`, dataset1: ['data-key', op.et]},
-                      {elem: 'label', for: `ra_${codOp}`, text: op.et}
-                   ]
-                }
- 
-                this.makeHTML.build(formContInputs, group_input_radio, this.data.elements)
-             })
-             return
-          }
- 
-          if(it.group === 'input_checkbox'){
-             it.options.forEach(op => {
-                const codOp = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
-                const group_input_check = {
-                   arrayData: [
-                      {elem: 'input', id: `ch_${codOp}`, class: 'd-input', type: it.type, placeholder: it.et, dataset1: ['data-key', op.et]},
-                      {elem: 'label', for: `ch_${codOp}`, text: op.et}
-                   ]
-                }
- 
-                this.makeHTML.build(formContInputs, group_input_check, this.data.elements)
-             })
-             return
-          }
- 
-          if(it.group === 'select_list'){
-             const codSel = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
-             const group_select_list = {
-                arrayData: [
-                   {elem: 'select', id: `sel_${codSel}`, class: 'd-input'},
-                ]
-             }
-             this.makeHTML.build(formContInputs, group_select_list, this.data.elements)
- 
-             const contSelectL = this.container.querySelector(`#sel_${codSel}`)
-             it.options.forEach(op => {
-                const option = document.createElement('option')
-                option.append(op.et)
-                contSelectL.appendChild(option)
-             })
-             return
-          }
- 
-          if(it.group === 'select_dList'){
-             const codSel = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
-             const group_select_dList = {
-                arrayData: [
-                   {elem: 'select', id: `sel_${codSel}`, class: 'd-input'},
-                ]
-             }
- 
-             this.makeHTML.build(formContInputs, group_select_dList, this.data.elements)
-             return
-          }
-       })
- 
-       this.connectSelects()
-       this.formblock = this.container.querySelector('form')
-       return
-    }
- 
-    empty(){
-    }
- 
-    addbtns(typeform = undefined){
-       if(!typeform){ return }
- 
-       let btnsForms;
-       if(typeform === 'save'){
-          btnsForms = {
-             arrayData: [
-                {elem: 'button', id: 'btn_save', class: 'button-save',text: 'Guardar datos'}
-             ]
-          }
-       }
-       if(typeform === 'edit'){
-          btnsForms = {
-             arrayData: [
-                {elem: 'button', id: 'btn_cancel_form', class: 'button-cancel',text: 'Cancelar'},
-                {elem: 'button', id: 'btn_edit_form', class: 'button-edit',text: 'Editar'}
-             ]
-          }
-       }
- 
-       this.makeHTML.build(this.container.querySelector('#form_d_btns'), btnsForms)
-    }
- 
-    model(){
-       this.buildForm()
-    }
- 
-    save(){
-       this.buildForm()
-       this.addbtns('save')
-       return this.formblock
-    }
- 
-    edit(){
-       this.buildForm()
-       this.addbtns('edit')
-    }
- 
-    connectSelects(){
-       const itSelectRoots = this.dataForm.structure.filter(it => it.group === 'select_list')
-       itSelectRoots.forEach(sel => {
-          const selectRoot = this.container.querySelector(`#inps__${sel.id} select`)
-          selectRoot.addEventListener('change', (e) => {
-             const valueEt = sel.options.find(se => se.et === e.target.value)
-             const itSelectTarget = this.dataForm.structure.find(it => it.root === sel.id)
-             if(itSelectTarget){
-                const selectTarget = this.container.querySelector(`#inps__${itSelectTarget.id} select`)
-                const listOptionsTarget = itSelectTarget.options.filter(it => {return it.concat.includes(valueEt.concat)})
-                selectTarget.innerHTML = ''
-                listOptionsTarget.forEach(op => {
-                   const option = document.createElement('option')
-                   option.append(op.et)
-                   selectTarget.appendChild(option)
-                })
-             }
-          })
-       })
-    }
+   connectSelects(){
+      const itSelectRoots = this.dataForm.structure.filter(it => it.group === 'select_list')
+      itSelectRoots.forEach(sel => {
+         const selectRoot = this.container.querySelector(`#inps__${sel.id} select`)
+         selectRoot.addEventListener('change', (e) => {
+            const valueEt = sel.options.find(se => se.et === e.target.value)
+            const itSelectTarget = this.dataForm.structure.find(it => it.root === sel.id)
+            if(itSelectTarget){
+               const selectTarget = this.container.querySelector(`#inps__${itSelectTarget.id} select`)
+               const listOptionsTarget = itSelectTarget.options.filter(it => {return it.concat.includes(valueEt.concat)})
+               selectTarget.innerHTML = ''
+               listOptionsTarget.forEach(op => {
+                  const option = document.createElement('option')
+                  option.append(op.et)
+                  selectTarget.appendChild(option)
+               })
+            }
+         })
+      })
+   }
 }
 
 class PrintTable {
-   constructor(container = undefined, datproc = undefined, dataForm = undefined, dataInst = undefined, data = undefined, resources = undefined, datahtml = undefined, controller = undefined, controlTable = undefined){
+   constructor(container = undefined, resources = undefined, dataForm = undefined, data = undefined, controlTable = undefined){
       this.container = container
-      this.dataproc = datproc
       this.dataForm = dataForm
-      this.dataInst = dataInst
       this.data = data
       this.copydata = this.data
       this.resources = resources
       this.makeHTML = new resources.MakeHTML()
-      this.datahtml = datahtml
       this.cheader = container.querySelector("#part_header_tools");
       this.ctable = container.querySelector("#part_table_cont");
       this.cfooter = container.querySelector('#part_table_footer')
-      if(controller){
-         this.controller = controller
-      }
       this.pag = {
          rangePag: 20,
          icPages: 1,
@@ -1260,7 +1269,6 @@ class PrintTable {
          bottom: 1,
          top: 20
       }
-      this.currPart = undefined
       this.controlTable = controlTable
 
       this.run()
@@ -1268,19 +1276,18 @@ class PrintTable {
    
    run(){
       this.buildComponents()
-      this.activeSearch()
-      this.calcPag(this.data)
-      this.numberRange(this.data)
-      this.choosePage()
-      this.assessments()
+      // this.activeSearch()
+      // this.calcPag(this.data)
+      // this.numberRange(this.data)
+      // this.choosePage()
       return
    }
 
    refresh(){
-      this.buildTable()
-      this.activeSearch()
-      this.calcPag(this.data)
-      this.numberRange(this.data)
+      // this.buildTable()
+      // this.activeSearch()
+      // this.calcPag(this.data)
+      // this.numberRange(this.data)
 
       return         
    }
@@ -1346,15 +1353,6 @@ class PrintTable {
          trH.appendChild(th)
       })
 
-      this.dataproc.instrument_proc.forEach(ins => {
-         const thIns = document.createElement('th')
-         const btnth = document.createElement('button')
-         btnth.setAttribute('class', 'button-th')
-         btnth.append(ins.construct)
-         thIns.appendChild(btnth)
-         trH.appendChild(thIns)
-      })
-
       const thbtns = document.createElement('th')
       thbtns.setAttribute('colspan', '2')
       thbtns.append('Opciones')
@@ -1391,34 +1389,6 @@ class PrintTable {
             tr.appendChild(td)
          })
 
-         this.dataproc.instrument_proc.forEach(ins => {
-            const tdi = document.createElement('td')
-            const assess = data[i - 1].assessments_part
-            const codIns = ins.idins
-            const matchAssess = assess.find(as => as.idInst === codIns)
-            // if(i === 10){
-            //    console.log(assess)
-            //    console.log(data[i - 1])
-            //    console.log(matchAssess)
-            // }
-
-            if(!matchAssess){
-               const btntdi = document.createElement('button')
-               btntdi.setAttribute('id', `contr__${codIns}`)
-               btntdi.setAttribute('class', 'button-td-ins btn-tdins')
-               btntdi.setAttribute('data-part', data[i - 1]._id)
-               btntdi.append(`Evaluar ${ins.construct}`)
-               tdi.appendChild(btntdi)
-            } else {
-               const btnRes = document.createElement('button')
-               btnRes.setAttribute('class', 'button-td-insres btn-tdinsres')
-               btnRes.append('Evaluado')
-               tdi.appendChild(btnRes)
-            }
-
-            tr.appendChild(tdi)
-         })
-
          const tdbtns = ['edit', 'delete']
          tdbtns.forEach(op => {
             const tdbtn = document.createElement('td')
@@ -1432,24 +1402,6 @@ class PrintTable {
       }
 
       return
-   }
-
-   assessments(){
-      this.ctable.addEventListener('click', (e) => {
-         if(e.target.classList.contains('btn-tdins')){
-            const btn = e.target
-            const keyInst = btn.id.split('__')[1]
-            const keyPart = btn.dataset.part
-            this.currPart = keyPart
-            const strinstrument = this.dataInst.find(ins => ins._id === keyInst)
-            const participant = this.data.find(par => par._id === keyPart)
-      
-            const back = new this.resources.BackgroundBlur(document.querySelector('#header_areas'))
-            new areaIns.PrintInstrument(back.block, 'eval', {structure: strinstrument, part: participant, makeHTML: this.makeHTML, datahtml: this.datahtml.dbins, controller: this.controller, out: back.out})
-            
-            return
-         }
-      })
    }
 
    activeSearch(){
@@ -1591,6 +1543,7 @@ class PrintTable {
       })
    }
 }
+
 class Warnings {
    constructor(container = undefined, makeHTML, structure = undefined, content = undefined){
       this.container = container

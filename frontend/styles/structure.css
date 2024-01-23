@@ -78,13 +78,13 @@
         padding: 0px 100px;
         height: var(--h-panel-header);
         transition: all .3s ease;
-        background-color: var(--cl-gray-1);
+        background-color: var(--cl-gray-6t);
         > .cont-logo{
             height: 100%;
-            width: 200px;
+            width: 160px;
         }
         &:hover{
-            background-color: var(--cl-blue-2);
+            background: linear-gradient(55deg, var(--cl-blue-5), var(--cl-blue-2) );
             > .cont-logo{
                 > .head-logo{
                     background: center / 100% url('../src/images/svg/FormMaker-b.svg') no-repeat;
@@ -95,10 +95,10 @@
 
     > .panel-body{
         padding: 0px 100px;
-        height: calc(100% - var(--h-panel-header));
+        height: calc(100% - calc(var(--h-panel-header) + var(--h-panel-footer)));
         > .panel-body-description{
             display: flex;
-            padding: 25px 0px 15px 0px;
+            padding: 15px 0px 15px 0px;
             height: var(--h-panel-body-description);
             > .desc-tit{
                 margin-right: 20px;
@@ -107,17 +107,21 @@
                 }
             }
             > .desc-ins{
-                margin-right: 150px;
+                margin-right: 80px;
                 overflow: hidden;
                 > p{
                     padding-top: 5px;
-                    font-size: 15px;
+                    font-size: 13px;
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
             }
+            > .cont-btn-test{
+                min-width: 350px;
+                max-width: 350px;
+                text-align: right;
+            }
         }
-        
         > .panel-body-blocks{
             display: flex;
             height: calc(100% - var(--h-panel-body-description));
@@ -289,25 +293,24 @@
                 > .block-list{
                     display: flex;
                     flex-direction: column;
-                    padding: 30px 20px 30px 30px;
+                    padding: 20px;
                     height: 100%;
                     border-radius: 15px;
                     background-color: var(--cl-gray-1);
                     border: 1px solid var(--cl-gray-6);
                     > .header-options{
-                        margin-bottom: 10px;
-                        padding-right: 10px;
-                        min-height: 30px;
-                        max-height: 30px;
+                        padding: 10px 10px 0px;
+                        min-height: 40px;
+                        max-height: 40px;
                         > h4{
-                            margin-bottom: 20px;
                             font-size: 25px;
                             color: var(--cl-blue-5);
                         }                        
                     }   
                     > .body-list{
-                        padding-right: 10px;
-                        height: calc(100% - 30px);
+                        margin: 10px 0px;
+                        padding: 10px 10px 0px;
+                        height: calc(100% - 40px);
                         overflow-y: auto;
                     }             
                     &:hover{
@@ -321,7 +324,58 @@
                 }
             }
         }
-        
+    }
+    > .panel-footer{
+        height: var(--h-panel-footer);
+        background: linear-gradient(45deg, var(--cl-blue-1), var(--cl-yellow-2t));
     }
 }
 
+
+/* TEST ----------------------------------------------------------------*/
+
+.container-test{
+    height: 100%;
+    background-color: var(--cl-gray-5);
+
+    > .test-header{
+        padding: 0px 100px;
+        height: var(--h-test-header);
+        transition: all .3s ease;
+        background-color: var(--cl-gray-6t);
+        > .cont-logo{
+            height: 100%;
+            width: 160px;
+        }
+        &:hover{
+            background: linear-gradient(55deg, var(--cl-blue-5), var(--cl-blue-2) );
+            > .cont-logo{
+                > .head-logo{
+                    background: center / 100% url('../src/images/svg/FormMaker-b.svg') no-repeat;
+                }
+            }
+        }
+    }
+    > .test-body{
+        display: flex;
+        padding: 0px 100px;
+        height: calc(100% - var(--h-test-header));
+        > .test-body-form{
+            padding: 0px 20px 0px 0px;
+            min-width: 500px;
+            max-width: 500px;
+            height: 100%;
+            background-color: aqua;
+        }
+        > .test-body-table{
+            width: 100%;
+            height: 100%;
+        }
+        > .test-body-stats{
+            min-width: 400px;
+            max-width: 400px;
+            background-color: aquamarine;
+        }
+        
+    }
+}

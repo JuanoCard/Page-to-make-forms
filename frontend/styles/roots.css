@@ -57,7 +57,7 @@
     --cl-red-2: #d81961;
     --cl-red-3: #9d0e47;
     --cl-orange-1: #cd8735;
-    --cl-yellow-2t: #d8b219;
+    --cl-yellow-2t: #d8b21966;
     --cl-yellow-1: #f7c80d;
     --cl-yellow-2: #d8b219;
     --cl-yellow-3: #ab8d16;
@@ -65,6 +65,7 @@
     --cl-green-1: #2ef024;
     --cl-green-2: #4ee547;
     --cl-blue-1t: #b6f1f233;
+    --cl-blue-2t: #59d3de66;
     --cl-blue-3t: #27d4d699;
     --cl-blue-1: #b6f1f2;
     --cl-blue-2: #59d3de;
@@ -76,6 +77,8 @@
 
     /* mesurements */
     --h-home-header: 150px;
-    --h-panel-header: 70px;
-    --h-panel-body-description: 100px;
+    --h-panel-header: 50px;
+    --h-panel-footer: 10px;
+    --h-test-header: 50px;
+    --h-panel-body-description: 80px;
 }

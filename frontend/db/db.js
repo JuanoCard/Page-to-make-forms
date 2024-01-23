@@ -26,82 +26,84 @@ export const makeForm = {
    panel: {
         arrayData: [
             {elem: 'div', class: 'container-panel', subs: [
-                {elem: 'div', class: 'panel-header', subs: [
-                    {elem: 'div', class: 'cont-logo', subs: [
-                        {elem: 'button', id: 'create_back_home', class: 'logo head-logo'}
-                    ]}
-                ]},
-                {elem: 'main', class: 'panel-body', subs: [
-                    {elem: 'div', class: 'panel-body-description', subs: [
-                        {elem: 'div', class: 'desc-tit', subs: [
-                           {elem: 'h3', text: 'Agrega nuevos inputs:'},
-                        ]},
-                        {elem: 'div', class: 'desc-ins', subs: [
-                           {elem: 'p', text: 'En este campo puedes agregar nuevos inputs al modelo del formulario que se encuentra en la parte central del panel de abajo. Tienes opciones para agregar inputs para textos, de opción múltiple, de opción única, listas independientes y listas dependientes. Cada vez que uno de los tipos de inputs del lado izquierdo del bloque de inputs aparecerá un cuadro que te permitirá configurar los detalles del input que deseas agregar. Una vez que lo hiciste dale en el boton “añadir” '}
-                        ]},
-                        {elem: 'div', class: 'cont-btn-test', subs: [
-                           {elem: 'button', class: 'button-red', text: 'Probar formulario'}
+               {elem: 'div', class: 'panel-header', subs: [
+                  {elem: 'div', class: 'cont-logo', subs: [
+                     {elem: 'button', id: 'create_back_home', class: 'logo head-logo'}
+                  ]}
+               ]},
+               {elem: 'main', class: 'panel-body', subs: [
+                  {elem: 'div', class: 'panel-body-description', subs: [
+                     {elem: 'div', class: 'desc-tit', subs: [
+                        {elem: 'h3', text: 'Agrega nuevos inputs:'},
+                     ]},
+                     {elem: 'div', class: 'desc-ins', subs: [
+                        {elem: 'p', text: 'En este campo puedes agregar nuevos inputs al modelo del formulario que se encuentra en la parte central del panel de abajo. Tienes opciones para agregar inputs para textos, de opción múltiple, de opción única, listas independientes y listas dependientes. Cada vez que uno de los tipos de inputs del lado izquierdo del bloque de inputs aparecerá un cuadro que te permitirá configurar los detalles del input que deseas agregar. Una vez que lo hiciste dale en el boton “añadir” '}
+                     ]},
+                     {elem: 'div', class: 'cont-btn-test', subs: [
+                        {elem: 'button', id: 'choose_form', class: 'button-blu', text: 'Prueba uno de tus formularios'}
+                        // {elem: 'button', id: 'table_panel',  class: 'button-red btn-test-form', text: 'Elige un formulario creado'}
+                     ]}
+                  ]},
+                  {elem: 'div', class: 'panel-body-blocks', subs: [
+                     {elem: 'div', class: 'panel-block-options', subs: [
+                        {elem: 'div', class: 'block-options', subs: [
+                           {elem: 'header', class: 'header-options', subs: [
+                                 {elem: 'h4', text: 'Opciones de inputs'},
+                                 {elem: 'p', text: 'Elije la opción que consideres necesaria para la creación de tu formulario'}
+                           ]},
+                           {elem: 'div', class: 'body-options', subs: [
+                                 {elem: 'ul', id: 'ul_inst_creF_panel_opt', class: 'ops-list', subs: [
+                                    {elem: 'li', class: 'li-op', subs: [
+                                       {elem: 'button', id: 'btnPanel__input_text', class: 'button-op-inp btn-op-panel', subs: [
+                                          {elem: 'div', class: 'ic-op ic-28 ic-tex'},
+                                          {elem: 'p', text: 'Texto'}
+                                    ]}
+                                    ]},
+                                    {elem: 'li', class: 'li-op', subs: [
+                                    {elem: 'button', id: 'btnPanel__input_radio', class: 'button-op-inp btn-op-panel', subs: [
+                                       {elem: 'div', class: 'ic-op ic-28 ic-rad'},
+                                       {elem: 'p', text: 'Opción única'}
+                                    ]}
+                                    ]},
+                                    {elem: 'li', class: 'li-op', subs: [
+                                    {elem: 'button', id: 'btnPanel__input_checkbox', class: 'button-op-inp btn-op-panel', subs: [
+                                       {elem: 'div', class: 'ic-op ic-28 ic-che'},
+                                       {elem: 'p', text: 'Op. múltiples'}
+                                    ]}
+                                    ]},
+                                    {elem: 'li', class: 'li-op', subs: [
+                                    {elem: 'button', id: 'btnPanel__select_list', class: 'button-op-inp btn-op-panel', subs: [
+                                       {elem: 'div', class: 'ic-op ic-28 ic-lis'},
+                                       {elem: 'p', text: 'Lista'}
+                                    ]}
+                                    ]},
+                                    {elem: 'li', class: 'li-op', subs: [
+                                    {elem: 'button', id: 'btnPanel__select_dList', class: 'button-op-inp btn-op-panel', subs: [
+                                       {elem: 'div', class: 'ic-op ic-28 ic-lde'},
+                                       {elem: 'p', text: 'Dependientes'}
+                                    ]}
+                                    ]},
+                                 ]},
+                                 {elem: 'div', id: 'ops_dets', class: 'ops-dets'}
+                           ]},
                         ]}
-                    ]},
-                    {elem: 'div', class: 'panel-body-blocks', subs: [
-                        {elem: 'div', class: 'panel-block-options', subs: [
-                           {elem: 'div', class: 'block-options', subs: [
-                              {elem: 'header', class: 'header-options', subs: [
-                                  {elem: 'h4', text: 'Opciones de inputs'},
-                                  {elem: 'p', text: 'Elije la opción que consideres necesaria para la creación de tu formulario'}
-                              ]},
-                              {elem: 'div', class: 'body-options', subs: [
-                                  {elem: 'ul', id: 'ul_inst_creF_panel_opt', class: 'ops-list', subs: [
-                                     {elem: 'li', class: 'li-op', subs: [
-                                        {elem: 'button', id: 'btnPanel__input_text', class: 'button-op-inp btn-op-panel', subs: [
-                                           {elem: 'div', class: 'ic-op ic-28 ic-tex'},
-                                           {elem: 'p', text: 'Texto'}
-                                       ]}
-                                     ]},
-                                     {elem: 'li', class: 'li-op', subs: [
-                                       {elem: 'button', id: 'btnPanel__input_radio', class: 'button-op-inp btn-op-panel', subs: [
-                                          {elem: 'div', class: 'ic-op ic-28 ic-rad'},
-                                          {elem: 'p', text: 'Opción única'}
-                                      ]}
-                                     ]},
-                                     {elem: 'li', class: 'li-op', subs: [
-                                       {elem: 'button', id: 'btnPanel__input_checkbox', class: 'button-op-inp btn-op-panel', subs: [
-                                          {elem: 'div', class: 'ic-op ic-28 ic-che'},
-                                          {elem: 'p', text: 'Op. múltiples'}
-                                      ]}
-                                     ]},
-                                     {elem: 'li', class: 'li-op', subs: [
-                                       {elem: 'button', id: 'btnPanel__select_list', class: 'button-op-inp btn-op-panel', subs: [
-                                          {elem: 'div', class: 'ic-op ic-28 ic-lis'},
-                                          {elem: 'p', text: 'Lista'}
-                                      ]}
-                                     ]},
-                                     {elem: 'li', class: 'li-op', subs: [
-                                       {elem: 'button', id: 'btnPanel__select_dList', class: 'button-op-inp btn-op-panel', subs: [
-                                          {elem: 'div', class: 'ic-op ic-28 ic-lde'},
-                                          {elem: 'p', text: 'Dependientes'}
-                                      ]}
-                                     ]},
-                                  ]},
-                                  {elem: 'div', id: 'ops_dets', class: 'ops-dets'}
-                              ]},
-                           ]}
-                        ]},
-                        {elem: 'div', class: 'panel-block-model', subs: [
-                           {elem: 'div', class: 'block-model', subs: [
-                              {elem: 'div', id: 'form_model', class: 'form-model'}
-                           ]}
-                        ]},
-                        {elem: 'div', class: 'panel-block-list', subs: [
-                           {elem: 'div', class: 'block-list', subs: [
-                              {elem: 'header', class: 'header-options', subs: [
-                                  {elem: 'h4', text: 'Lista de formularios'}
-                              ]},
-                              {elem: 'ul', id: 'ul_body_list', class: 'body-list'}
-                           ]}
+                     ]},
+                     {elem: 'div', class: 'panel-block-model', subs: [
+                        {elem: 'div', class: 'block-model', subs: [
+                           {elem: 'div', id: 'form_model', class: 'form-model'}
                         ]}
-                    ]}
-                ]}
+                     ]},
+                     {elem: 'div', class: 'panel-block-list', subs: [
+                        {elem: 'div', class: 'block-list', subs: [
+                           {elem: 'header', class: 'header-options', subs: [
+                                 {elem: 'h4', text: 'Lista de formularios'}
+                           ]},
+                           {elem: 'ul', id: 'ul_body_list', class: 'body-list'}
+                        ]}
+                     ]}
+                  ]}
+               ]},
+               {elem: 'footer', class: 'panel-footer'}
             ]}
         ]
    },
@@ -396,6 +398,104 @@ export const makeForm = {
        ]},
    }
 }
+
+export const table = {
+   str: {
+      arrayData: [
+         {elem: 'div', class: 'container-test', subs: [
+            {elem: 'div', class: 'test-header', subs: [
+                {elem: 'div', class: 'cont-logo', subs: [
+                    {elem: 'button', id: 'table_back_home', class: 'logo head-logo'}
+                ]}
+            ]},
+            {elem: 'main', class: 'test-body', subs: [
+               {elem: 'div', class: 'test-body-form', subs: [
+                  {elem: 'div', id: 'part_add_form_chosen', class: 'part-add-form-chosen'}
+               ]},
+               {elem: 'div', class: 'test-body-table', subs: [
+                  {elem: 'div', class: 'part-table-block-footer', subs: [
+                     {elem: 'div', class: 'part-block-table', subs: [
+                        {elem: 'div', id: 'part_header_tools', class: 'part-header-tools', subs: [
+                           {elem: 'div', class: 'part-header-tools-btns', subs: [
+                              {elem: 'div', class: 'part-header-tools-show', subs: [
+                                 {elem: 'button', id: 'btn_part_header_tool_form', class: 'button-table-ic ic-form'},
+                                 {elem: 'button', id: 'btn_part_header_tool_stats', class: 'button-table-ic ic-stats'}
+                              ]},
+                              {elem: 'div', class: 'part-header-tools-opts oc', subs: [
+                                 {elem: 'button', id: 'btn_part_header_del_gr', class: 'button-table-ic'}
+                              ]}
+                           ]},
+                           {elem: 'div', class: 'part-header-tools-search', subs: [
+                              {elem: 'input', type: 'text', id: 'input_search_table', class: 'input-search-table', placeholder: 'Buscar'}
+                           ]}
+                        ]},
+                        {elem: 'div', id: 'part_table_cont', class: 'part-table-cont'}
+                     ]},
+                     {elem: 'div', id: 'part_table_footer', class: 'part-table-footer'}
+                  ]},
+               ]},
+               {elem: 'div', class: 'test-body-stats', subs: [
+                  {elem: 'div', class: 'part-add-stats-box', subs: [
+                     {elem: 'div', class: 'add-stat-box-eval', subs: [
+                        {elem: 'div', class: 'add-stat-eval-det', subs: [
+                           {elem: 'h2', text: 'Participantes evaluados'},
+                           {elem: 'div', class: 'add-stat-det-nums'},
+                           {elem: 'p', class: 'p-foot-page', text: '* Los participantes evaluados son aquellos que han completado todas las evaluaciones programadas'}
+                        ]},
+                        {elem: 'div', class: 'add-stat-eval-graf'}
+                     ]},
+                     {elem: 'div', class: 'add-stat-box-frec'}
+                  ]}
+               ]}
+            ]}
+         ]}
+      ]
+   },
+   participants_group: {
+      arrayData: [
+         {elem: 'div', class: 'part-tabl-cont-form min-w', subs: [
+            {elem: 'div', id: 'part_add_form_chosen', class: 'part-add-form-chosen'}
+         ]},
+         {elem: 'div', id: 'part_tabl_cont_table', class: 'part-tabl-cont-table', subs: [
+            {elem: 'div', class: 'part-table-block-footer', subs: [
+               {elem: 'div', class: 'part-block-table', subs: [
+                  {elem: 'div', id: 'part_header_tools', class: 'part-header-tools', subs: [
+                     {elem: 'div', class: 'part-header-tools-btns', subs: [
+                        {elem: 'div', class: 'part-header-tools-show', subs: [
+                           {elem: 'button', id: 'btn_part_header_tool_form', class: 'button-table-ic ic-form'},
+                           {elem: 'button', id: 'btn_part_header_tool_stats', class: 'button-table-ic ic-stats'}
+                        ]},
+                        {elem: 'div', class: 'part-header-tools-opts oc', subs: [
+                           {elem: 'button', id: 'btn_part_header_del_gr', class: 'button-table-ic'}
+                        ]}
+                     ]},
+                     {elem: 'div', class: 'part-header-tools-search', subs: [
+                        {elem: 'input', type: 'text', id: 'input_search_table', class: 'input-search-table', placeholder: 'Buscar'}
+                     ]}
+                  ]},
+                  {elem: 'div', id: 'part_table_cont', class: 'part-table-cont'}
+               ]},
+               {elem: 'div', id: 'part_table_footer', class: 'part-table-footer'}
+            ]},
+         ]},
+         {elem: 'div', id: 'part_tabl_cont_stats', class: 'part-tabl-cont-stats', subs: [
+            {elem: 'div', class: 'part-add-stats-box', subs: [
+               {elem: 'div', class: 'add-stat-box-eval', subs: [
+                  {elem: 'div', class: 'add-stat-eval-det', subs: [
+                     {elem: 'h2', text: 'Participantes evaluados'},
+                     {elem: 'div', class: 'add-stat-det-nums'},
+                     {elem: 'p', class: 'p-foot-page', text: '* Los participantes evaluados son aquellos que han completado todas las evaluaciones programadas'}
+                  ]},
+                  {elem: 'div', class: 'add-stat-eval-graf'}
+               ]},
+               {elem: 'div', class: 'add-stat-box-frec'}
+            ]}
+         ]}
+      ]
+   }
+}
+
+export const listForms = [{"name_form":"Formulario uno","structure":[{"options":[],"group":"input_text","input":"input","type":"text","id":"2518eca2","concat":"codigo","et":"codigo","required":false},{"options":[],"group":"input_text","input":"input","type":"text","id":"1b46c13be","concat":"nombres","et":"nombres","required":false}],"id":"4b324a3813"}]
 
 export const elementsList = {
    elements: {
