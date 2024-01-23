@@ -124,215 +124,215 @@ export const makeForm = {
    ]},
 
    elements: {
-       btn_li_subtit: {elem: 'li', class: 'cont-btn-li-subtit', subs: [
-          {elem: 'button', class: 'button-li-subtit', subs: [
-             {elem: 'div', class: 'btn-li-subtit-cont', subs: [
-                {elem: 'p', text: 'Proceso uno de todos los procesos que hay en el mundo de los negocios'},
-                {elem: 'span', text: 'Creado el 15 de Ago de este año'}
-             ]}
-          ]}
-       ]},
-       btns_start: {elem: 'div', class: 'cont-btn-start', subs: [
-          {elem: 'button', class: 'button-start', text: 'Empezar'}
-       ]},
-       item_formData_emptylist: {elem: 'li', class: 'cont-btn-li-easy-empty', subs: [
-          {elem: 'p', class: 'p-li-list', text: 'No ha sido creado ningún Formulario de Datos aún'},
-       ]}, 
-       input_text_formpanel: {elem: 'div', class: 'form-block', subs: [
-          {elem: 'p', class: 'formpanel-input-tit'},
-          {elem: 'div', class: 'formpanel-cont-input', subs: [
-             {elem: 'input', type: 'text', class: 'formpanel-input-text'}
-          ]}
-       ]},
-       btn_go_out: {elem: 'div', class: 'cont-btn-exit', subs: [
-          {elem: 'button', class: 'button-exit'}
-       ]},
-       panel_form_input_text: {elem: 'div', class: 'cont-form-det', subs: [
-          {elem: 'form', id: 'form__input_text', class: 'form-det', subs: [
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-tit-form-det', subs: [
-                   {elem: 'h5', text: 'Etiqueta del input'}
-                ]},
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'input', type: 'text', class: 'inp-det-text input-det fo-inp-et', placeholder: 'Ej. Nombres y Apellidos', dataset1: ['data-key', 'et']}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-tit-form-det', subs: [
-                   {elem: 'h5', text: 'Definir tipo de input'}
-                ]},
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'div', class: 'cont-input-radio-det', subs: [
-                      {elem: 'input', type: 'radio', id: 'radio_text_formdet', class: 'input-radio-form-det input-det fo-inp-typtex', name: 'input-radio-det', dataset1: ['data-key', 'typ'], any: 'checked'},
-                      {elem: 'label', for: 'radio_text_formdet', text: 'Texto'}
-                   ]},
-                   {elem: 'div', class: 'cont-input-radio-det', subs: [
-                      {elem: 'input', type: 'radio', id: 'radio_email_formdet', class: 'input-radio-form-det input-det fo-inp-typtex', name: 'input-radio-det', dataset1: ['data-key', 'typ']},
-                      {elem: 'label', for: 'radio_email_formdet', text: 'Correo'}
-                   ]},
-                   {elem: 'div', class: 'cont-input-radio-det', subs: [
-                      {elem: 'input', type: 'radio', id: 'radio_number_formdet', class: 'input-radio-form-det input-det fo-inp-typtex', name: 'input-radio-det', dataset1: ['data-key', 'typ']},
-                      {elem: 'label', for: 'radio_number_formdet', text: 'Número'}
-                   ]},
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'div', class: 'cont-input-check-det', subs: [
-                      {elem: 'input', type: 'checkbox', id: 'check_required_form_det', class: 'input-check-form-det input-det fo-inp-req', dataset1: ['data-key', 'req']},
-                      {elem: 'label', for: 'check_required_form_det', text: 'Convertir en campo obligatorio'}
-                   ]}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-btn-form-det'}
-             ]}
-          ]}
-       ]},
-       panel_form_input_radio: {elem: 'div', class: 'cont-form-det', subs: [
-          {elem: 'form', id: 'form__input_radio', class: 'form-det', subs: [
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-tit-form-det', subs: [
-                   {elem: 'h5', text: 'Etiqueta del input'}
-                ]},
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'input', type: 'text', class: 'inp-det-text input-det fo-inp-et', placeholder: 'Ej. Estado civil', dataset1: ['data-key', 'et']}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-tit-form-det', subs: [
-                   {elem: 'h5', text: 'Agregar opciones'}
-                ]},
-                {elem: 'ul', id: 'cont_opts__input_radio', class: 'cont-inp-det-text h-cont-det', subs: [
-                   {elem: 'li', id: 'cont_detOp1', class: 'li-input-det-op', subs: [
-                      {elem: 'div', class: 'cont-input-det-op', subs: [
-                         {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt  input-det inp-op', dataset1: ['data-key', 'opt']},
-                         {elem: 'button', id: 'btn_detOp1', class: 'button-ic-add ic-30 btn-add'}
-                      ]}
-                   ]}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'div', class: 'cont-input-check-det', subs: [
-                      {elem: 'input', type: 'checkbox', id: 'check_required_form_det', class: 'input-check-form-det input-det fo-inp-req', dataset1: ['data-key', 'req']},
-                      {elem: 'label', for: 'check_required_form_det', text: 'Convertir en campo obligatorio'}
-                   ]}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-btn-form-det'}
-             ]}
-          ]}
-       ]},
-       panel_form_input_checkbox: {elem: 'div', class: 'cont-form-det', subs: [
-          {elem: 'form', id: 'form__input_checkbox', class: 'form-det', subs: [
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-tit-form-det', subs: [
-                   {elem: 'h5', text: 'Etiqueta del input'}
-                ]},
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'input', type: 'text', class: 'inp-det-text input-det fo-inp-et', placeholder: 'Ej. Deportes favoritos', dataset1: ['data-key', 'et']}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-tit-form-det', subs: [
-                   {elem: 'h5', text: 'Agregar opciones'}
-                ]},
-                {elem: 'ul', id: 'cont_opts__input_checkbox', class: 'cont-inp-det-text h-cont-det', subs: [
-                   {elem: 'li', id: 'cont_detOp1', class: 'li-input-det-op', subs: [
-                      {elem: 'div', class: 'cont-input-det-op', subs: [
-                         {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt  input-det inp-op', dataset1: ['data-key', 'opt']},
-                         {elem: 'button', id: 'btn_detOp1', class: 'button-ic-add ic-30 btn-add'}
-                      ]}
-                   ]}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'div', class: 'cont-input-check-det', subs: [
-                      {elem: 'input', type: 'checkbox', id: 'check_required_form_det', class: 'input-check-form-det input-det fo-inp-req', dataset1: ['data-key', 'req']},
-                      {elem: 'label', for: 'check_required_form_det', text: 'Convertir en campo obligatorio'}
-                   ]}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-btn-form-det'}
-             ]}
-          ]}
-       ]},
-       panel_form_select_list: {elem: 'div', class: 'cont-form-det', subs: [
-          {elem: 'form', id: 'form__select_list', class: 'form-det', subs: [
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-tit-form-det', subs: [
-                   {elem: 'h5', text: 'Etiqueta del input'}
-                ]},
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'input', type: 'text', class: 'inp-det-text input-det fo-inp-et', placeholder: 'Ej. País de origen', dataset1: ['data-key', 'et']}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-tit-form-det', subs: [
-                   {elem: 'h5', text: 'Agregar opciones'}
-                ]},
-                {elem: 'ul', id: 'cont_opts__select_list', class: 'cont-inp-det-text h-cont-det', subs: [
-                   {elem: 'li', id: 'cont_detOp1', class: 'li-input-det-op', subs: [
-                      {elem: 'div', class: 'cont-input-det-op', subs: [
-                         {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt  input-det inp-op', dataset1: ['data-key', 'opt']},
-                         {elem: 'button', id: 'btn_detOp1', class: 'button-ic-add ic-30 btn-add'}
+      btn_li_subtit: {elem: 'li', class: 'cont-btn-li-subtit', subs: [
+         {elem: 'button', class: 'button-li-subtit', subs: [
+            {elem: 'div', class: 'btn-li-subtit-cont', subs: [
+               {elem: 'p', text: 'Proceso uno de todos los procesos que hay en el mundo de los negocios'},
+               {elem: 'span', text: 'Creado el 15 de Ago de este año'}
+            ]}
+         ]}
+      ]},
+      btns_start: {elem: 'div', class: 'cont-btn-start', subs: [
+         {elem: 'button', class: 'button-start', text: 'Empezar'}
+      ]},
+      item_formData_emptylist: {elem: 'li', class: 'cont-btn-li-easy-empty', subs: [
+         {elem: 'p', class: 'p-li-list', text: 'No ha sido creado ningún Formulario de Datos aún'},
+      ]}, 
+      input_text_formpanel: {elem: 'div', class: 'form-block', subs: [
+         {elem: 'p', class: 'formpanel-input-tit'},
+         {elem: 'div', class: 'formpanel-cont-input', subs: [
+            {elem: 'input', type: 'text', class: 'formpanel-input-text'}
+         ]}
+      ]},
+      btn_go_out: {elem: 'div', class: 'cont-btn-exit', subs: [
+         {elem: 'button', class: 'button-exit'}
+      ]},
+      panel_form_input_text: {elem: 'div', class: 'cont-form-det', subs: [
+         {elem: 'form', id: 'form__input_text', class: 'form-det', subs: [
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-tit-form-det', subs: [
+                  {elem: 'h5', text: 'Etiqueta del input'}
+               ]},
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'input', type: 'text', class: 'inp-det-text input-det fo-inp-et', placeholder: 'Ej. Nombres y Apellidos', dataset1: ['data-key', 'et']}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-tit-form-det', subs: [
+                  {elem: 'h5', text: 'Definir tipo de input'}
+               ]},
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'div', class: 'cont-input-radio-det', subs: [
+                     {elem: 'input', type: 'radio', id: 'radio_text_formdet', class: 'input-radio-form-det input-det fo-inp-typtex', name: 'input-radio-det', dataset1: ['data-key', 'typ'], any: 'checked'},
+                     {elem: 'label', for: 'radio_text_formdet', text: 'Texto'}
+                  ]},
+                  {elem: 'div', class: 'cont-input-radio-det', subs: [
+                     {elem: 'input', type: 'radio', id: 'radio_email_formdet', class: 'input-radio-form-det input-det fo-inp-typtex', name: 'input-radio-det', dataset1: ['data-key', 'typ']},
+                     {elem: 'label', for: 'radio_email_formdet', text: 'Correo'}
+                  ]},
+                  {elem: 'div', class: 'cont-input-radio-det', subs: [
+                     {elem: 'input', type: 'radio', id: 'radio_number_formdet', class: 'input-radio-form-det input-det fo-inp-typtex', name: 'input-radio-det', dataset1: ['data-key', 'typ']},
+                     {elem: 'label', for: 'radio_number_formdet', text: 'Número'}
+                  ]},
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'div', class: 'cont-input-check-det', subs: [
+                     {elem: 'input', type: 'checkbox', id: 'check_required_form_det', class: 'input-check-form-det input-det fo-inp-req', dataset1: ['data-key', 'req']},
+                     {elem: 'label', for: 'check_required_form_det', text: 'Convertir en campo obligatorio'}
+                  ]}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-btn-form-det'}
+            ]}
+         ]}
+      ]},
+      panel_form_input_radio: {elem: 'div', class: 'cont-form-det', subs: [
+         {elem: 'form', id: 'form__input_radio', class: 'form-det', subs: [
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-tit-form-det', subs: [
+                  {elem: 'h5', text: 'Etiqueta del input'}
+               ]},
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'input', type: 'text', class: 'inp-det-text input-det fo-inp-et', placeholder: 'Ej. Estado civil', dataset1: ['data-key', 'et']}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-tit-form-det', subs: [
+                  {elem: 'h5', text: 'Agregar opciones'}
+               ]},
+               {elem: 'ul', id: 'cont_opts__input_radio', class: 'cont-inp-det-text h-cont-det', subs: [
+                  {elem: 'li', id: 'cont_detOp1', class: 'li-input-det-op', subs: [
+                     {elem: 'div', class: 'cont-input-det-op', subs: [
+                        {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt  input-det inp-op', dataset1: ['data-key', 'opt']},
+                        {elem: 'button', id: 'btn_detOp1', class: 'button-ic-add ic-30 btn-add'}
+                     ]}
+                  ]}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'div', class: 'cont-input-check-det', subs: [
+                     {elem: 'input', type: 'checkbox', id: 'check_required_form_det', class: 'input-check-form-det input-det fo-inp-req', dataset1: ['data-key', 'req']},
+                     {elem: 'label', for: 'check_required_form_det', text: 'Convertir en campo obligatorio'}
+                  ]}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-btn-form-det'}
+            ]}
+         ]}
+      ]},
+      panel_form_input_checkbox: {elem: 'div', class: 'cont-form-det', subs: [
+         {elem: 'form', id: 'form__input_checkbox', class: 'form-det', subs: [
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-tit-form-det', subs: [
+                  {elem: 'h5', text: 'Etiqueta del input'}
+               ]},
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'input', type: 'text', class: 'inp-det-text input-det fo-inp-et', placeholder: 'Ej. Deportes favoritos', dataset1: ['data-key', 'et']}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-tit-form-det', subs: [
+                  {elem: 'h5', text: 'Agregar opciones'}
+               ]},
+               {elem: 'ul', id: 'cont_opts__input_checkbox', class: 'cont-inp-det-text h-cont-det', subs: [
+                  {elem: 'li', id: 'cont_detOp1', class: 'li-input-det-op', subs: [
+                     {elem: 'div', class: 'cont-input-det-op', subs: [
+                        {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt  input-det inp-op', dataset1: ['data-key', 'opt']},
+                        {elem: 'button', id: 'btn_detOp1', class: 'button-ic-add ic-30 btn-add'}
+                     ]}
+                  ]}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'div', class: 'cont-input-check-det', subs: [
+                     {elem: 'input', type: 'checkbox', id: 'check_required_form_det', class: 'input-check-form-det input-det fo-inp-req', dataset1: ['data-key', 'req']},
+                     {elem: 'label', for: 'check_required_form_det', text: 'Convertir en campo obligatorio'}
+                  ]}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-btn-form-det'}
+            ]}
+         ]}
+      ]},
+      panel_form_select_list: {elem: 'div', class: 'cont-form-det', subs: [
+         {elem: 'form', id: 'form__select_list', class: 'form-det', subs: [
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-tit-form-det', subs: [
+                  {elem: 'h5', text: 'Etiqueta del input'}
+               ]},
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'input', type: 'text', class: 'inp-det-text input-det fo-inp-et', placeholder: 'Ej. País de origen', dataset1: ['data-key', 'et']}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-tit-form-det', subs: [
+                  {elem: 'h5', text: 'Agregar opciones'}
+               ]},
+               {elem: 'ul', id: 'cont_opts__select_list', class: 'cont-inp-det-text h-cont-det', subs: [
+                  {elem: 'li', id: 'cont_detOp1', class: 'li-input-det-op', subs: [
+                     {elem: 'div', class: 'cont-input-det-op', subs: [
+                        {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt  input-det inp-op', dataset1: ['data-key', 'opt']},
+                        {elem: 'button', id: 'btn_detOp1', class: 'button-ic-add ic-30 btn-add'}
 
-                      ]}
-                   ]}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'div', class: 'cont-input-check-det', subs: [
-                      {elem: 'input', type: 'checkbox', id: 'check_required_form_det', class: 'input-check-form-det input-det fo-inp-req', dataset1: ['data-key', 'req']},
-                      {elem: 'label', for: 'check_required_form_det', text: 'Convertir en campo obligatorio'}
-                   ]}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-btn-form-det'}
-             ]}
-          ]}
-       ]},
-       panel_form_select_dList: {elem: 'div', class: 'cont-form-det', subs: [
-          {elem: 'form', id: 'form__select_dList', class: 'form-det', subs: [
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-tit-form-det', subs: [
-                   {elem: 'h5', text: 'Etiqueta del input'}
-                ]},
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'input', type: 'text', class: 'inp-det-text input-det fo-inp-et', placeholder: 'Ej. Estudios superiores', dataset1: ['data-key', 'et']}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-tit-form-det', subs: [
-                   {elem: 'h5', text: 'Agregar opciones'}
-                ]},
-                {elem: 'ul', id: 'cont_opts__select_dList', class: 'cont-inp-det-text h-cont-det'}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-input-form-det', subs: [
-                   {elem: 'div', class: 'cont-input-check-det', subs: [
-                      {elem: 'input', type: 'checkbox', id: 'check_required_form_det', class: 'input-check-form-det input-det fo-inp-req', dataset1: ['data-key', 'req']},
-                      {elem: 'label', for: 'check_required_form_det', text: 'Convertir en campo obligatorio'}
-                   ]}
-                ]}
-             ]},
-             {elem: 'div', class: 'block-form-det', subs: [
-                {elem: 'div', class: 'cont-btn-form-det'}
-             ]}
-          ]}
-       ]},
-       cont_inp_det_op_add: {elem: 'li', class: 'li-input-det-op', subs: [
-          {elem: 'div', class: 'cont-input-det-op', subs: [
-             {elem: 'input', type: 'text', class: 'inp-det-text-bt input-det inp-op'},
-             {elem: 'button', class: 'button-ic-add ic-30 btn-add'}
-          ]}
-       ]},
+                     ]}
+                  ]}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'div', class: 'cont-input-check-det', subs: [
+                     {elem: 'input', type: 'checkbox', id: 'check_required_form_det', class: 'input-check-form-det input-det fo-inp-req', dataset1: ['data-key', 'req']},
+                     {elem: 'label', for: 'check_required_form_det', text: 'Convertir en campo obligatorio'}
+                  ]}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-btn-form-det'}
+            ]}
+         ]}
+      ]},
+      panel_form_select_dList: {elem: 'div', class: 'cont-form-det', subs: [
+         {elem: 'form', id: 'form__select_dList', class: 'form-det', subs: [
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-tit-form-det', subs: [
+                  {elem: 'h5', text: 'Etiqueta del input'}
+               ]},
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'input', type: 'text', class: 'inp-det-text input-det fo-inp-et', placeholder: 'Ej. Estudios superiores', dataset1: ['data-key', 'et']}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-tit-form-det', subs: [
+                  {elem: 'h5', text: 'Agregar opciones'}
+               ]},
+               {elem: 'ul', id: 'cont_opts__select_dList', class: 'cont-inp-det-text h-cont-det'}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-input-form-det', subs: [
+                  {elem: 'div', class: 'cont-input-check-det', subs: [
+                     {elem: 'input', type: 'checkbox', id: 'check_required_form_det', class: 'input-check-form-det input-det fo-inp-req', dataset1: ['data-key', 'req']},
+                     {elem: 'label', for: 'check_required_form_det', text: 'Convertir en campo obligatorio'}
+                  ]}
+               ]}
+            ]},
+            {elem: 'div', class: 'block-form-det', subs: [
+               {elem: 'div', class: 'cont-btn-form-det'}
+            ]}
+         ]}
+      ]},
+      cont_inp_det_op_add: {elem: 'li', class: 'li-input-det-op', subs: [
+         {elem: 'div', class: 'cont-input-det-op', subs: [
+            {elem: 'input', type: 'text', class: 'inp-det-text-bt input-det inp-op'},
+            {elem: 'button', class: 'button-ic-add ic-30 btn-add'}
+         ]}
+      ]},
       //  model_li_inputs: {elem: 'li', class: 'form-d-li', subs: [
       //     {elem: 'div', class: 'form-d-item-back', subs: [
       //        {elem: 'div', class: 'form-d-item-tit', subs: [
@@ -344,12 +344,12 @@ export const makeForm = {
       //        ]}
       //     ]}
       //  ]},
-       model_li_inputs: {elem: 'li', class: 'form-d-li', subs: [
-          {elem: 'div', class: 'form-d-item-back', subs: [
-             {elem: 'div', class: 'form-d-item-tit', subs: [
-                {elem: 'p', class: 'p-item-tit'}
-             ]},
-             {elem: 'div', class: 'cont-inp-f cont-inp-form', subs: [
+      model_li_inputs: {elem: 'li', class: 'form-d-li', subs: [
+         {elem: 'div', class: 'form-d-item-back', subs: [
+            {elem: 'div', class: 'form-d-item-tit', subs: [
+               {elem: 'p', class: 'p-item-tit'}
+            ]},
+            {elem: 'div', class: 'cont-inp-f cont-inp-form', subs: [
                {elem: 'div', class: 'cont-inp-req', subs: [
                   {elem: 'span', class: 'el-req'}
                ]},
@@ -357,45 +357,58 @@ export const makeForm = {
                {elem: 'div', class: 'cont-inp-opts', subs: [
                   {elem: 'div', class: 'cont-btns-op'}
                ]}
-             ]}
-          ]}
-       ]},
-       form_li_inputs: {elem: 'li', class: 'form-d-li it-form', subs: [
-          {elem: 'div', class: 'form-d-item-back', subs: [
-             {elem: 'div', class: 'form-d-item-tit', subs: [
-                {elem: 'p', class: 'p-item-tit'}
-             ]},
-             {elem: 'div', class: 'form-d-cont-input-btns', subs: [
-                {elem: 'div', class: 'form-d-cont-input'}
-             ]}
-          ]}
-       ]},
-       panel_input_level: {elem: 'form', class: 'inputdata-form-input-description', subs: [
-          {elem: 'div', class: 'inputdata-cont-btns-level'},
-          {elem: 'div', class: 'inputdata-cont-input-level', subs: [
-             {elem: 'input', type: 'text', id: 'inputdata_level_name', placeholder: `Nombre`},
-          ]}, 
-          {elem: 'div', class: 'inputdata-cont-description-level', subs: [
-             {elem: 'textarea', id: 'inputdata_level_description', placeholder: `Descripción`}
-          ]},
-          {elem: 'div', class: 'inputdata-cont-btn-oper', subs: [
-             {elem: 'button', id: 'cancel_level', class: 'button-cancel', text: 'Cancelar'},
-             {elem: 'button', class: 'button-save btn-save-level', text: 'Guardar'}
-          ]}
-       ]},
-       panel_input_level_ed: {elem: 'form', class: 'inputdata-form-input-description', subs: [
-          {elem: 'div', class: 'inputdata-cont-btns-level'},
-          {elem: 'div', class: 'inputdata-cont-input-level', subs: [
-             {elem: 'input', type: 'text', id: 'inputdata_level_name', placeholder: `Nombre`},
-          ]}, 
-          {elem: 'div', class: 'inputdata-cont-description-level', subs: [
-             {elem: 'textarea', id: 'inputdata_level_description', placeholder: `Descripción`}
-          ]},
-          {elem: 'div', class: 'inputdata-cont-btn-oper', subs: [
-             {elem: 'button', id: 'cancel_edit', class: 'button-cancel', text: 'Cancelar edición'},
-             {elem: 'button', id: 'edit_schema', class: 'button-edit btn-edit-schema', text: 'Editar'}
-          ]}
-       ]},
+            ]}
+         ]}
+      ]},
+      // form_li_inputs: {elem: 'li', class: 'form-d-li it-form', subs: [
+      //    {elem: 'div', class: 'form-d-item-back', subs: [
+      //       {elem: 'div', class: 'form-d-item-tit', subs: [
+      //          {elem: 'p', class: 'p-item-tit'}
+      //       ]},
+      //       {elem: 'div', class: 'form-d-cont-input-btns', subs: [
+      //          {elem: 'div', class: 'form-d-cont-input'}
+      //       ]}
+      //    ]}
+      // ]},
+      form_li_inputs: {elem: 'li', class: 'form-d-li', subs: [
+         {elem: 'div', class: 'form-d-item-back', subs: [
+            {elem: 'div', class: 'form-d-item-tit', subs: [
+               {elem: 'p', class: 'p-item-tit'}
+            ]},
+            {elem: 'div', class: 'cont-inp-f cont-inp-form', subs: [
+               {elem: 'div', class: 'cont-inp-req', subs: [
+                  {elem: 'span', class: 'el-req'}
+               ]},
+               {elem: 'div', class: 'cont-inp-elem'}
+            ]}
+         ]}
+      ]},
+      panel_input_level: {elem: 'form', class: 'inputdata-form-input-description', subs: [
+         {elem: 'div', class: 'inputdata-cont-btns-level'},
+         {elem: 'div', class: 'inputdata-cont-input-level', subs: [
+            {elem: 'input', type: 'text', id: 'inputdata_level_name', placeholder: `Nombre`},
+         ]}, 
+         {elem: 'div', class: 'inputdata-cont-description-level', subs: [
+            {elem: 'textarea', id: 'inputdata_level_description', placeholder: `Descripción`}
+         ]},
+         {elem: 'div', class: 'inputdata-cont-btn-oper', subs: [
+            {elem: 'button', id: 'cancel_level', class: 'button-cancel', text: 'Cancelar'},
+            {elem: 'button', class: 'button-save btn-save-level', text: 'Guardar'}
+         ]}
+      ]},
+      panel_input_level_ed: {elem: 'form', class: 'inputdata-form-input-description', subs: [
+         {elem: 'div', class: 'inputdata-cont-btns-level'},
+         {elem: 'div', class: 'inputdata-cont-input-level', subs: [
+            {elem: 'input', type: 'text', id: 'inputdata_level_name', placeholder: `Nombre`},
+         ]}, 
+         {elem: 'div', class: 'inputdata-cont-description-level', subs: [
+            {elem: 'textarea', id: 'inputdata_level_description', placeholder: `Descripción`}
+         ]},
+         {elem: 'div', class: 'inputdata-cont-btn-oper', subs: [
+            {elem: 'button', id: 'cancel_edit', class: 'button-cancel', text: 'Cancelar edición'},
+            {elem: 'button', id: 'edit_schema', class: 'button-edit btn-edit-schema', text: 'Editar'}
+         ]}
+      ]},
    }
 }
 
@@ -410,7 +423,8 @@ export const table = {
             ]},
             {elem: 'main', class: 'test-body', subs: [
                {elem: 'div', class: 'test-body-form', subs: [
-                  {elem: 'div', id: 'part_add_form_chosen', class: 'part-add-form-chosen'}
+                  // {elem: 'div', id: 'part_add_form_chosen', class: 'part-add-form-chosen'}
+                  {elem: 'div', id: 'back_form', class: 'back-form'}
                ]},
                {elem: 'div', class: 'test-body-table', subs: [
                   {elem: 'div', class: 'part-table-block-footer', subs: [
@@ -418,11 +432,11 @@ export const table = {
                         {elem: 'div', id: 'part_header_tools', class: 'part-header-tools', subs: [
                            {elem: 'div', class: 'part-header-tools-btns', subs: [
                               {elem: 'div', class: 'part-header-tools-show', subs: [
-                                 {elem: 'button', id: 'btn_part_header_tool_form', class: 'button-table-ic ic-form'},
-                                 {elem: 'button', id: 'btn_part_header_tool_stats', class: 'button-table-ic ic-stats'}
+                                 {elem: 'button', id: 'btn_part_header_tool_form', class: 'button-ic-form ic-26 ic-form'},
+                                 {elem: 'button', id: 'btn_part_header_tool_stats', class: 'button-ic-stats ic-26 ic-stats'}
                               ]},
                               {elem: 'div', class: 'part-header-tools-opts oc', subs: [
-                                 {elem: 'button', id: 'btn_part_header_del_gr', class: 'button-table-ic'}
+                                 {elem: 'button', id: 'btn_part_header_del_gr', class: 'button-ic-del ic-26'}
                               ]}
                            ]},
                            {elem: 'div', class: 'part-header-tools-search', subs: [
@@ -436,14 +450,6 @@ export const table = {
                ]},
                {elem: 'div', class: 'test-body-stats', subs: [
                   {elem: 'div', class: 'part-add-stats-box', subs: [
-                     {elem: 'div', class: 'add-stat-box-eval', subs: [
-                        {elem: 'div', class: 'add-stat-eval-det', subs: [
-                           {elem: 'h2', text: 'Participantes evaluados'},
-                           {elem: 'div', class: 'add-stat-det-nums'},
-                           {elem: 'p', class: 'p-foot-page', text: '* Los participantes evaluados son aquellos que han completado todas las evaluaciones programadas'}
-                        ]},
-                        {elem: 'div', class: 'add-stat-eval-graf'}
-                     ]},
                      {elem: 'div', class: 'add-stat-box-frec'}
                   ]}
                ]}

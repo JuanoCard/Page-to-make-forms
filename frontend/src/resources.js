@@ -1047,10 +1047,10 @@ class CreateForms{
 class PrintForm{
    constructor(container = undefined, dataForm = undefined, makeHTML, datahtml){
       this.container = container
-      this.formblock;
       this.dataForm = dataForm
       this.makeHTML = makeHTML
       this.data = datahtml
+      // this.formblock;
    }
     
    buildForm(){
@@ -1060,8 +1060,8 @@ class PrintForm{
             {predesing: 'model_form'}
          ]
       }
-      this.makeHTML.build(this.container, modelForm, this.data.elements)
-      this.dataForm ? this.formm() : this.empty()
+      this.makeHTML.build(this.container, this.data.model_form)
+      this.formm()
       return
    }
 
@@ -1092,14 +1092,14 @@ class PrintForm{
                      }
                   },
                   {
-                     target: ['class', 'form-d-cont-input'],
+                     target: ['class', 'cont-inp-elem'],
                      attr: {
                         id: `inps__${it.id}`,
                         dataset1: ['data-group', it.group]
                      }
                   },
                   {
-                     target: ['class', 'form-d-item-back'],
+                     target: ['class', 'cont-inp-req'],
                      attr: {
                         class: req
                      }
@@ -1113,7 +1113,7 @@ class PrintForm{
          if(it.group === 'input_text'){
             const group_input_text = {
                arrayData: [
-                  {elem: 'input', class: 'd-input', type: it.type, placeholder: it.et}
+                  {elem: 'input', class: 'inp-f-text', type: it.type, placeholder: it.et}
                ]
             }
 
@@ -1126,8 +1126,8 @@ class PrintForm{
                const codOp = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
                const group_input_radio = {
                   arrayData: [
-                     {elem: 'input', id: `ra_${codOp}`, class: 'd-input', type: it.type, placeholder: it.et, name: `nam${it.concat}`, dataset1: ['data-key', op.et]},
-                     {elem: 'label', for: `ra_${codOp}`, text: op.et}
+                     {elem: 'input', id: `ra_${codOp}`, class: 'inp-f-rad', type: it.type, placeholder: it.et, name: `nam${it.concat}`, dataset1: ['data-key', op.et]},
+                     {elem: 'label', class: 'label-f-rad', for: `ra_${codOp}`, text: op.et}
                   ]
                }
 
@@ -1141,8 +1141,8 @@ class PrintForm{
                const codOp = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
                const group_input_check = {
                   arrayData: [
-                     {elem: 'input', id: `ch_${codOp}`, class: 'd-input', type: it.type, placeholder: it.et, dataset1: ['data-key', op.et]},
-                     {elem: 'label', for: `ch_${codOp}`, text: op.et}
+                     {elem: 'input', id: `ch_${codOp}`, class: 'inp-f-che', type: it.type, placeholder: it.et, dataset1: ['data-key', op.et]},
+                     {elem: 'label', class: 'label-f-che', for: `ch_${codOp}`, text: op.et}
                   ]
                }
 
@@ -1155,7 +1155,7 @@ class PrintForm{
             const codSel = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
             const group_select_list = {
                arrayData: [
-                  {elem: 'select', id: `sel_${codSel}`, class: 'd-input'},
+                  {elem: 'select', id: `sel_${codSel}`, class: 'sel-f'},
                ]
             }
             this.makeHTML.build(formContInputs, group_select_list, this.data.elements)
@@ -1173,7 +1173,7 @@ class PrintForm{
             const codSel = Math.trunc(Math.random() * Math.pow(7, 10)).toString(16)
             const group_select_dList = {
                arrayData: [
-                  {elem: 'select', id: `sel_${codSel}`, class: 'd-input'},
+                  {elem: 'select', id: `sel_${codSel}`, class: 'sel-f'},
                ]
             }
 
@@ -1186,9 +1186,6 @@ class PrintForm{
       this.formblock = this.container.querySelector('form')
       return
    }
- 
-   empty(){
-   }
 
    addbtns(typeform = undefined){
       if(!typeform){ return }
@@ -1197,7 +1194,7 @@ class PrintForm{
       if(typeform === 'save'){
          btnsForms = {
             arrayData: [
-               {elem: 'button', id: 'btn_save', class: 'button-save',text: 'Guardar datos'}
+               {elem: 'button', id: 'btn_save', class: 'button-red-w',text: 'Guardar datos'}
             ]
          }
       }
@@ -1598,4 +1595,48 @@ class Warnings {
    }
 }
 
-module.exports = { MakeHTML, BackgroundBlur, Pops, Placeholders, DownloadSVG, CreateForms, PrintForm, PrintTable, Warnings }
+class ControlFormData {
+   constructor(dataForm, form) {
+      this.form = form
+      this.fd = []
+      this.structure = dataForm.structure
+
+      this.addFormData()
+      return this.fd
+   }
+
+   addFormData(){
+      this.structure.forEach(it => {
+         const liEl = this.form.querySelector(`#li__${it.id}`)
+         let arInputs;
+         let arVal = []
+         const typ = it.group.split('_')
+         if(typ[0] === 'input'){ arInputs = liEl.querySelectorAll('input')}
+         if(typ[0] === 'select'){ arInputs = liEl.querySelectorAll('select')}
+         arInputs.forEach(inp => {
+            if(typ[1] === 'text'){ 
+               arVal.push(inp.value) 
+               inp.innerHTML = ''
+               inp.removeAttribute('value')
+            }
+            if(typ[1] === 'radio' || typ[1] === 'checkbox'){
+               if(inp.checked){
+                  arVal.push(inp.dataset.key) 
+                  inp.checked = false
+               }
+            }
+            if(typ[1] === 'list' || typ[1] === 'dList'){
+               arVal.push(inp.value)
+            }
+         })
+
+         for(let i = 0; i < arVal.length; i++){
+            this.fd.push({[it.concat]: arVal[i]})
+         }
+      })
+
+      return
+   }
+}
+
+module.exports = { MakeHTML, BackgroundBlur, Pops, Placeholders, DownloadSVG, CreateForms, PrintForm, PrintTable, Warnings, ControlFormData }

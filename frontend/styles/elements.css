@@ -136,11 +136,11 @@
 }
 
 .button-ic-ed{
-   background: center / 80% url('../src/images/svg/ic-edit.svg') no-repeat;
+   background: center / 82% url('../src/images/svg/ic-edit.svg') no-repeat;
 }
 
 .button-ic-del{
-   background: center / 80% url('../src/images/svg/ic-delete.svg') no-repeat;
+   background: center / 82% url('../src/images/svg/ic-delete.svg') no-repeat;
 }
 
 /* panel inputs */
@@ -500,10 +500,10 @@
             }
          }
          & .button-ic-ed:hover{
-            background: var(--cl-blue-4) center / 80% url('../src/images/svg/ic-edit-b.svg') no-repeat;
+            background: var(--cl-blue-4) center / 82% url('../src/images/svg/ic-edit-b.svg') no-repeat;
          }
          & .button-ic-del:hover{
-            background: var(--cl-red-2) center / 80% url('../src/images/svg/ic-delete-b.svg') no-repeat;
+            background: var(--cl-red-2) center / 82% url('../src/images/svg/ic-delete-b.svg') no-repeat;
          }
       }
    }

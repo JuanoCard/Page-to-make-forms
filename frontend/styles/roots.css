@@ -40,45 +40,47 @@
  }
 
 :root{
-    /* colors */
-    --cl-gray-back-t: #4c4c4caa;
-    --cl-gray-6t: #a7a7a722;
-    --cl-gray-7t: #6d707055;
-    --cl-gray-1: #f0f0f0;
-    --cl-gray-2: #f1f1f1;
-    --cl-gray-3: #f5f5f5;
-    --cl-gray-4: #f6f6f6;
-    --cl-gray-5: #eaeaea;
-    --cl-gray-6: #a7a7a7;
-    --cl-gray-7: #6d7070;
-    --cl-gray-8: #212222;
-    --cl-red-2t: #d8196166;
-    --cl-red-1: #f51269;
-    --cl-red-2: #d81961;
-    --cl-red-3: #9d0e47;
-    --cl-orange-1: #cd8735;
-    --cl-yellow-2t: #d8b21966;
-    --cl-yellow-1: #f7c80d;
-    --cl-yellow-2: #d8b219;
-    --cl-yellow-3: #ab8d16;
-    --cl-green-2t: #4ee54766;
-    --cl-green-1: #2ef024;
-    --cl-green-2: #4ee547;
-    --cl-blue-1t: #b6f1f233;
-    --cl-blue-2t: #59d3de66;
-    --cl-blue-3t: #27d4d699;
-    --cl-blue-1: #b6f1f2;
-    --cl-blue-2: #59d3de;
-    --cl-blue-3: #1ce9ec;
-    --cl-blue-4: #27d4d6;
-    --cl-blue-5: #0e5a68;
-    --cl-blue-6: #bccacf; 
+   /* colors */
+   --cl-gray-back-t: #4c4c4caa;
+   --cl-gray-6t: #a7a7a722;
+   --cl-gray-7t: #6d707055;
+   --cl-gray-1: #f0f0f0;
+   --cl-gray-2: #f1f1f1;
+   --cl-gray-3: #f5f5f5;
+   --cl-gray-4: #f6f6f6;
+   --cl-gray-5: #eaeaea;
+   --cl-gray-6: #a7a7a7;
+   --cl-gray-7: #6d7070;
+   --cl-gray-8: #212222;
+   --cl-red-2t: #d8196166;
+   --cl-red-1: #f51269;
+   --cl-red-2: #d81961;
+   --cl-red-3: #9d0e47;
+   --cl-orange-1: #cd8735;
+   --cl-yellow-2t: #d8b21966;
+   --cl-yellow-1: #f7c80d;
+   --cl-yellow-2: #d8b219;
+   --cl-yellow-3: #ab8d16;
+   --cl-green-2t: #4ee54766;
+   --cl-green-1: #2ef024;
+   --cl-green-2: #4ee547;
+   --cl-blue-1t: #b6f1f233;
+   --cl-blue-2t: #59d3de66;
+   --cl-blue-3t: #27d4d699;
+   --cl-blue-1: #b6f1f2;
+   --cl-blue-2: #59d3de;
+   --cl-blue-3: #1ce9ec;
+   --cl-blue-4: #27d4d6;
+   --cl-blue-5: #0e5a68;
+   --cl-blue-6: #bccacf; 
 
 
-    /* mesurements */
-    --h-home-header: 150px;
-    --h-panel-header: 50px;
-    --h-panel-footer: 10px;
-    --h-test-header: 50px;
-    --h-panel-body-description: 80px;
+   /* mesurements */
+   --h-home-header: 150px;
+   --h-panel-header: 50px;
+   --h-panel-footer: 10px;
+   --h-test-header: 50px;
+   --h-panel-body-description: 80px;
+   --w-part-table-footer-entries: 160px;
+   --w-part-table-footer-page: 120px;
 }

@@ -24,7 +24,7 @@ const structures = () => {
     //         const formTest = listForms.find(fo => fo.id === e.target.dataset.f)
     //     }
     // })
-    tab.structureTable(src, table, listForms)
+    tab.structureTable(src, table, makeForm, listForms)
     // bui.build(src, elementsList)
 }
 
