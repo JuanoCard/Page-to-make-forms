@@ -469,8 +469,6 @@ class CreateForms{
             this.objForm.name_form = 'Formulario uno'
             this.objForm['id'] = Math.trunc(Math.random() * Math.pow(15, 10)).toString(16)
             this.formsSaved.push(this.objForm)
-            console.log(this.formsSaved)
-            console.log(JSON.stringify(this.formsSaved))
             this.objForm = {name_form: undefined, structure: []}
             this.printForm()
             this.list = this.listForms()
@@ -1379,8 +1377,10 @@ class PrintTable {
          const dataPart = data[i - 1].data_part
          const arDatakey = Object.keys(dataPart)
          arDatakey.forEach(key => {
+            let contentText;
+            dataPart[key] === 'undefined' ? contentText = '---' : contentText = dataPart[key]
             const td = document.createElement('td')
-            td.append(dataPart[key])
+            td.append(contentText)
             tr.appendChild(td)
          })
 
@@ -1608,12 +1608,12 @@ class ControlFormData {
    addFormData(){
       this.fd._id = Math.trunc(Math.random() * Math.pow(15, 10)).toString(16)
       this.structure.forEach(it => {
-         const liEl = this.form.querySelector(`#li__${it.id}`)
+         const liList = this.form.querySelector(`#li__${it.id}`)
          let arInputs;
          let arVal = []
          const typ = it.group.split('_')
-         if(typ[0] === 'input'){ arInputs = liEl.querySelectorAll('input')}
-         if(typ[0] === 'select'){ arInputs = liEl.querySelectorAll('select')}
+         if(typ[0] === 'input'){ arInputs = liList.querySelectorAll('input')}
+         if(typ[0] === 'select'){ arInputs = liList.querySelectorAll('select')}
          arInputs.forEach(inp => {
             if(typ[1] === 'text'){ 
                arVal.push(inp.value) 
@@ -1631,8 +1631,12 @@ class ControlFormData {
             }
          })
 
-         for(let i = 0; i < arVal.length; i++){
-            this.fd.data_part[it.concat] = arVal[i]
+         if(arVal.length === 0 || arVal[0] === '' || arVal[0] === ' '){
+            this.fd.data_part[it.concat] = 'undefined'
+         } else {
+            for(let i = 0; i < arVal.length; i++){
+               this.fd.data_part[it.concat] = arVal[i]
+            }
          }
       })
 
@@ -1726,14 +1730,13 @@ class BarsHoriz{
       this.mm.h = this.contGraph.clientHeight
       this.mm.w = this.contGraph.clientWidth
       if(this.mm.h <= 0 && this.mm.w <= 0){return}
-
       const arFiltered = this.ar.map(it => it[this.current].toString())
       const objData = this.arfrec(arFiltered)
       this.mm.hB = 50,
       this.mm.xi = 4,
       this.mm.yi = 10,
-      this.mm.yf = 10 + 50, //yi + hB,
-      this.mm.l = this.mm.w - 50,
+      this.mm.yf = 10 + 50,
+      this.mm.l = this.mm.w - 15,
       this.mm.r = 4,
       this.mm.rz = 1.7909,
       this.mm.t = Object.values(objData).reduce((a, b) => a + b),
@@ -1773,7 +1776,7 @@ class BarsHoriz{
    arfrec(ar){
       let frec = {}
       let n = 0
-      ar.forEach(a => {a ? frec[a] = frec[a] + 1 || 1 : n++})
+      ar.forEach(a => {a !== 'undefined' ? frec[a] = frec[a] + 1 || 1 : n++})
       frec['sin_datos'] = n
       return frec
    }
@@ -1816,6 +1819,8 @@ class BarsHoriz{
       this.svg.appendChild(linea)
 
       // texto
+      let textEl;
+      el === 'sin_datos' ? textEl = 'Sin datos' : textEl = el
       const text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
       text.setAttributeNS(null, 'x', xi + 10)
       text.setAttributeNS(null, 'y', yi + xn + (hB / 2) + 6)
@@ -1823,7 +1828,7 @@ class BarsHoriz{
       text.setAttributeNS(null, 'font-family', 'roboto-regular')
       text.setAttributeNS(null, 'font-size', '18')
       text.setAttributeNS(null, 'text-anchor', 'start')
-      text.append(document.createTextNode(el))
+      text.append(document.createTextNode(textEl))
       this.svg.appendChild(text)    
 
       // porcentaje

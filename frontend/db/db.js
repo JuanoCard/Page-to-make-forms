@@ -398,7 +398,8 @@ export const table = {
             {elem: 'div', class: 'test-header', subs: [
                 {elem: 'div', class: 'cont-logo', subs: [
                     {elem: 'button', id: 'table_back_home', class: 'logo head-logo'}
-                ]}
+                ]},
+                {elem: 'button', id: 'test_back_form', class: 'button-finish-test', text: 'Finalizar'}
             ]},
             {elem: 'main', class: 'test-body', subs: [
                {elem: 'div', class: 'test-body-form', subs: [

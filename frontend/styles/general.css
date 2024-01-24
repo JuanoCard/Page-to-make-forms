@@ -1,5 +1,5 @@
 .oc{
-    display: none;
+    display: none !important;
 }
 
 .btn-dis{
@@ -20,18 +20,16 @@
 }
 
 .emphasis-block{
-    animation: line 1s ease-in infinite;
+    animation: line 1s cubic-bezier(0,.44,.54,.84) infinite;
     border: 1px solid var(--cl-red-2) !important;
 }
 @keyframes line {
     0%{
         outline: 0px solid var(--cl-red-2t);
-    }
-    50%{
-        outline: 15px solid var(--cl-red-2t);
+        opacity: 1;
     }
     100%{
-        outline: 0px solid var(--cl-red-2t);
+        outline: 15px solid transparent;
     }
 }
 

@@ -114,6 +114,25 @@
    background: var(--cl-gray-1) center / 60% url('..//src/images/svg/ic-x.svg') no-repeat;
 }
 
+.button-finish-test{
+   padding: 0px 20px;
+   height: 36px;
+   font-size: 16px;
+   border-radius: 7px;
+   border: 1px solid var(--cl-gray-6);
+   box-shadow: -1px 1px 8px var(--cl-red-2t);
+   color: white;
+   background-color: var(--cl-red-2);
+   &:hover{
+      border: 1px solid var(--cl-gray-5);
+      box-shadow: -1px 2px 14px var(--cl-red-2t);
+      background-color: var(--cl-red-1);
+   }
+   &:focus{
+      background-color: var(--cl-red-1);
+   }
+}
+
 /* buttons icons */
 
 .button-ic-add, .button-ic-remove{
