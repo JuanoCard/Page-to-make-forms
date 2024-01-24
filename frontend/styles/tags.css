@@ -49,6 +49,9 @@ button{
    overflow: hidden;
    cursor: pointer;
    font-family: roboto-regular;
+   &:focus{
+      outline: 3px solid var(--cl-blue-1);
+   }
 }
 
  
@@ -56,16 +59,16 @@ select{
    font-size: 16px;
    color: var(--cl-gray-8);
    cursor: pointer;
-   &:focus-visible{
-      outline: none;
+   &:focus{
+      outline: 3px solid var(--cl-blue-1);
    }
 }
 
 input{
    font-size: 16px;
    color: var(--cl-gray-8);
-   &:focus-visible{
-      outline: none;
+   &:focus{
+      outline: 3px solid var(--cl-blue-1);
    }
 }
 
@@ -85,16 +88,27 @@ input[type='radio']{
 
 label{
    font-family: 'roboto-regular';
+   &:focus{
+      outline: 3px solid var(--cl-blue-1);
+   }
 }
 
 table{
    border-collapse: collapse;
 }
 
+tr{
+   height: 50px;
+}
+
 th{
+   font-size: 16px;
    font-family: roboto-regular;
+   color: var(--cl-gray-7);
 }
 
 td{
    font-family: roboto-regular;
+   font-size: 18px;
+   color: var(--cl-blue-5);
 }

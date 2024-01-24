@@ -170,109 +170,109 @@ class BackgroundBlur {
 }
 
 class Pops {
-    constructor(){
-       this.container = document.querySelector('body');
-       this.contPop;
-       this.btnOut;
-       this.ar = []
- 
-       return
-    }
+   constructor(){
+      this.container = document.querySelector('body');
+      this.contPop;
+      this.btnOut;
+      this.ar = []
+
+      return
+   }
     
-    run(objCont = undefined){
-       const res = this.checkObj(objCont)
-       if(!res.status){
-          console.warn(res.er)
-          this.createPop(undefined)
-          return
-       }else{
-          const contPop = this.container.querySelector('.cont-pop')
-          contPop ? this.container.removeChild(contPop) : this.container
-          this.createPop(objCont)
-          return
-       }
-    }
+   run(objCont = undefined){
+         const res = this.checkObj(objCont)
+         if(!res.status){
+            console.warn(res.er)
+            this.createPop(undefined)
+            return
+         }else{
+            const contPop = this.container.querySelector('.cont-pop')
+            contPop ? this.container.removeChild(contPop) : this.container
+            this.createPop(objCont)
+            return
+         }
+   }
  
-    checkObj(obj){
-       let msn = {status: true, er: undefined}
-       if(!obj){
-          msn.status = false
-          msn.er = 'There are not arguments in the function. The argument must be an object with two properties: {title: String, message: String}'
-          return msn
-       }else{
-          if(!obj.title){
-             msn.status = false
-             msn.er = 'The object does not have the TITLE property. This must be of type string.'
-             return msn
-          }else{
-             if(!obj.message){
-                msn.status = false
-                msn.er = 'The object does not have the MESSAGE property. This must be of type string.'
-                return msn
-             }else{
-                msn.status = true
-                msn.er = undefined
-                return msn
-             }            
-          }
-       }
-    }
- 
-    createPop(obj = undefined){
-       const cod = Math.trunc(Math.random() * Math.pow(10, 10)).toString(16)
-       this.contPop = document.createElement("div");
-       this.contPop.setAttribute("id", `pop__${cod}`);
-       this.contPop.setAttribute("class", 'cont-pop fd');
-       this.ar.push(`pop__${cod}`)
-       
-       // message
-       let tit;
-       let msn;
-       !obj ? tit = undefined : tit = obj.title
-       !obj ? msn = 'Error: No han sido ingresados todos los parametros de la función.': msn = obj.message
-       const contMsn = document.createElement('div')
-       contMsn.setAttribute('class', 'cont-pop-text')
-       const title = document.createElement('h4')
-       title.append(tit)
-       const message = document.createElement('p')
-       message.append(msn)
-       tit ? contMsn.appendChild(title) : tit
-       contMsn.appendChild(message)
-       this.contPop.appendChild(contMsn)
- 
-       // buttons
-       this.btnOut = document.createElement('button')
-       this.btnOut.setAttribute('class', 'button-ic-exit ru10 oc')
-       this.contPop.appendChild(this.btnOut)
-       this.container.appendChild(this.contPop);
- 
-       this.actions(`pop__${cod}`)
- 
-       return
-    }
- 
-    actions(idPop){
-       setTimeout(() => {
-          const lookfor = this.container.querySelector(`#${idPop}`)
-          if(lookfor){
-             this.container.removeChild(this.contPop)
-          }
-       }, 4000);      
- 
-       this.contPop.addEventListener('mouseover', () => {
-          this.btnOut.classList.remove('oc')
-       })
- 
-       this.contPop.addEventListener('mouseout', () => {
-          this.btnOut.classList.add('oc')
-       })
- 
-       this.btnOut.addEventListener('click', () => {
-          this.container.removeChild(this.contPop)
-          return
-       })
-       return
-    }
+   checkObj(obj){
+      let msn = {status: true, er: undefined}
+      if(!obj){
+         msn.status = false
+         msn.er = 'There are not arguments in the function. The argument must be an object with two properties: {title: String, message: String}'
+         return msn
+      }else{
+         if(!obj.title){
+            msn.status = false
+            msn.er = 'The object does not have the TITLE property. This must be of type string.'
+            return msn
+         }else{
+            if(!obj.message){
+               msn.status = false
+               msn.er = 'The object does not have the MESSAGE property. This must be of type string.'
+               return msn
+            }else{
+               msn.status = true
+               msn.er = undefined
+               return msn
+            }            
+         }
+      }
+   }
+
+   createPop(obj = undefined){
+      const cod = Math.trunc(Math.random() * Math.pow(10, 10)).toString(16)
+      this.contPop = document.createElement("div");
+      this.contPop.setAttribute("id", `pop__${cod}`);
+      this.contPop.setAttribute("class", 'cont-pop fd');
+      this.ar.push(`pop__${cod}`)
+      
+      // message
+      let tit;
+      let msn;
+      !obj ? tit = undefined : tit = obj.title
+      !obj ? msn = 'Error: No han sido ingresados todos los parametros de la función.': msn = obj.message
+      const contMsn = document.createElement('div')
+      contMsn.setAttribute('class', 'cont-pop-text')
+      const title = document.createElement('h4')
+      title.append(tit)
+      const message = document.createElement('p')
+      message.append(msn)
+      tit ? contMsn.appendChild(title) : tit
+      contMsn.appendChild(message)
+      this.contPop.appendChild(contMsn)
+
+      // buttons
+      this.btnOut = document.createElement('button')
+      this.btnOut.setAttribute('class', 'button-ic-exit ic-26 ru10 oc')
+      this.contPop.appendChild(this.btnOut)
+      this.container.appendChild(this.contPop);
+
+      this.actions(`pop__${cod}`)
+
+      return
+   }
+
+   actions(idPop){
+      setTimeout(() => {
+         const lookfor = this.container.querySelector(`#${idPop}`)
+         if(lookfor){
+            this.container.removeChild(this.contPop)
+         }
+      }, 4000);      
+
+      this.contPop.addEventListener('mouseover', () => {
+         this.btnOut.classList.remove('oc')
+      })
+
+      this.contPop.addEventListener('mouseout', () => {
+         this.btnOut.classList.add('oc')
+      })
+
+      this.btnOut.addEventListener('click', () => {
+         this.container.removeChild(this.contPop)
+         return
+      })
+      return
+   }
 }
 
 class Placeholders {
@@ -1056,11 +1056,6 @@ class PrintForm{
     
    buildForm(){
       this.container.innerHTML = ''
-      const modelForm = {
-         arrayData: [
-            {predesing: 'model_form'}
-         ]
-      }
       this.makeHTML.build(this.container, this.data.model_form)
       this.formm()
       return
@@ -1068,10 +1063,12 @@ class PrintForm{
 
    formm(){
       const formItems = this.container.querySelector('.form-d-body')
+      const titHeader = this.container.querySelector('.form-d-header h4')
+      titHeader.innerHTML = this.dataForm.name_form
       this.dataForm.structure.length === 0 ? formItems : formItems.innerHTML = ''
       this.dataForm.structure.forEach(it => {
          let req;
-         it.required ? req = 'it-req' : req = ''
+         it.required ? req = '' : req = 'oc'
          let oc;
          it.group === 'input_text' ? oc = 'oc' : oc = ''
          const modelIt = {
@@ -1322,7 +1319,7 @@ class PrintTable {
          arrayData: [
             {elem: 'table', class: 'part-table', subs: [
                {elem: 'thead', id: 'part_table_head', class: 'part-table-head', subs: [
-                  {elem: 'tr', id: 'part_table_tr', class: 'part-table-tr'}
+                  {elem: 'tr', id: 'part_table_tr'}
                ]},
                {elem: 'tbody', id: 'part_table_body', class:'part-table-body'}
             ]}
@@ -1545,7 +1542,7 @@ class PrintTable {
 }
 
 class Warnings {
-   constructor(container = undefined, makeHTML, structure = undefined, content = undefined){
+   constructor(container = undefined, makeHTML, content = undefined, structure = undefined){
       this.container = container
       this.makeHTML = makeHTML
       this.structure = structure
@@ -1559,24 +1556,24 @@ class Warnings {
       if(empty){return}
       let cont;
       this.container ? cont = this.container : cont = document.querySelector('body')
-      let text;
-      this.content ? text = this.content : text = '¿Está seguro de querer realizar esta acción?. Este paso es irreversible'
+      let textTitle;
+      this.content ? textTitle = this.content.title : textTitle = 'Advertencia'
+      let textBody;
+      this.content ? textBody = this.content.body : textBody = '¿Está seguro de querer realizar esta acción?. Este paso es irreversible'
       let strc;
       const baseStructure = {
          arrayData: [
-            {elem: 'div', class: 'cont-warning', subs: [
-               {elem: 'div', class: 'wa-base', subs: [
-                  {elem: 'div', class: 'warn-cont-head', subs: [
-                     {elem: 'h3', text: 'Advertencia'}
-                  ]},
-                  {elem: 'div', class: 'warn-cont-text', subs: [
-                     {elem: 'p', text: text}
-                  ]},
-                  {elem: 'div', class: 'warn-cont-btns', subs: [
-                     {elem: 'button', id: 'btn_w_cancel', class: 'button-warn-cancel', text: 'Cancelar acción'},
-                     {elem: 'button', id: 'btn_w_continue', class: 'button-warn-continue', text: 'Continuar'}
-                  ]}
-               ]}
+            {elem: 'div', class: 'box-warning', subs: [
+               {elem: 'div', class: 'warn-title', subs: [
+                  {elem: 'h2', text: textTitle}
+               ]},
+               {elem: 'div', class: 'warn-description', subs: [
+                  {elem: 'p', text: textBody}
+               ]},
+               {elem: 'div', class: 'warn-btns', subs: [
+                  {elem: 'button', id: 'btn_w_cancel', class: 'button-yel', text: 'Cancelar'},
+                  {elem: 'button', id: 'btn_w_continue', class: 'button-red', text: 'Eliminar'}
+               ]},
             ]}
          ]
       }
@@ -1732,10 +1729,10 @@ class BarsHoriz{
 
       const arFiltered = this.ar.map(it => it[this.current].toString())
       const objData = this.arfrec(arFiltered)
-      this.mm.hB = 34,
-      this.mm.xi = 10,
+      this.mm.hB = 50,
+      this.mm.xi = 4,
       this.mm.yi = 10,
-      this.mm.yf = 10 + 34, //yi + hB,
+      this.mm.yf = 10 + 50, //yi + hB,
       this.mm.l = this.mm.w - 50,
       this.mm.r = 4,
       this.mm.rz = 1.7909,
@@ -1821,10 +1818,10 @@ class BarsHoriz{
       // texto
       const text = document.createElementNS('http://www.w3.org/2000/svg', 'text')
       text.setAttributeNS(null, 'x', xi + 10)
-      text.setAttributeNS(null, 'y', yi + xn + (hB / 2) + 5)
+      text.setAttributeNS(null, 'y', yi + xn + (hB / 2) + 6)
       text.setAttributeNS(null, 'fill', cTex)
       text.setAttributeNS(null, 'font-family', 'roboto-regular')
-      text.setAttributeNS(null, 'font-size', '15')
+      text.setAttributeNS(null, 'font-size', '18')
       text.setAttributeNS(null, 'text-anchor', 'start')
       text.append(document.createTextNode(el))
       this.svg.appendChild(text)    
@@ -1832,10 +1829,10 @@ class BarsHoriz{
       // porcentaje
       const percentage = document.createElementNS('http://www.w3.org/2000/svg', 'text')
       percentage.setAttributeNS(null, 'x', xi + l - 20)
-      percentage.setAttributeNS(null, 'y', yi + xn + (hB / 2) + 5)
+      percentage.setAttributeNS(null, 'y', yi + xn + (hB / 2) + 6)
       percentage.setAttributeNS(null, 'fill', cTex)
       percentage.setAttributeNS(null, 'font-family', 'roboto-regular')
-      percentage.setAttributeNS(null, 'font-size', '15')
+      percentage.setAttributeNS(null, 'font-size', '18')
       percentage.setAttributeNS(null, 'text-anchor', 'end')
       let por = ar[el] / t * 100
       percentage.append(document.createTextNode(`${por.toFixed(1)}%`))

@@ -8,6 +8,8 @@ class ManageTest {
         this.backForm;
         this.src = src
         this.makeHTML = new src.MakeHTML()
+        this.pops = new src.Pops()
+        this.printTable;
         this.dbTable = dbTable
         this.dbForm = dbForm
         this.formStr = formStr
@@ -84,7 +86,7 @@ class ManageTest {
             }
         })
         
-        this.contTable.addEventListener('click', (e) => {
+        this.contTable.addEventListener('click', async (e) => {
             if(e.target.id === 'btn_part_header_tool_form'){
                 e.target.classList.toggle('btn-fo-ac')
                 this.contForm.classList.contains('min-w') ? this.contForm.classList.remove('min-w') : this.contForm.classList.add('min-w')
@@ -93,6 +95,54 @@ class ManageTest {
                 e.target.classList.toggle('btn-st-ac')
                 this.contStats.classList.contains('min-w') ? this.contStats.classList.remove('min-w') : this.contStats.classList.add('min-w')
             }
+            if(e.target.classList.contains('btn-del-table')){
+                const back = new this.src.BackgroundBlur(document.querySelector('body'))
+                const textWarn = {
+                    title: 'Borrar datos',
+                    body: 'Esta a punto de borrar los datos de uno de los ingresos. Este paso es irreversible. Si desea continuar con esta acción haga click en "Continuar", de lo contrario haga click en "Cancelar".'
+                }
+                const warn = await new this.src.Warnings(back.block, this.makeHTML, textWarn)
+                if(warn.status){
+                    const idkey = e.target.id.split('__')[1]
+                    console.log(idkey)
+                    const pos = this.arParticipants.findIndex(it => it.id === idkey)
+                    this.arParticipants.splice(pos, 1)
+                    this.pops.run({title: 'Participante eliminado', message: `El participante ha sido eliminado satisfactoriamente de la lista.`})
+                    back.out.click()
+                    this.table()
+                    this.stats()
+                } else {
+                    back.out.click()
+                }
+            }
+    
+            // if(e.target.classList.contains('inp-td-check')){
+            //     const idcheck = e.target.id
+            //     const ch = e.target.checked
+            //     if(ch){
+            //         this.controlTable.listChecks.push(idcheck)
+            //     } else {
+            //         const pos = this.controlTable.listChecks.indexOf(idcheck)
+            //         this.controlTable.listChecks.splice(pos, 1)
+            //     }
+    
+            //     const contBtnDelGr = this.contTable.querySelector('.part-header-tools-opts')
+            //     this.controlTable.listChecks.length > 0 ? contBtnDelGr.classList.remove('oc') : contBtnDelGr.classList.add('oc')
+            // }
+    
+            // if(e.target.id === 'btn_part_header_del_gr'){
+            //     // const back = new this.resources.BackgroundBlur(document.querySelector('#header_areas'))
+            //     // const warn = await new this.resources.Warnings(back.block, this.makeHTML)
+            //     this.controlTable.listChecks.forEach(ch => {
+            //         const pos = this.da.findIndex(dat => dat._id === ch.split('__')[1])
+            //         this.da.splice(pos, 1)
+            //     })
+            //     this.controlTable.listChecks = []
+            //     const contBtnDelGr = this.contTable.querySelector('.part-header-tools-opts')
+            //     contBtnDelGr.classList.add('oc')
+            //     this.printTable.refresh()
+            //     this.stats()
+            // }
         })
     }
 }

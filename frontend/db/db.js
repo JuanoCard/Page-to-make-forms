@@ -333,17 +333,6 @@ export const makeForm = {
             {elem: 'button', class: 'button-ic-add ic-30 btn-add'}
          ]}
       ]},
-      //  model_li_inputs: {elem: 'li', class: 'form-d-li', subs: [
-      //     {elem: 'div', class: 'form-d-item-back', subs: [
-      //        {elem: 'div', class: 'form-d-item-tit', subs: [
-      //           {elem: 'p', class: 'p-item-tit'}
-      //        ]},
-      //        {elem: 'div', class: 'form-d-cont-input-btns', subs: [
-      //           {elem: 'div', class: 'form-d-cont-input'},
-      //           {elem: 'div', class: 'form-d-cont-del-edi oc'}
-      //        ]}
-      //     ]}
-      //  ]},
       model_li_inputs: {elem: 'li', class: 'form-d-li', subs: [
          {elem: 'div', class: 'form-d-item-back', subs: [
             {elem: 'div', class: 'form-d-item-tit', subs: [
@@ -360,16 +349,6 @@ export const makeForm = {
             ]}
          ]}
       ]},
-      // form_li_inputs: {elem: 'li', class: 'form-d-li it-form', subs: [
-      //    {elem: 'div', class: 'form-d-item-back', subs: [
-      //       {elem: 'div', class: 'form-d-item-tit', subs: [
-      //          {elem: 'p', class: 'p-item-tit'}
-      //       ]},
-      //       {elem: 'div', class: 'form-d-cont-input-btns', subs: [
-      //          {elem: 'div', class: 'form-d-cont-input'}
-      //       ]}
-      //    ]}
-      // ]},
       form_li_inputs: {elem: 'li', class: 'form-d-li', subs: [
          {elem: 'div', class: 'form-d-item-back', subs: [
             {elem: 'div', class: 'form-d-item-tit', subs: [

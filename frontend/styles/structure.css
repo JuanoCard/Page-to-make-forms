@@ -396,8 +396,18 @@
             transition: all .3s ease;
             overflow: hidden;
             > .stat-box-frec{
+                padding: 5px;
                 width: 100%;
                 height: 500px;
+                > .cont-sel-svg-barH{
+                    > select{
+                        padding: 0px 10px;
+                        width: 425px;
+                        height: 40px;
+                        border-radius: 7px;
+                        border: 1px solid var(--cl-gray-6);
+                    }
+                }
                 > .cont-grph-svg-barH{
                     height: calc(100% - 30px);
                 }
@@ -468,7 +478,6 @@
                     width: 300px;
                     height: 28px;
                     border-radius: 7px;
-                    outline: none;
                     border: 1px solid var(--cl-gray-6);
                 }
             }
@@ -517,7 +526,6 @@
                     text-align: left;
                     border-radius: 5px;
                     border: 1px solid var(--cl-gray-7);
-                    outline: none;
                     color: var(--cl-blue-5);
                     background-color: white;
                 }
@@ -579,18 +587,22 @@
         > tr{
             > th, button{
                 padding: 0px;
-                font-size: 12px;
                 font-weight: normal;
-                color: var(--cl-gray-6);
                 background-color: var(--cl-gray-2);
                 > button{
                     padding: 5px 25px;
                     width: 100%;
                     height: 38px;
+                    font-size: 16px;
                     border: none;
                     outline: none;
+                    color: var(--cl-gray-7);
                     &:hover{
                         background-color: var(--cl-gray-5);
+                    }
+                    &:focus{
+                        background-color: var(--cl-blue-1);
+                        color: var(--cl-gray-8);
                     }
                 }
             }
@@ -599,7 +611,6 @@
     > .part-table-body{
         overflow-y: auto;
         > tr{
-            height: 40px;
             border-bottom: 1px solid var(--cl-gray-5);
             &:hover{
                 background-color: var(--cl-gray-5);
@@ -607,8 +618,6 @@
             > td{
                 padding: 5px 25px;
                 text-align: left;
-                font-size: 14px;
-                color: var(--cl-blue-5);
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
