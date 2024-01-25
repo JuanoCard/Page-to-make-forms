@@ -589,18 +589,18 @@ class CreateForms{
       }
       this.makeHTML.build(this.contDets, structureForm, this.datahtml.elements)
       this.formDet = this.contDets.querySelector(`#form__${key}`)
+      const contBtnDet = this.contDets.querySelector('.cont-btn-form-det')
 
       if(key === 'select_dList'){
+         contBtnDet.classList.add('oc')
          const arBtnsDList = this.selectDList()
          arBtnsDList.forEach(btn => btn.addEventListener('click', (e) => {
-            this.selectDList(true, btn.id)
             e.preventDefault()
+            contBtnDet.classList.remove('oc')
+            this.selectDList(true, btn.id)
          }))
+      } else { undefined }
 
-         return
-      }
-
-      const contBtnDet = this.contDets.querySelector('.cont-btn-form-det')
       let idBtn;
       let textBtn;
       let classBtn;
@@ -800,9 +800,7 @@ class CreateForms{
             ulDList.appendChild(btnList)
          })
          return this.contDets.querySelectorAll('.btn-dlist')
-      }
-
-      if(options){
+      } else {
          ulDList.innerHTML = ''
          const itChosen = lists.find(it => it.id === id.split('_')[1])
          let nn = 0
@@ -814,8 +812,8 @@ class CreateForms{
                      {elem: 'ul', class: 'cont-opts-dlist', dataset1: ['data-block', op.concat], subs: [
                         {elem: 'li', id: `cont_detOp1-${nn}`, class: 'li-input-det-op', subs: [
                            {elem: 'div', class: 'cont-input-det-op', subs: [
-                              {elem: 'input', type: 'text', id: `${op.concat}__1-${nn}`, class: 'input-form-det-op input-det inp-op', dataset1: ['data-key', 'opt']},
-                              {elem: 'button', id: `btn_detOp1-${nn}`, class: 'button-ic-add btn-add'}
+                              {elem: 'input', type: 'text', id: `${op.concat}__1-${nn}`, class: 'inp-det-text-bt input-det inp-op', dataset1: ['data-key', 'opt']},
+                              {elem: 'button', id: `btn_detOp1-${nn}`, class: 'button-ic-add ic-30 btn-add'}
                            ]}
                         ]}
                      ]}

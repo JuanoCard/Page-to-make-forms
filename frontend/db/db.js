@@ -206,7 +206,7 @@ export const makeForm = {
                {elem: 'ul', id: 'cont_opts__input_radio', class: 'cont-inp-det-text h-cont-det', subs: [
                   {elem: 'li', id: 'cont_detOp1', class: 'li-input-det-op', subs: [
                      {elem: 'div', class: 'cont-input-det-op', subs: [
-                        {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt  input-det inp-op', dataset1: ['data-key', 'opt']},
+                        {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt input-det inp-op', dataset1: ['data-key', 'opt']},
                         {elem: 'button', id: 'btn_detOp1', class: 'button-ic-add ic-30 btn-add'}
                      ]}
                   ]}
@@ -242,7 +242,7 @@ export const makeForm = {
                {elem: 'ul', id: 'cont_opts__input_checkbox', class: 'cont-inp-det-text h-cont-det', subs: [
                   {elem: 'li', id: 'cont_detOp1', class: 'li-input-det-op', subs: [
                      {elem: 'div', class: 'cont-input-det-op', subs: [
-                        {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt  input-det inp-op', dataset1: ['data-key', 'opt']},
+                        {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt input-det inp-op', dataset1: ['data-key', 'opt']},
                         {elem: 'button', id: 'btn_detOp1', class: 'button-ic-add ic-30 btn-add'}
                      ]}
                   ]}
@@ -278,7 +278,7 @@ export const makeForm = {
                {elem: 'ul', id: 'cont_opts__select_list', class: 'cont-inp-det-text h-cont-det', subs: [
                   {elem: 'li', id: 'cont_detOp1', class: 'li-input-det-op', subs: [
                      {elem: 'div', class: 'cont-input-det-op', subs: [
-                        {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt  input-det inp-op', dataset1: ['data-key', 'opt']},
+                        {elem: 'input', type: 'text', id: 'inp_detOp1', class: 'inp-det-text-bt input-det inp-op', dataset1: ['data-key', 'opt']},
                         {elem: 'button', id: 'btn_detOp1', class: 'button-ic-add ic-30 btn-add'}
 
                      ]}
