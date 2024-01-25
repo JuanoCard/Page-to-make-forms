@@ -2,9 +2,10 @@
 ---
 
 ## Description
+This project is a single page application that allows you to create simple forms, and use it to collect data and organize it in tables. 
 
 
-## Development
+## Installing
 `General Instructions`
 1. Clone the repository using git bash
 ```sh

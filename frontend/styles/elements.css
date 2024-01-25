@@ -490,7 +490,7 @@
          }
          &:checked + .label-f-rad{
             color: white;
-            background-color: var(--cl-yellow-3);
+            background-color: var(--cl-yellow-2);
          }
       }
       > .inp-f-che{

@@ -60,7 +60,6 @@
    --cl-yellow-2t: #d8b21966;
    --cl-yellow-1: #f7c80d;
    --cl-yellow-2: #d8b219;
-   --cl-yellow-3: #ab8d16;
    --cl-green-2t: #4ee54766;
    --cl-green-1: #2ef024;
    --cl-green-2: #4ee547;
@@ -79,7 +78,7 @@
    --h-home-header: 150px;
    --h-panel-header: 70px;
    --h-panel-footer: 10px;
-   --h-test-header: 50px;
+   --h-test-header: 70px;
    --h-panel-body-description: 80px;
    --w-part-table-footer-entries: 160px;
    --w-part-table-footer-page: 120px;

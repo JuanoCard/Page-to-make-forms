@@ -72,7 +72,7 @@ input{
    }
 }
 
-input[type='text']{
+input[type='text'], input[type='email'], input[type='number']{
    border: 1px solid var(--cl-gray-7);
 }
 

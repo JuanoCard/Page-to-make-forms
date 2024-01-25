@@ -1,125 +1,125 @@
 
 class MakeHTML {
-    constructor(){}
+   constructor(){}
+
+   model(obj){
+      const newObj = {
+         elem: obj.elem,
+         id: obj.id,
+         class: obj.class,
+         value: obj.value,
+         type: obj.type,
+         placeholder: obj.placeholder,
+         text: obj.text,
+         for: obj.for,
+         name: obj.name,
+         dataset1: obj.dataset1,
+         href: obj.href,
+         src: obj.src,
+         min: obj.min,
+         max: obj.max,
+         step: obj.step,
+         enctype: obj.enctype,
+         any: obj.any,
+         condition: obj.condition,
+         predesing: obj.predesing,
+         subs: obj.subs,
+      };
+
+   return newObj;
+   }
  
-    model(obj){
-       const newObj = {
-          elem: obj.elem,
-          id: obj.id,
-          class: obj.class,
-          value: obj.value,
-          type: obj.type,
-          placeholder: obj.placeholder,
-          text: obj.text,
-          for: obj.for,
-          name: obj.name,
-          dataset1: obj.dataset1,
-          href: obj.href,
-          src: obj.src,
-          min: obj.min,
-          max: obj.max,
-          step: obj.step,
-          enctype: obj.enctype,
-          any: obj.any,
-          condition: obj.condition,
-          predesing: obj.predesing,
-          subs: obj.subs,
-       };
- 
-    return newObj;
-    }
- 
-    create(container, objData, elements){
-       const objModel = this.model(objData);
- 
-       let obj = objModel;
-       if (objModel.predesing) {
-          obj = Object.assign(objModel, elements[objModel.predesing]);
-          delete obj.predesing;
-       }
- 
-       const elem = document.createElement(obj.elem);
-       if (obj.id){elem.setAttribute("id", obj.id)}
-       if (obj.class){elem.setAttribute("class", obj.class)}
-       if (obj.value){elem.setAttribute("value", obj.value)}
-       if (obj.type){elem.setAttribute("type", obj.type)}
-       if (obj.placeholder){elem.setAttribute("placeholder", obj.placeholder)}
-       if (obj.text){elem.append(obj.text)}
-       if (obj.for){elem.setAttribute("for", obj.for)}
-       if (obj.name){elem.setAttribute("name", obj.name)}
-       if (obj.dataset1){elem.setAttribute(obj.dataset1[0], obj.dataset1[1])}
-       if (obj.href){elem.setAttribute("href", obj.href)}
-       if (obj.src){elem.setAttribute("src", obj.src)}
-       if (obj.min){elem.setAttribute("min", obj.min)}
-       if (obj.max){elem.setAttribute("max", obj.max)}
-       if (obj.step){elem.setAttribute("step", obj.step)}
-       if (obj.any){elem.setAttribute(obj.any, "")}
- 
-       container.appendChild(elem);
-       if (obj.subs){obj.subs.forEach((ob) => this.create(elem, ob, elements))}
- 
-       obj = "";
-       return container;
-    }
- 
-    merge(block, mergeData) {
-       const arMergeData = Object.keys(mergeData);
-       arMergeData.forEach(data => {
-          const elemBlock = block.querySelector(`#${data}`);
-          const arData = mergeData[data];
-          arData.forEach(da => {
-             let elemMatch;
-             if (da.target[0] === "class") {
-                elemMatch = elemBlock.querySelector(`.${da.target[1]}`);
-                if(!elemMatch){return}
-             }
-             if (da.target[0] === "id") {
-                elemMatch = elemBlock.querySelector(`#${da.target[1]}`);
-                if(!elemMatch){return}
-             }
-             if (da.attr.class) {
-                elemMatch.classList.add(da.attr.class);
-             }
-             if (da.attr.id) {
-                elemMatch.setAttribute("id", da.attr.id);
-             }
-             if (da.attr.placeholder) {
-                elemMatch.setAttribute("placeholder", da.attr.placeholder);
-             }
-             if (da.attr.text) {
-                elemMatch.append(da.attr.text);
-             }
-             if (da.attr.value) {
-                elemMatch.setAttribute('value', da.attr.value);
-             }
-             if (da.attr.for) {
-                elemMatch.setAttribute('for', da.attr.for);
-             }
-             if (da.attr.dataset1) {
-                elemMatch.setAttribute(da.attr.dataset1[0], da.attr.dataset1[1]);
-             }
-             if (da.attr.checked) {
-                elemMatch.checked = da.attr.checked;
-             }
-          });
-       });
- 
-       return block;
-    }
- 
-    build(container, htmlData, dataElements = undefined) {
-       if (htmlData.arrayData.length > 0) {
-          let blockHtml;
-          htmlData.arrayData.forEach((dat) => {
-          blockHtml = this.create(container, dat, dataElements);
-          });
-          if(htmlData.merge){
-             this.merge(blockHtml, htmlData.merge);
-          }
-       }
- 
-       return container;
-    }
+   create(container, objData, elements){
+      const objModel = this.model(objData);
+
+      let obj = objModel;
+      if (objModel.predesing) {
+         obj = Object.assign(objModel, elements[objModel.predesing]);
+         delete obj.predesing;
+      }
+
+      const elem = document.createElement(obj.elem);
+      if (obj.id){elem.setAttribute("id", obj.id)}
+      if (obj.class){elem.setAttribute("class", obj.class)}
+      if (obj.value){elem.setAttribute("value", obj.value)}
+      if (obj.type){elem.setAttribute("type", obj.type)}
+      if (obj.placeholder){elem.setAttribute("placeholder", obj.placeholder)}
+      if (obj.text){elem.append(obj.text)}
+      if (obj.for){elem.setAttribute("for", obj.for)}
+      if (obj.name){elem.setAttribute("name", obj.name)}
+      if (obj.dataset1){elem.setAttribute(obj.dataset1[0], obj.dataset1[1])}
+      if (obj.href){elem.setAttribute("href", obj.href)}
+      if (obj.src){elem.setAttribute("src", obj.src)}
+      if (obj.min){elem.setAttribute("min", obj.min)}
+      if (obj.max){elem.setAttribute("max", obj.max)}
+      if (obj.step){elem.setAttribute("step", obj.step)}
+      if (obj.any){elem.setAttribute(obj.any, "")}
+
+      container.appendChild(elem);
+      if (obj.subs){obj.subs.forEach((ob) => this.create(elem, ob, elements))}
+
+      obj = "";
+      return container;
+   }
+
+   merge(block, mergeData) {
+      const arMergeData = Object.keys(mergeData);
+      arMergeData.forEach(data => {
+         const elemBlock = block.querySelector(`#${data}`);
+         const arData = mergeData[data];
+         arData.forEach(da => {
+            let elemMatch;
+            if (da.target[0] === "class") {
+               elemMatch = elemBlock.querySelector(`.${da.target[1]}`);
+               if(!elemMatch){return}
+            }
+            if (da.target[0] === "id") {
+               elemMatch = elemBlock.querySelector(`#${da.target[1]}`);
+               if(!elemMatch){return}
+            }
+            if (da.attr.class) {
+               elemMatch.classList.add(da.attr.class);
+            }
+            if (da.attr.id) {
+               elemMatch.setAttribute("id", da.attr.id);
+            }
+            if (da.attr.placeholder) {
+               elemMatch.setAttribute("placeholder", da.attr.placeholder);
+            }
+            if (da.attr.text) {
+               elemMatch.append(da.attr.text);
+            }
+            if (da.attr.value) {
+               elemMatch.setAttribute('value', da.attr.value);
+            }
+            if (da.attr.for) {
+               elemMatch.setAttribute('for', da.attr.for);
+            }
+            if (da.attr.dataset1) {
+               elemMatch.setAttribute(da.attr.dataset1[0], da.attr.dataset1[1]);
+            }
+            if (da.attr.checked) {
+               elemMatch.checked = da.attr.checked;
+            }
+         });
+      });
+
+      return block;
+   }
+
+   build(container, htmlData, dataElements = undefined) {
+      if (htmlData.arrayData.length > 0) {
+         let blockHtml;
+         htmlData.arrayData.forEach((dat) => {
+         blockHtml = this.create(container, dat, dataElements);
+         });
+         if(htmlData.merge){
+            this.merge(blockHtml, htmlData.merge);
+         }
+      }
+
+      return container;
+   }
 }
 
 class BackgroundBlur {
@@ -280,10 +280,6 @@ class Placeholders {
    // classInputs -> clase de los inputs donde se pegaran los placeholder
    // text -> (REQUERIDO A NUM) string del contenido del placeholder
    // num -> (OPCIONAL) boolean que determina si se requiere que la funcion le agregue una correlacion numerica. por defecto TRUE
-
-   container
-   arInputs
-
    constructor(){
       this.container;
       this.arInputs;
@@ -301,61 +297,6 @@ class Placeholders {
    }
 }
 
-class DownloadSVG {
-    constructor(svgElem){
-       this.svgElem = svgElem
-       this.svg;
- 
-       this.convertStr()
-    }
- 
-    convertStr(){
-       const serialize = new XMLSerializer()
-       this.svg = serialize.serializeToString(this.svgElem)
-       this.download('png', 'image')
-    }
- 
-    download(format, fileName){
- 
-       // Create an SVG element from the SVG string
-       const svg = new Blob([this.svg], { type: 'image/svg+xml' });
-       const url = URL.createObjectURL(svg);
-     
-       // Create a canvas element to render the SVG
-       const canvas = document.createElement('canvas');
-       const context = canvas.getContext('2d');
-     
-       const image = new Image();
-       image.onload = function () {
-         // Set canvas dimensions to match the image
-         canvas.width = image.width;
-         canvas.height = image.height;
-     
-         // Render the SVG onto the canvas
-         context.drawImage(image, 0, 0);
-     
-         // Convert canvas to the desired format
-         const dataURL = canvas.toDataURL(`image/${format}`);
-         
-         // Create a link for download
-         const a = document.createElement('a');
-         a.href = dataURL;
-         a.download = `${fileName}.${format}`;
-         a.style.display = 'none';
-         document.body.appendChild(a);
-     
-         // Trigger the download and clean up
-         a.click();
-         document.body.removeChild(a);
-     
-         // Release the resources
-         URL.revokeObjectURL(url);
-       };
-     
-       image.src = url;
-    }
-}
-
 class CreateForms{
    constructor(container, datahtml, resources, listForms){
       this.container = container
@@ -368,16 +309,14 @@ class CreateForms{
       this.datahtml = datahtml
       this.makeHTML = new resources.MakeHTML()
       this.placeholder = new resources.Placeholders()
-
-      //  this.list = list
-      this.objForm = {name_form: undefined, structure: []}
+      this.objForm = {name_form: 'Formulario de datos', structure: []}
       this.words = []
       this.formsSaved = listForms
       this.modeform = 'create'
       this.start()
    }
 
-   start(){ // READY
+   start(){ 
       this.contDets = this.contPanel.querySelector('#ops_dets')
       this.contModel = this.contPanel.querySelector('#form_model')
       this.contList = this.container.querySelector('#ul_body_list')
@@ -443,7 +382,7 @@ class CreateForms{
                bt.disabled = false
             })
             this.printDets('input_text')
-            this.objForm = {name_form: undefined, structure: []}
+            this.objForm = {name_form: 'Formulario de datos', structure: []}
             this.modeform = 'create'
             this.printForm()
             return
@@ -456,7 +395,7 @@ class CreateForms{
                bt.disabled = false
             })
             this.printDets('input_text')
-            this.objForm = {name_form: undefined, structure: []}
+            this.objForm = {name_form: 'Formulario de datos', structure: []}
             this.modeform = 'create'
             this.printForm()
             this.listForms()
@@ -465,11 +404,17 @@ class CreateForms{
 
          if(e.target.id === 'btn_save_create_form'){
             e.preventDefault()
-            if(this.objForm.structure.length === 0){ return }
-            this.objForm.name_form = 'Formulario uno'
+            if(this.objForm.structure.length === 0){ 
+               const blockOptions = this.container.querySelector('.block-options')
+               blockOptions.classList.add('emphasis-block')
+               setTimeout(() => {
+                  blockOptions.classList.remove('emphasis-block')
+               }, 4000)
+               return 
+            }
             this.objForm['id'] = Math.trunc(Math.random() * Math.pow(15, 10)).toString(16)
             this.formsSaved.push(this.objForm)
-            this.objForm = {name_form: undefined, structure: []}
+            this.objForm = {name_form: 'Formulario de datos', structure: []}
             this.printForm()
             this.list = this.listForms()
             return
@@ -551,7 +496,7 @@ class CreateForms{
       return
    }
  
-   listForms(){ //READY
+   listForms(){ 
       if(this.formsSaved){
          this.contList.innerHTML = ''
          this.formsSaved.forEach(lis => {
@@ -837,6 +782,8 @@ class CreateForms{
    printForm(){
       this.contModel.innerHTML = ''
       this.makeHTML.build(this.contModel, this.datahtml.model_form)
+      const titHeader = this.container.querySelector('#title_form')
+      titHeader.innerHTML = this.objForm.name_form
       const formItems = this.contModel.querySelector('.form-d-body')
       this.objForm.structure.length === 0 ? formItems : formItems.innerHTML = ''
       this.objForm.structure.forEach(it => {
@@ -976,8 +923,25 @@ class CreateForms{
             }
 
             this.makeHTML.build(formContInputs, group_select_dList, this.datahtml.elements)
+
+            const obSelectParent = this.objForm.structure.find(ob => ob.id === it.root)
+            const valSelectParent = this.contModel.querySelector(`#inps__${obSelectParent.id} select`).value
+            const elSelectChild = this.contModel.querySelector(`#inps__${it.id} select`)
+            const listOptionsChild = it.options.filter(it => {return it.concat.includes(valSelectParent)})
+            elSelectChild.innerHTML = ''
+            listOptionsChild.forEach(op => {
+               const option = document.createElement('option')
+               option.append(op.et)
+               elSelectChild.appendChild(option)
+            })
+
             return
          }
+      })
+      
+      titHeader.setAttribute('contentEditable', true)
+      titHeader.addEventListener('blur', (e) => {
+         this.objForm.name_form = e.target.textContent
       })
 
       let btnsForms;
@@ -1001,7 +965,7 @@ class CreateForms{
       }
       this.makeHTML.build(this.contModel.querySelector('#form_d_btns'), btnsForms)
 
-   //  this.connectSelects()
+      this.connectSelects()
 
       const contLi = this.contModel.querySelectorAll('.form-d-li')
       const contBtnsDelEdi = this.contModel.querySelectorAll('.cont-btns-op')
@@ -1011,34 +975,29 @@ class CreateForms{
          elBtns.classList.remove('oc')
       }))
 
-      const instContModel = this.contPanel.querySelector('#inst_creF_cont_model')
-   //  instContModel.addEventListener('mouseout', () => {
-   //     contBtnsDelEdi.forEach(btns => btns.classList.add('oc'))
-   //  })
-
       return
    }
  
-   //  connectSelects(){
-   //     const itSelectRoots = this.objForm.structure.filter(it => it.group === 'select_list')
-   //     itSelectRoots.forEach(sel => {
-   //        const selectRoot = this.contModel.querySelector(`#inps__${sel.id} select`)
-   //        selectRoot.addEventListener('change', (e) => {
-   //           const valueEt = sel.options.find(se => se.et === e.target.value)
-   //           const itSelectTarget = this.objForm.structure.find(it => it.root === sel.id)
-   //           if(itSelectTarget){
-   //              const selectTarget = this.contModel.querySelector(`#inps__${itSelectTarget.id} select`)
-   //              const listOptionsTarget = itSelectTarget.options.filter(it => {return it.concat.includes(valueEt.concat)})
-   //              selectTarget.innerHTML = ''
-   //              listOptionsTarget.forEach(op => {
-   //                 const option = document.createElement('option')
-   //                 option.append(op.et)
-   //                 selectTarget.appendChild(option)
-   //              })
-   //           }
-   //        })
-   //     })
-   //  }
+   connectSelects(){
+      const itSelectRoots = this.objForm.structure.filter(it => it.group === 'select_list')
+      itSelectRoots.forEach(sel => {
+         const selectRoot = this.contModel.querySelector(`#inps__${sel.id} select`)
+         selectRoot.addEventListener('change', (e) => {
+            const valueEt = sel.options.find(se => se.et === e.target.value)
+            const itSelectTarget = this.objForm.structure.find(it => it.root === sel.id)
+            if(itSelectTarget){
+               const selectTarget = this.contModel.querySelector(`#inps__${itSelectTarget.id} select`)
+               const listOptionsTarget = itSelectTarget.options.filter(it => {return it.concat.includes(valueEt.concat)})
+               selectTarget.innerHTML = ''
+               listOptionsTarget.forEach(op => {
+                  const option = document.createElement('option')
+                  option.append(op.et)
+                  selectTarget.appendChild(option)
+               })
+            }
+         })
+      })
+   }
 }
 
 class PrintForm{
@@ -1047,7 +1006,6 @@ class PrintForm{
       this.dataForm = dataForm
       this.makeHTML = makeHTML
       this.data = datahtml
-      // this.formblock;
    }
     
    buildForm(){
@@ -1058,9 +1016,9 @@ class PrintForm{
    }
 
    formm(){
-      const formItems = this.container.querySelector('.form-d-body')
-      const titHeader = this.container.querySelector('.form-d-header h4')
+      const titHeader = this.container.querySelector('#title_form')
       titHeader.innerHTML = this.dataForm.name_form
+      const formItems = this.container.querySelector('.form-d-body')
       this.dataForm.structure.length === 0 ? formItems : formItems.innerHTML = ''
       this.dataForm.structure.forEach(it => {
          let req;
@@ -1172,6 +1130,18 @@ class PrintForm{
             }
 
             this.makeHTML.build(formContInputs, group_select_dList, this.data.elements)
+
+            const obSelectParent = this.dataForm.structure.find(ob => ob.id === it.root)
+            const valSelectParent = this.container.querySelector(`#inps__${obSelectParent.id} select`).value
+            const elSelectChild = this.container.querySelector(`#inps__${it.id} select`)
+            const listOptionsChild = it.options.filter(it => {return it.concat.includes(valSelectParent)})
+            elSelectChild.innerHTML = ''
+            listOptionsChild.forEach(op => {
+               const option = document.createElement('option')
+               option.append(op.et)
+               elSelectChild.appendChild(option)
+            })
+
             return
          }
       })
@@ -1273,15 +1243,6 @@ class PrintTable {
       this.numberRange(this.data)
       this.choosePage()
       return
-   }
-
-   refresh(){
-      // this.buildTable()
-      // this.activeSearch()
-      // this.calcPag(this.data)
-      // this.numberRange(this.data)
-
-      return         
    }
 
    buildComponents(){
@@ -1407,7 +1368,7 @@ class PrintTable {
       this.inputSearch()
    }
 
-   inputSearch(field = undefined) {
+   inputSearch() {
       const inp = this.cheader.querySelector("#input_search_table");
 
       inp.addEventListener("input", (e) => {
@@ -1514,25 +1475,20 @@ class PrintTable {
             this.pag.current = parseInt(e.target.dataset.num)
             this.cfooter.querySelector('#number_page').innerHTML = e.target.dataset.num
             this.calcPag(this.copydata)
-
             return
          }
-
          if(e.target.classList.contains('btn-pag-l')){
             this.pag.current = this.pag.current - 1
             this.cfooter.querySelector('#number_page').innerHTML = this.pag.current
             this.calcPag(this.copydata)
             this.buildTable(this.copydata)
-            
             return
          }
-
          if(e.target.classList.contains('btn-pag-r')){
             this.pag.current = this.pag.current + 1
             this.cfooter.querySelector('#number_page').innerHTML = this.pag.current
             this.calcPag(this.copydata)
             this.buildTable(this.copydata)
-
             return
          }
       })
@@ -1680,11 +1636,16 @@ class BarsHoriz{
 
    dinamic(arData){
       this.ar = arData
-      this.buildHTML('dinamic')
-      this.createSelect()
-      this.actions()
-      this.createSVG()
-
+      if(this.str.length === 0 || !this.str){
+         const h4 = document.createElement('h4')
+         h4.append('El gráfico solo admite los datos predeterminados del formulario.')
+         this.cont.appendChild(h4)
+      } else {
+         this.buildHTML('dinamic')
+         this.createSelect()
+         this.actions()
+         this.createSVG()
+      }
       return
    }
 
@@ -1705,7 +1666,6 @@ class BarsHoriz{
          this.cont.appendChild(this.contGraph)
          return
       }
-
       return
    }
 
@@ -1718,7 +1678,6 @@ class BarsHoriz{
          this.selec.append(op)
       })
       this.contSel.appendChild(this.selec)
-
       return
    }
 
@@ -1912,9 +1871,6 @@ class BarsHoriz{
          this.selec.addEventListener('change', (e) => {
             this.current = e.target.value
             this.createSVG()
-            // let ar_datos =  this.ar.map(a => a[selec.value])
-            // let arr = this.arfrec(ar_datos)
-            // this.createSVG(cont_bars, arr)
          })
          
          return
@@ -1922,4 +1878,4 @@ class BarsHoriz{
    }
 }
 
-module.exports = { MakeHTML, BackgroundBlur, Pops, Placeholders, DownloadSVG, CreateForms, PrintForm, PrintTable, Warnings, ControlFormData, BarsHoriz }
+module.exports = { MakeHTML, BackgroundBlur, Pops, Placeholders, CreateForms, PrintForm, PrintTable, Warnings, ControlFormData, BarsHoriz }

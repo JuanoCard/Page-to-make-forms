@@ -112,7 +112,7 @@ export const makeForm = {
       arrayData: [
          {elem: 'form', class: 'form-d', subs: [
             {elem: 'header', class: 'form-d-header', subs: [
-               {elem: 'h4', text: 'Formulario de Datos'}
+               {elem: 'h4', id: 'title_form'}
             ]},
             {elem: 'ul', class: 'form-d-body', subs: [
                {elem: 'div', class: 'form-d-empty', subs: [
@@ -124,29 +124,6 @@ export const makeForm = {
    ]},
 
    elements: {
-      btn_li_subtit: {elem: 'li', class: 'cont-btn-li-subtit', subs: [
-         {elem: 'button', class: 'button-li-subtit', subs: [
-            {elem: 'div', class: 'btn-li-subtit-cont', subs: [
-               {elem: 'p', text: 'Proceso uno de todos los procesos que hay en el mundo de los negocios'},
-               {elem: 'span', text: 'Creado el 15 de Ago de este año'}
-            ]}
-         ]}
-      ]},
-      btns_start: {elem: 'div', class: 'cont-btn-start', subs: [
-         {elem: 'button', class: 'button-start', text: 'Empezar'}
-      ]},
-      item_formData_emptylist: {elem: 'li', class: 'cont-btn-li-easy-empty', subs: [
-         {elem: 'p', class: 'p-li-list', text: 'No ha sido creado ningún Formulario de Datos aún'},
-      ]}, 
-      input_text_formpanel: {elem: 'div', class: 'form-block', subs: [
-         {elem: 'p', class: 'formpanel-input-tit'},
-         {elem: 'div', class: 'formpanel-cont-input', subs: [
-            {elem: 'input', type: 'text', class: 'formpanel-input-text'}
-         ]}
-      ]},
-      btn_go_out: {elem: 'div', class: 'cont-btn-exit', subs: [
-         {elem: 'button', class: 'button-exit'}
-      ]},
       panel_form_input_text: {elem: 'div', class: 'cont-form-det', subs: [
          {elem: 'form', id: 'form__input_text', class: 'form-det', subs: [
             {elem: 'div', class: 'block-form-det', subs: [
@@ -362,32 +339,6 @@ export const makeForm = {
             ]}
          ]}
       ]},
-      panel_input_level: {elem: 'form', class: 'inputdata-form-input-description', subs: [
-         {elem: 'div', class: 'inputdata-cont-btns-level'},
-         {elem: 'div', class: 'inputdata-cont-input-level', subs: [
-            {elem: 'input', type: 'text', id: 'inputdata_level_name', placeholder: `Nombre`},
-         ]}, 
-         {elem: 'div', class: 'inputdata-cont-description-level', subs: [
-            {elem: 'textarea', id: 'inputdata_level_description', placeholder: `Descripción`}
-         ]},
-         {elem: 'div', class: 'inputdata-cont-btn-oper', subs: [
-            {elem: 'button', id: 'cancel_level', class: 'button-cancel', text: 'Cancelar'},
-            {elem: 'button', class: 'button-save btn-save-level', text: 'Guardar'}
-         ]}
-      ]},
-      panel_input_level_ed: {elem: 'form', class: 'inputdata-form-input-description', subs: [
-         {elem: 'div', class: 'inputdata-cont-btns-level'},
-         {elem: 'div', class: 'inputdata-cont-input-level', subs: [
-            {elem: 'input', type: 'text', id: 'inputdata_level_name', placeholder: `Nombre`},
-         ]}, 
-         {elem: 'div', class: 'inputdata-cont-description-level', subs: [
-            {elem: 'textarea', id: 'inputdata_level_description', placeholder: `Descripción`}
-         ]},
-         {elem: 'div', class: 'inputdata-cont-btn-oper', subs: [
-            {elem: 'button', id: 'cancel_edit', class: 'button-cancel', text: 'Cancelar edición'},
-            {elem: 'button', id: 'edit_schema', class: 'button-edit btn-edit-schema', text: 'Editar'}
-         ]}
-      ]},
    }
 }
 
@@ -442,90 +393,4 @@ export const table = {
    }
 }
 
-export const listForms = [{"name_form":"Formulario uno","structure":[{"options":[],"group":"input_text","input":"input","type":"text","id":"2c5b933e","concat":"codigo","et":"codigo","required":false},{"options":[{"et":"peru","concat":"peru"},{"et":"brasil","concat":"brasil"},{"et":"colombia","concat":"colombia"}],"group":"input_radio","input":"input","type":"radio","id":"9626b335","concat":"paises","et":"paises","required":false},{"options":[{"et":"rojo","concat":"rojo"},{"et":"amarillo","concat":"amarillo"},{"et":"verde","concat":"verde"}],"group":"input_checkbox","input":"input","type":"checkbox","id":"18618543c","concat":"colores","et":"colores","required":false}],"id":"5319bff587"}]
-
-export const elementsList = {
-   elements: {
-      el: {elem: 'button', class: 'button-list', text: 'Añadir'},
-      box_warning: {elem: 'div', class: 'box-warning', subs: [
-         {elem: 'div', class: 'warn-title', subs: [
-            {elem: 'h2', text: 'Borrar formulario'}
-         ]},
-         {elem: 'div', class: 'warn-description', subs: [
-            {elem: 'p', text: 'Esta a punto de borrar el formulario: Formulario Uno. Este paso es irreversible. Si desea continuar con esta acción haga click en Eliminar, de lo contrario haga click en Cancelar.'}
-         ]},
-         {elem: 'div', class: 'warn-btns', subs: [
-            {elem: 'button', class: 'button-yel', text: 'Cancelar'},
-            {elem: 'button', class: 'button-red', text: 'Eliminar'}
-         ]},
-      ]},
-      btn_list: {elem: 'li', class: 'li-list', subs: [
-         {elem: 'div', class: 'cont-btn-list', subs: [
-            {elem: 'button', class: 'button-list', text: 'Formulario de datos uno'},
-            {elem: 'div', class: 'cont-ops-btns', subs: [
-               {elem: 'div', class: 'cont-ed-del', subs: [
-                  {elem: 'button', class: 'button-ic-ed ic-30'},
-                  {elem: 'button', class: 'button-ic-del ic-30'}
-               ]},
-               {elem: 'div', class: 'img-config-list'}
-            ]}
-         ]}
-      ]},
-      inp_det_text: {elem: 'input', class: 'inp-det-text', placeholder: 'Etiqueta Ej: Nombres'},
-      inp_det_select: {elem: 'select', class: 'select-det', subs: [
-         {elem: 'option', text: 'first'}
-      ]},
-      inp_form_text: {elem: 'div', class: 'cont-inp-f cont-inp-form-text', subs: [
-         {elem: 'div', class: 'cont-inp-req', subs: [
-            {elem: 'span', class: 'el-req'}
-         ]},
-         {elem: 'div', class: 'cont-inp-elem', subs: [
-            {elem: 'input', class: 'inp-f-text', type: 'text', placeholder: 'Nombres'}
-         ]},
-         {elem: 'div', class: 'cont-inp-opts', subs: [
-            {elem: 'div', class: 'cont-btns-op', subs: [
-               {elem: 'button', class: 'button-ic-ed ic-30'},
-               {elem: 'button', class: 'button-ic-del ic-30'}
-            ]}
-         ]}
-      ]},
-      inp_form_radio: {elem: 'div', class: 'cont-inp-f cont-inp-form-text', subs: [
-         {elem: 'div', class: 'cont-inp-req', subs: [
-            {elem: 'span', class: 'el-req'}
-         ]},
-         {elem: 'div', class: 'cont-inp-elem', subs: [
-            {elem: 'input', id: 'inp_test', class: 'inp-f-rad', type: 'radio', name: 'inp'},
-            {elem: 'label', class: 'label-f-rad', for: 'inp_test', text: 'Opcion uno'},
-            {elem: 'input', id: 'inp_test1', class: 'inp-f-rad', type: 'radio', name: 'inp'},
-            {elem: 'label', class: 'label-f-rad', for: 'inp_test1', text: 'Opcion uno'},
-            {elem: 'input', id: 'inp_test2', class: 'inp-f-rad', type: 'radio', name: 'inp'},
-            {elem: 'label', class: 'label-f-rad', for: 'inp_test2', text: 'Opcion uno'},
-         ]},
-         {elem: 'div', class: 'cont-inp-opts', subs: [
-            {elem: 'div', class: 'cont-btns-op', subs: [
-               {elem: 'button', class: 'button-ic-ed ic-30'},
-               {elem: 'button', class: 'button-ic-del ic-30'}
-            ]}
-         ]}
-      ]},
-      inp_form_check: {elem: 'div', class: 'cont-inp-f cont-inp-form-text', subs: [
-         {elem: 'div', class: 'cont-inp-req', subs: [
-            {elem: 'span', class: 'el-req'}
-         ]},
-         {elem: 'div', class: 'cont-inp-elem', subs: [
-            {elem: 'input', id: 'inp_test', class: 'inp-f-che', type: 'checkbox', name: 'inp'},
-            {elem: 'label', class: 'label-f-che', for: 'inp_test', text: 'Opcion uno'},
-            {elem: 'input', id: 'inp_test1', class: 'inp-f-che', type: 'checkbox', name: 'inp'},
-            {elem: 'label', class: 'label-f-che', for: 'inp_test1', text: 'Opcion uno'},
-            {elem: 'input', id: 'inp_test2', class: 'inp-f-che', type: 'checkbox', name: 'inp'},
-            {elem: 'label', class: 'label-f-che', for: 'inp_test2', text: 'Opcion uno'},
-         ]},
-         {elem: 'div', class: 'cont-inp-opts', subs: [
-            {elem: 'div', class: 'cont-btns-op', subs: [
-               {elem: 'button', class: 'button-ic-ed ic-30'},
-               {elem: 'button', class: 'button-ic-del ic-30'}
-            ]}
-         ]}
-      ]}
-   }
-}
+export const listForms = []
